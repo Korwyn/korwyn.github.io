@@ -9,6 +9,15 @@ div.country {
 	width: 14%;
 	margin-top: 20px;
 	vertical-align: top;
+	text-align: center;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.bigger {
+	font-size: 16px;
 }
 
 .backgroundUSA{
