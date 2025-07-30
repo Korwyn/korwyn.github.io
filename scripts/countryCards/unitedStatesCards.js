@@ -1,7 +1,6 @@
 let usControled = {};
 
 function usDefault() {
-	
 	//id, name, countryControlled, stressValue, baseProduction, embattledProduction, isEmbattled
 	let usDefaults = {
 		u1: new territory("U1", "Eastern United States", "usa", 10, { oil: 2, iron: 4, osr: 5 }, { oil: 1, iron: 4, osr: 5 }, false),

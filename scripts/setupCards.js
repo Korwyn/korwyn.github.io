@@ -32,16 +32,24 @@ function setupCards() {
 		for (let territoryId in territories) {
 			let territory = territories[territoryId];
 
+			let territoryOil = 0;
+			let territoryIron = 0;
+			let territoryOSR = 0;
+
 			if (territory.isEmbattled) {
-				country.oil += territory.embattledProduction.oil;
-				country.iron += territory.embattledProduction.iron;
-				country.osr += territory.embattledProduction.osr;
+				territoryOil = territory.embattledProduction.oil;
+				territoryIron = territory.embattledProduction.iron;
+				territoryOSR = territory.embattledProduction.osr;
 			}
 			else {
-				country.oil += territory.production.oil;
-				country.iron += territory.production.iron;
-				country.osr += territory.production.osr;
+				territoryOil = territory.production.oil;
+				territoryIron = territory.production.iron;
+				territoryOSR = territory.production.osr;
 			}
+
+			country.oil += territoryOil;
+			country.iron += territoryIron;
+			country.osr += territoryOSR;
 
 			let newTerritory = document.createElement("div");
 			newTerritory.setAttribute("class", "card " + territory.id);
@@ -80,14 +88,14 @@ function setupCards() {
 
 			let optionGerman = document.createElement("option");
 			optionGerman.value = "germany";
-			optionGerman.textContent = "German";
+			optionGerman.textContent = "Germany";
 			controlledSelect.appendChild(optionGerman);
 
 			controlledSelect.value = territory.countryControlled;
+			controledDiv.appendChild(controlledSelect);
 
 			controlledSelect.addEventListener("change", (event) => {
-				let target = event.target;
-				let value = target.value;
+				let value = event.target.value;
 				let oldControled = territory.countryControlled;
 				territory.isEmbattled = false;
 				territory.countryControlled = value;
@@ -95,8 +103,22 @@ function setupCards() {
 				delete countrySetup[oldControled].territories[territoryId];
 				setupCards();
 			});
-			controledDiv.appendChild(controlledSelect);
+			
 			newTerritory.appendChild(controledDiv);
+
+			let productionDiv = document.createElement("div");
+			let oilSpan = document.createElement("span");
+			oilSpan.innerHTML = " Oil: " + territoryOil;
+			productionDiv.appendChild(oilSpan);
+
+			let ironSpan = document.createElement("span");
+			ironSpan.innerHTML = " Iron: " + territoryIron;
+			productionDiv.appendChild(ironSpan);
+
+			let osrSpan = document.createElement("span");
+			osrSpan.innerHTML = " OSR: " + territoryOSR;
+			productionDiv.appendChild(osrSpan);
+			newTerritory.appendChild(productionDiv);
 
 			baseElement.appendChild(newTerritory);
 		}

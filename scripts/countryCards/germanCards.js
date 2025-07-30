@@ -1,7 +1,6 @@
 let germanControled = {};
 
 function germanDefault() {
-	
 	//id, name, countryControlled, stressValue, baseProduction, embattledProduction, isEmbattled
 	let germanDefaults = {
 		g1: new territory("G1", "Greater Germany", "germany", 8, { oil: 1, iron: 2, osr: 3 }, { iron: 2, osr: 3 }, false),
