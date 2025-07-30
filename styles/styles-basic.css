@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+div.inlineBlock {
+	display:inline-block;
+}
+
+div.country {
+	min-width: 200px;
+	width: 14%;
+	margin-top: 20px;
+	vertical-align: top;
+}
+
+.backgroundUSA{
+	background-color: #7BB274;
+}
+
+.backgroundUSSR{
+	background-color: #D85B5F;
+}
+
+.backgroundUK{
+	background-color: #658CBB;
+}
+
+.backgroundChina{
+	background-color: #F0944D;
+}
+
+.backgroundJapan{
+	background-color: #feff7f;
+}
+
+.backgroundItaly{
+	background-color: #a72c2c;
+}
+
+.backgroundGermany{
+	background-color: #AAAAAA;
+}
