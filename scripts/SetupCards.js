@@ -12,6 +12,20 @@ let countrySetup = {
 		oil: 0,
 		iron: 0,
 		osr: 0
+	},
+	china: {
+		territories: chinaControled,
+		id: "chinaCardList",
+		oil: 0,
+		iron: 0,
+		osr: 0
+	},
+	italy: {
+		territories: italyControled,
+		id: "italyCardList",
+		oil: 0,
+		iron: 0,
+		osr: 0
 	}
 };
 
@@ -59,9 +73,10 @@ function setupCards() {
 			newTerritory.appendChild(nameDiv);
 
 			let embattledLabel = document.createElement("label");
-			embattledLabel.textContent = "Embattled:"
+			embattledLabel.textContent = FIGHTING;
 
 			let embattledCheckbox = document.createElement("input");
+			embattledCheckbox.setAttribute("class", "checkboxPosition");
 			embattledCheckbox.type = "checkbox";
 			embattledCheckbox.checked = territory.isEmbattled;
 			embattledLabel.appendChild(embattledCheckbox);
@@ -72,27 +87,10 @@ function setupCards() {
 				let isChecked = event.target.checked;
 				territory.isEmbattled = isChecked;
 				setupCards();
-			})
+			});
 
-			let controledDiv  = document.createElement("div"); 
-			let controledLabel = document.createElement("lable");
-			controledLabel.innerText= "Controller: ";
-			controledDiv.appendChild(controledLabel);
-			
-			let controlledSelect = document.createElement("select");
-
-			let optionUsa = document.createElement("option");
-			optionUsa.value = "usa";
-			optionUsa.textContent = "United States";
-			controlledSelect.appendChild(optionUsa);
-
-			let optionGerman = document.createElement("option");
-			optionGerman.value = "germany";
-			optionGerman.textContent = "Germany";
-			controlledSelect.appendChild(optionGerman);
-
+			let controlledSelect = createControledSelectList(newTerritory, territory);
 			controlledSelect.value = territory.countryControlled;
-			controledDiv.appendChild(controlledSelect);
 
 			controlledSelect.addEventListener("change", (event) => {
 				let value = event.target.value;
@@ -103,12 +101,10 @@ function setupCards() {
 				delete countrySetup[oldControled].territories[territoryId];
 				setupCards();
 			});
-			
-			newTerritory.appendChild(controledDiv);
 
 			let productionDiv = document.createElement("div");
 			let oilSpan = document.createElement("span");
-			oilSpan.innerHTML = " Oil: " + territoryOil;
+			oilSpan.innerHTML = "Oil:" + " " + territoryOil;
 			productionDiv.appendChild(oilSpan);
 
 			let ironSpan = document.createElement("span");
@@ -138,6 +134,41 @@ function setupCards() {
 
 		baseElement.prepend(productionDiv);
 	}
+}
+
+function createControledSelectList(newTerritory) {
+	let controledDiv = document.createElement("div");
+	let controledLabel = document.createElement("lable");
+	controledLabel.innerText = "Controller: ";
+	controledDiv.appendChild(controledLabel);
+
+	let controlledSelect = document.createElement("select");
+
+	let optionUsa = document.createElement("option");
+	optionUsa.value = "usa";
+	optionUsa.textContent = "United States";
+	controlledSelect.appendChild(optionUsa);
+
+	let optionGerman = document.createElement("option");
+	optionGerman.value = "germany";
+	optionGerman.textContent = "Germany";
+	controlledSelect.appendChild(optionGerman);
+
+	let optionItaly = document.createElement("option");
+	optionItaly.value = "italy";
+	optionItaly.textContent = "Italy";
+	controlledSelect.appendChild(optionItaly);
+
+	let optionChina = document.createElement("option");
+	optionChina.value = "china";
+	optionChina.textContent = "China";
+	controlledSelect.appendChild(optionChina);
+
+	controledDiv.appendChild(controlledSelect);
+
+	newTerritory.appendChild(controledDiv);
+
+	return controlledSelect;
 }
 
 setupCards();

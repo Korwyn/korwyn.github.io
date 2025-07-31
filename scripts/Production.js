@@ -1,4 +1,4 @@
-class production {
+class Production {
 	constructor(production) {
 		this.oil = 0;
 		this.iron = 0;

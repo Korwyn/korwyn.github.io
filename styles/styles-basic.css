@@ -16,8 +16,9 @@ div.country {
 	border-style: solid;
 	border-width: 1px;
 	border-radius: 10px;
-	margin: 5px;
+	margin: 8px;
 	padding: 3px;
+	box-shadow: 3px 3px 3px gray;
 }
 
 .bold {
@@ -28,38 +29,8 @@ div.country {
 	font-size: 16px;
 }
 
-.U1, .U2, .U3, .U4, .U5, .U6, .U7, .U8, .U9, .U10 {
-	background-color: #9DD496;
+.checkboxPosition {
+	position: relative;
+	top: 1px;
 }
 
-.backgroundUSA{
-	background-color: #7BB274;
-}
-
-.backgroundUSSR{
-	background-color: #D85B5F;
-}
-
-.backgroundUK{
-	background-color: #658CBB;
-}
-
-.backgroundChina{
-	background-color: #F0944D;
-}
-
-.backgroundJapan{
-	background-color: #feff7f;
-}
-
-.backgroundItaly{
-	background-color: #D3B683;
-}
-
-.G1, .G2, .G3, .G4, .G5, .G6, .G7, .G8, .G9, .G10, .G11, .G12, .G13, .G14, .G15, .G16 {
-	background-color: #CCCCCC;
-}
-
-.backgroundGermany{
-	background-color: #AAAAAA;
-}
