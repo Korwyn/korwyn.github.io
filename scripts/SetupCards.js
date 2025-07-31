@@ -139,7 +139,7 @@ function setupCards() {
 function createControledSelectList(newTerritory) {
 	let controledDiv = document.createElement("div");
 	let controledLabel = document.createElement("lable");
-	controledLabel.innerText = "Controller: ";
+	controledLabel.innerText = "Control: ";
 	controledDiv.appendChild(controledLabel);
 
 	let controlledSelect = document.createElement("select");
