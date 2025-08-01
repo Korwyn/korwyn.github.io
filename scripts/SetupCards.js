@@ -134,7 +134,7 @@ function setupCards() {
 				nameDiv.innerHTML = territory.name;
 				newTerritory.appendChild(nameDiv);
 
-				let controlledSelect = createControledSelectList(newTerritory, territory);
+				let controlledSelect = createControledSelectList(newTerritory, allianceName, territory.owner);
 				controlledSelect.value = territory.countryControlled;
 
 				controlledSelect.addEventListener("change", (event) => {
@@ -252,7 +252,7 @@ function setupCards() {
 	}
 }
 
-function createControledSelectList(newTerritory) {
+function createControledSelectList(newTerritory, allianceName, owner) {
 	let controledDiv = document.createElement("div");
 	controledDiv.classList.add("spacing");
 	let controledLabel = document.createElement("lable");
@@ -261,30 +261,40 @@ function createControledSelectList(newTerritory) {
 
 	let controlledSelect = document.createElement("select");
 
-	let optionUsa = document.createElement("option");
-	optionUsa.value = "usa";
-	optionUsa.textContent = "United States";
-	controlledSelect.appendChild(optionUsa);
+	if(allianceName == "axis" || owner == "usa"){
+		let optionUsa = document.createElement("option");
+		optionUsa.value = "usa";
+		optionUsa.textContent = "United States";
+		controlledSelect.appendChild(optionUsa);
+	}
+	
+	if(allianceName == "allies" || owner == "germany"){
+		let optionGerman = document.createElement("option");
+		optionGerman.value = "germany";
+		optionGerman.textContent = "Germany";
+		controlledSelect.appendChild(optionGerman);
+	}
 
-	let optionGerman = document.createElement("option");
-	optionGerman.value = "germany";
-	optionGerman.textContent = "Germany";
-	controlledSelect.appendChild(optionGerman);
+	if(allianceName == "allies" || owner == "italy"){
+		let optionItaly = document.createElement("option");
+		optionItaly.value = "italy";
+		optionItaly.textContent = "Italy";
+		controlledSelect.appendChild(optionItaly);
+	}
 
-	let optionItaly = document.createElement("option");
-	optionItaly.value = "italy";
-	optionItaly.textContent = "Italy";
-	controlledSelect.appendChild(optionItaly);
+	if(allianceName == "axis" || owner == "china"){
+		let optionChina = document.createElement("option");
+		optionChina.value = "china";
+		optionChina.textContent = "China";
+		controlledSelect.appendChild(optionChina);
+	}
 
-	let optionChina = document.createElement("option");
-	optionChina.value = "china";
-	optionChina.textContent = "China";
-	controlledSelect.appendChild(optionChina);
-
-	let optionJapan = document.createElement("option");
-	optionJapan.value = "japan";
-	optionJapan.textContent = "Japan";
-	controlledSelect.appendChild(optionJapan);
+	if(allianceName == "allies" || owner == "japan"){
+		let optionJapan = document.createElement("option");
+		optionJapan.value = "japan";
+		optionJapan.textContent = "Japan";
+		controlledSelect.appendChild(optionJapan);
+	}
 
 	controledDiv.appendChild(controlledSelect);
 
