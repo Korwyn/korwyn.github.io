@@ -44,13 +44,22 @@ div.country {
 }
 
 .icon {
-	width: 16px;
-	height: 16px;
+	width: 15px;
+	height: 15px;
 	position: relative;
 	top: 2px;
 }
 
 .third {
 	width: 33%;
+}
+
+.transparent {
+	color: transparent;
+}
+
+.spacing {
+	margin-top: 2px;
+	margin-bottom: 2px;
 }
 

@@ -185,6 +185,14 @@ function setupCards() {
 				osrSpan.innerHTML = ":" + territoryOSR;
 				osrDiv.appendChild(osrSpan);
 			}
+
+			if (!territoryOSR && !territoryIron && !territoryOil) {
+				let imgOSR = document.createElement("img");
+				imgOSR.classList.add("icon");
+				imgOSR.src = "icons/transparent.png";
+				osrDiv.appendChild(imgOSR);
+			}
+					
 			productionDiv.appendChild(osrDiv);
 			newTerritory.appendChild(productionDiv);
 			baseElement.appendChild(newTerritory);
@@ -237,6 +245,7 @@ function setupCards() {
 
 function createControledSelectList(newTerritory) {
 	let controledDiv = document.createElement("div");
+	controledDiv.classList.add("spacing");
 	let controledLabel = document.createElement("lable");
 	controledLabel.innerText = "Control: ";
 	controledDiv.appendChild(controledLabel);
