@@ -26,6 +26,13 @@ let countrySetup = {
 		oil: 0,
 		iron: 0,
 		osr: 0
+	},
+	japan: {
+		territories: japanControled,
+		id: "japanCardList",
+		oil: 0,
+		iron: 0,
+		osr: 0
 	}
 };
 
@@ -68,9 +75,18 @@ function setupCards() {
 			let newTerritory = document.createElement("div");
 			newTerritory.setAttribute("class", "card " + territory.id);
 
-			let nameDiv = document.createElement("div");
-			nameDiv.innerHTML = territory.id + " - " + territory.name;
-			newTerritory.appendChild(nameDiv);
+			if (territory.isEmbattled) {
+				newTerritory.classList.add("contestedGradient");
+			}
+			else {
+				newTerritory.classList.remove("contestedGradient");
+			}
+
+			let headerDiv = document.createElement("div");
+			headerDiv.setAttribute("class", "relative");
+
+			let embattledDiv = document.createElement("div");
+			embattledDiv.setAttribute("class", "absoluteRight");
 
 			let embattledLabel = document.createElement("label");
 			embattledLabel.textContent = FIGHTING;
@@ -81,13 +97,33 @@ function setupCards() {
 			embattledCheckbox.checked = territory.isEmbattled;
 			embattledLabel.appendChild(embattledCheckbox);
 
-			newTerritory.appendChild(embattledLabel);
+			embattledDiv.appendChild(embattledLabel);
+
+			headerDiv.appendChild(embattledDiv);
 
 			embattledCheckbox.addEventListener("change", (event) => {
 				let isChecked = event.target.checked;
 				territory.isEmbattled = isChecked;
+
+				if (territory.isEmbattled) {
+					newTerritory.classList.add("contestedGradient");
+				}
+				else {
+					newTerritory.classList.remove("contestedGradient");
+				}
 				setupCards();
 			});
+
+			let idDiv = document.createElement("div");
+			idDiv.setAttribute("class", "bold");
+			idDiv.innerHTML = territory.id;
+			headerDiv.appendChild(idDiv);
+
+			newTerritory.appendChild(headerDiv);
+
+			let nameDiv = document.createElement("div");
+			nameDiv.innerHTML = territory.name;
+			newTerritory.appendChild(nameDiv);
 
 			let controlledSelect = createControledSelectList(newTerritory, territory);
 			controlledSelect.value = territory.countryControlled;
@@ -163,6 +199,11 @@ function createControledSelectList(newTerritory) {
 	optionChina.value = "china";
 	optionChina.textContent = "China";
 	controlledSelect.appendChild(optionChina);
+
+	let optionJapan = document.createElement("option");
+	optionJapan.value = "japan";
+	optionJapan.textContent = "Japan";
+	controlledSelect.appendChild(optionJapan);
 
 	controledDiv.appendChild(controlledSelect);
 

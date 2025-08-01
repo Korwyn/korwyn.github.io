@@ -34,3 +34,12 @@ div.country {
 	top: 1px;
 }
 
+.relative {
+	position: relative;	
+}
+
+.absoluteRight {
+	position: absolute;
+	right: 0;
+}
+
