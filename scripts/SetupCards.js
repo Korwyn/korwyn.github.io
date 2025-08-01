@@ -123,6 +123,7 @@ function setupCards() {
 			newTerritory.appendChild(headerDiv);
 
 			let nameDiv = document.createElement("div");
+			nameDiv.classList.add("spacing");
 			nameDiv.innerHTML = territory.name;
 			newTerritory.appendChild(nameDiv);
 
