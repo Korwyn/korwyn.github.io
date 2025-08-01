@@ -111,6 +111,7 @@ function setupCards() {
 			embattledDiv.classList.add("absoluteRight");
 
 			let embattledLabel = document.createElement("label");
+			embattledLabel.classList.add("fight");
 			embattledLabel.textContent = FIGHTING;
 
 			let embattledCheckbox = document.createElement("input");
