@@ -1,63 +1,75 @@
-let countrySetup = {
-	germany: {
-		territories: germanControled,
-		id: "germanyCardList",
-		allianceName: "axis",
-		oil: 0,
-		iron: 0,
-		osr: 0
-	},
-	italy: {
-		territories: italyControled,
-		id: "italyCardList",
-		allianceName: "axis",
-		oil: 0,
-		iron: 0,
-		osr: 0
-	},
-	japan: {
-		territories: japanControled,
-		id: "japanCardList",
-		allianceName: "axis",
-		oil: 0,
-		iron: 0,
-		osr: 0
-	},
-	usa: {
-		territories: usControled,
-		id: "usaCardList",
-		allianceName: "allies",
-		oil: 0,
-		iron: 0,
-		osr: 0
-	},
-	china: {
-		territories: chinaControled,
-		id: "chinaCardList",
-		allianceName: "allies",
-		oil: 0,
-		iron: 0,
-		osr: 0
-	},
-	ussr: {
-		territories: ussrControled,
-		id: "ussrCardList",
-		allianceName: "allies",
-		oil: 0,
-		iron: 0,
-		osr: 0
-	},
-	uk: {
-		territories: ukControled,
-		id: "ukCardList",
-		allianceName: "allies",
-		oil: 0,
-		iron: 0,
-		osr: 0
+let countrySetup = null;
+
+function cardInitialization() {
+	let setup = {
+		germany: {
+			territories: germanControled,
+			id: "germanyCardList",
+			allianceName: "axis",
+			oil: 0,
+			iron: 0,
+			osr: 0
+		},
+		italy: {
+			territories: italyControled,
+			id: "italyCardList",
+			allianceName: "axis",
+			oil: 0,
+			iron: 0,
+			osr: 0
+		},
+		japan: {
+			territories: japanControled,
+			id: "japanCardList",
+			allianceName: "axis",
+			oil: 0,
+			iron: 0,
+			osr: 0
+		},
+		usa: {
+			territories: usControled,
+			id: "usaCardList",
+			allianceName: "allies",
+			oil: 0,
+			iron: 0,
+			osr: 0
+		},
+		china: {
+			territories: chinaControled,
+			id: "chinaCardList",
+			allianceName: "allies",
+			oil: 0,
+			iron: 0,
+			osr: 0
+		},
+		ussr: {
+			territories: ussrControled,
+			id: "ussrCardList",
+			allianceName: "allies",
+			oil: 0,
+			iron: 0,
+			osr: 0
+		},
+		uk: {
+			territories: ukControled,
+			id: "ukCardList",
+			allianceName: "allies",
+			oil: 0,
+			iron: 0,
+			osr: 0
+		}
 	}
-};
+
+	let clone = JSON.parse(JSON.stringify(setup));
+
+	return clone;
+}
 
 function setupCards() {
+	if (!countrySetup) {
+		countrySetup = cardInitialization();
+	}
+
 	for (let countryName in countrySetup) {
 		let country = countrySetup[countryName]
 		let divId = country.id;
@@ -264,6 +276,7 @@ function setupCards() {
 
 		baseElement.prepend(productionDiv);
 	}
+	saveGameState();
 }
 
 function createControledSelectList(newTerritory, allianceName, territory) {
@@ -305,7 +318,7 @@ function createControledSelectList(newTerritory, allianceName, territory) {
 		optionJapan.textContent = "Japan";
 		controlledSelect.appendChild(optionJapan);
 	}
-	
+
 	if ((allianceName == "axis" && owner == countryControlled) || owner == "uk" || countryControlled == "uk") {
 		let optionUk = document.createElement("option");
 		optionUk.value = "uk";
@@ -333,5 +346,24 @@ function createControledSelectList(newTerritory, allianceName, territory) {
 
 	return controlledSelect;
 }
+
+function saveGameState() {
+	let savedData = JSON.stringify(countrySetup);
+	localStorage.setItem("countrySetup", savedData);
+}
+
+let savedData = localStorage.getItem("countrySetup");
+
+if (savedData) {
+	countrySetup = JSON.parse(savedData);
+}
+
+let reset = document.getElementById("reset")
+reset.addEventListener("click", function(){
+	if(confirm("Reset Game State?")){
+		countrySetup = null;
+		setupCards();
+	}
+});
 
 setupCards();
