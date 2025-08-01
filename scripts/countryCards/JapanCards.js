@@ -1,7 +1,7 @@
 let japanControled = {};
 
 function japanDefault() {
-	//id, name, countryControlled, stressValue, baseProduction, embattledProduction, isEmbattled
+	//id, name, countryControlled, owner, stressValue, baseProduction, embattledProduction, isEmbattled
 	let japanDefaults = {
 		j1: new Territory("J1", "Imperial Japan", "japan", "japan", 8, { iron: 2, osr: 2 }, { iron: 1, osr: 2 }, false),
 		j2: new Territory("J2", "Korea", "japan", "japan", 2, { iron: 1, osr: 1 }, { osr: 1 }, false),
