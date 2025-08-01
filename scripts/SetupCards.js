@@ -1,62 +1,62 @@
-let countrySetup = null;
+let countries = null;
 
-function cardInitialization() {
+function countyInitialization() {
 	let setup = {
 		germany: {
 			territories: germanControled,
 			id: "germanyCardList",
 			allianceName: "axis",
-			oil: 0,
-			iron: 0,
-			osr: 0
+			productionOil: 0,
+			productionIron: 0,
+			productionOsr: 0
 		},
 		italy: {
 			territories: italyControled,
 			id: "italyCardList",
 			allianceName: "axis",
-			oil: 0,
-			iron: 0,
-			osr: 0
+			productionOil: 0,
+			productionIron: 0,
+			productionOsr: 0
 		},
 		japan: {
 			territories: japanControled,
 			id: "japanCardList",
 			allianceName: "axis",
-			oil: 0,
-			iron: 0,
-			osr: 0
+			productionOil: 0,
+			productionIron: 0,
+			productionOsr: 0
 		},
 		usa: {
 			territories: usControled,
 			id: "usaCardList",
 			allianceName: "allies",
-			oil: 0,
-			iron: 0,
-			osr: 0
+			productionOil: 0,
+			productionIron: 0,
+			productionOsr: 0
 		},
 		china: {
 			territories: chinaControled,
 			id: "chinaCardList",
 			allianceName: "allies",
-			oil: 0,
-			iron: 0,
-			osr: 0
+			productionOil: 0,
+			productionIron: 0,
+			productionOsr: 0
 		},
 		ussr: {
 			territories: ussrControled,
 			id: "ussrCardList",
 			allianceName: "allies",
-			oil: 0,
-			iron: 0,
-			osr: 0
+			productionOil: 0,
+			productionIron: 0,
+			productionOsr: 0
 		},
 		uk: {
 			territories: ukControled,
 			id: "ukCardList",
 			allianceName: "allies",
-			oil: 0,
-			iron: 0,
-			osr: 0
+			productionOil: 0,
+			productionIron: 0,
+			productionOsr: 0
 		}
 	}
 
@@ -66,17 +66,17 @@ function cardInitialization() {
 }
 
 function setupCards() {
-	if (!countrySetup) {
-		countrySetup = cardInitialization();
+	if (!countries) {
+		countries = countyInitialization();
 	}
 
-	for (let countryName in countrySetup) {
-		let country = countrySetup[countryName]
+	for (let countryName in countries) {
+		let country = countries[countryName]
 		let divId = country.id;
 
-		country.oil = 0;
-		country.iron = 0;
-		country.osr = 0;
+		country.productionOil = 0;
+		country.productionIron = 0;
+		country.productionOsr = 0;
 
 		let baseElement = document.getElementById(divId);
 		baseElement.innerHTML = "";
@@ -101,9 +101,9 @@ function setupCards() {
 				territoryOSR = territory.production.osr;
 			}
 
-			country.oil += territoryOil;
-			country.iron += territoryIron;
-			country.osr += territoryOSR;
+			country.productionOil += territoryOil;
+			country.productionIron += territoryIron;
+			country.productionOsr += territoryOSR;
 
 			let newTerritory = document.createElement("div");
 			newTerritory.classList.add("card")
@@ -169,8 +169,8 @@ function setupCards() {
 				let oldControled = territory.countryControlled;
 				territory.isEmbattled = false;
 				territory.countryControlled = value;
-				countrySetup[value].territories[territoryId] = territory;
-				delete countrySetup[oldControled].territories[territoryId];
+				countries[value].territories[territoryId] = territory;
+				delete countries[oldControled].territories[territoryId];
 				setupCards();
 			});
 
@@ -244,7 +244,7 @@ function setupCards() {
 		oilDiv.appendChild(imgOil);
 
 		let oilSpan = document.createElement("span");
-		oilSpan.innerHTML = ":" + country.oil;
+		oilSpan.innerHTML = ":" + country.productionOil;
 		oilDiv.appendChild(oilSpan);
 		productionDiv.appendChild(oilDiv);
 
@@ -257,7 +257,7 @@ function setupCards() {
 		ironDiv.appendChild(imgIron);
 
 		let ironSpan = document.createElement("span");
-		ironSpan.innerHTML = ":" + country.iron;
+		ironSpan.innerHTML = ":" + country.productionIron;
 		ironDiv.appendChild(ironSpan);
 		productionDiv.appendChild(ironDiv);
 
@@ -270,7 +270,7 @@ function setupCards() {
 		osrDiv.appendChild(imgOSR);
 
 		let osrSpan = document.createElement("span");
-		osrSpan.innerHTML = ":" + country.osr;
+		osrSpan.innerHTML = ":" + country.productionOsr;
 		osrDiv.appendChild(osrSpan);
 		productionDiv.appendChild(osrDiv);
 
@@ -348,20 +348,20 @@ function createControledSelectList(newTerritory, allianceName, territory) {
 }
 
 function saveGameState() {
-	let savedData = JSON.stringify(countrySetup);
+	let savedData = JSON.stringify(countries);
 	localStorage.setItem("countrySetup", savedData);
 }
 
 let savedData = localStorage.getItem("countrySetup");
 
 if (savedData) {
-	countrySetup = JSON.parse(savedData);
+	countries = JSON.parse(savedData);
 }
 
-let reset = document.getElementById("reset")
+let reset = document.getElementById("reset");
 reset.addEventListener("click", function(){
 	if(confirm("Reset Game State?")){
-		countrySetup = null;
+		countries = null;
 		setupCards();
 	}
 });
