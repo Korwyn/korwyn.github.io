@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-.U1, .U2, .U3, .U4, .U5, .U6, .U7, .U8, .U9, .U10 {
+.usa {
 	background-color: #9DD496;
 }
 
@@ -16,21 +16,21 @@
 	background-color: #D3B683;
 }
 
-.C1, .C2, .C3, .C4, .C5 {
+.china {
 	background-color: #85ACDB;
 }
 .backgroundChina{
 	background-color: #658CBB;
 }
 
-.J1, .J2, .J3, .J4, .J5, .J6, .J7, .J8, .J9, .J10, .J11, .J12, .J13, .J14, .J15, .J16, .J17, .J18, .J19, .J20, .J21, .J22, .J23, .J24, .J25, .J26, .J27, .J28 {
+.japan {
 	background-color: #F0944D;
 }
 .backgroundJapan{
 	background-color: #D0742D;
 }
 
-.T1, .T2, .T3, .T4, .T5 {
+.italy{
 	background-color: #FAD1FA;
 }
 
@@ -38,7 +38,7 @@
 	background-color: #DAB1DA;
 }
 
-.G1, .G2, .G3, .G4, .G5, .G6, .G7, .G8, .G9, .G10, .G11, .G12, .G13, .G14, .G15, .G16 {
+.germany{
 	background-color: #CCCCCC;
 }
 
