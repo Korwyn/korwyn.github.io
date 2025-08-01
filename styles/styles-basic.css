@@ -5,7 +5,7 @@ div.inlineBlock {
 }
 
 div.country {
-	min-width: 235px;
+	min-width: 230px;
 	width: 14%;
 	margin-top: 20px;
 	vertical-align: top;
@@ -16,8 +16,8 @@ div.country {
 	border-style: solid;
 	border-width: 1px;
 	border-radius: 10px;
-	margin: 8px;
-	padding: 3px;
+	margin: 7px;
+	padding: 2px;
 	box-shadow: 3px 3px 3px gray;
 }
 
