@@ -43,3 +43,14 @@ div.country {
 	right: 0;
 }
 
+.icon {
+	width: 16px;
+	height: 16px;
+	position: relative;
+	top: 2px;
+}
+
+.third {
+	width: 33%;
+}
+

@@ -73,7 +73,8 @@ function setupCards() {
 			country.osr += territoryOSR;
 
 			let newTerritory = document.createElement("div");
-			newTerritory.setAttribute("class", "card " + territory.id);
+			newTerritory.classList.add("card")
+			newTerritory.classList.add(territory.id);
 
 			if (territory.isEmbattled) {
 				newTerritory.classList.add("contestedGradient");
@@ -83,16 +84,16 @@ function setupCards() {
 			}
 
 			let headerDiv = document.createElement("div");
-			headerDiv.setAttribute("class", "relative");
+			headerDiv.classList.add("relative");
 
 			let embattledDiv = document.createElement("div");
-			embattledDiv.setAttribute("class", "absoluteRight");
+			embattledDiv.classList.add("absoluteRight");
 
 			let embattledLabel = document.createElement("label");
 			embattledLabel.textContent = FIGHTING;
 
 			let embattledCheckbox = document.createElement("input");
-			embattledCheckbox.setAttribute("class", "checkboxPosition");
+			embattledCheckbox.classList.add("checkboxPosition");
 			embattledCheckbox.type = "checkbox";
 			embattledCheckbox.checked = territory.isEmbattled;
 			embattledLabel.appendChild(embattledCheckbox);
@@ -115,7 +116,7 @@ function setupCards() {
 			});
 
 			let idDiv = document.createElement("div");
-			idDiv.setAttribute("class", "bold");
+			idDiv.classList.add("bold");
 			idDiv.innerHTML = territory.id;
 			headerDiv.appendChild(idDiv);
 
@@ -139,34 +140,96 @@ function setupCards() {
 			});
 
 			let productionDiv = document.createElement("div");
-			let oilSpan = document.createElement("span");
-			oilSpan.innerHTML = "Oil:" + " " + territoryOil;
-			productionDiv.appendChild(oilSpan);
+			let oilDiv = document.createElement("div");
+			oilDiv.classList.add("inlineBlock");
+			oilDiv.classList.add("third");
+			if (territoryOil) {
+				let imgOil = document.createElement("img");
+				imgOil.classList.add("icon");
+				imgOil.src = "icons/oil.svg";
+				oilDiv.appendChild(imgOil);
 
-			let ironSpan = document.createElement("span");
-			ironSpan.innerHTML = " Iron: " + territoryIron;
-			productionDiv.appendChild(ironSpan);
+				let oilSpan = document.createElement("span");
+				oilSpan.innerHTML = ":" + territoryOil;
+				oilDiv.appendChild(oilSpan);
+			}
+			productionDiv.appendChild(oilDiv);
 
-			let osrSpan = document.createElement("span");
-			osrSpan.innerHTML = " OSR: " + territoryOSR;
-			productionDiv.appendChild(osrSpan);
+			let ironDiv = document.createElement("div");
+			ironDiv.classList.add("inlineBlock");
+			ironDiv.classList.add("third");
+
+			if (territoryIron) {
+				let imgIron = document.createElement("img");
+				imgIron.classList.add("icon");
+				imgIron.src = "icons/iron.svg";
+				ironDiv.appendChild(imgIron);
+	
+				let ironSpan = document.createElement("span");
+				ironSpan.innerHTML = ":" + territoryIron;
+				ironDiv.appendChild(ironSpan);
+			}
+			productionDiv.appendChild(ironDiv);
+
+			let osrDiv = document.createElement("div");
+			osrDiv.classList.add("inlineBlock");
+			osrDiv.classList.add("third");
+
+			if (territoryOSR) {
+				let imgOSR = document.createElement("img");
+				imgOSR.classList.add("icon");
+				imgOSR.src = "icons/osr.svg";
+				osrDiv.appendChild(imgOSR);
+	
+				let osrSpan = document.createElement("span");
+				osrSpan.innerHTML = ":" + territoryOSR;
+				osrDiv.appendChild(osrSpan);
+			}
+			productionDiv.appendChild(osrDiv);
 			newTerritory.appendChild(productionDiv);
-
 			baseElement.appendChild(newTerritory);
 		}
 
 		let productionDiv = document.createElement("div");
+
+		let oilDiv = document.createElement("div");
+		oilDiv.classList.add("inlineBlock");
+		oilDiv.classList.add("third");
+		let imgOil = document.createElement("img");
+		imgOil.classList.add("icon");
+		imgOil.src = "icons/oil.svg";
+		oilDiv.appendChild(imgOil);
+
 		let oilSpan = document.createElement("span");
-		oilSpan.innerHTML = " Oil: " + country.oil;
-		productionDiv.appendChild(oilSpan);
+		oilSpan.innerHTML = ":" + country.oil;
+		oilDiv.appendChild(oilSpan);
+		productionDiv.appendChild(oilDiv);
+
+		let ironDiv = document.createElement("div");
+		ironDiv.classList.add("inlineBlock");
+		ironDiv.classList.add("third");
+		let imgIron = document.createElement("img");
+		imgIron.classList.add("icon");
+		imgIron.src = "icons/iron.svg";
+		ironDiv.appendChild(imgIron);
 
 		let ironSpan = document.createElement("span");
-		ironSpan.innerHTML = " Iron: " + country.iron;
-		productionDiv.appendChild(ironSpan);
+		ironSpan.innerHTML = ":" + country.iron;
+		ironDiv.appendChild(ironSpan);
+		productionDiv.appendChild(ironDiv);
+
+		let osrDiv = document.createElement("div");
+		osrDiv.classList.add("inlineBlock");
+		osrDiv.classList.add("third");
+		let imgOSR = document.createElement("img");
+		imgOSR.classList.add("icon");
+		imgOSR.src = "icons/osr.svg";
+		osrDiv.appendChild(imgOSR);
 
 		let osrSpan = document.createElement("span");
-		osrSpan.innerHTML = " Osr: " + country.osr;
-		productionDiv.appendChild(osrSpan);
+		osrSpan.innerHTML = ":" + country.osr;
+		osrDiv.appendChild(osrSpan);
+		productionDiv.appendChild(osrDiv);
 
 		baseElement.prepend(productionDiv);
 	}
