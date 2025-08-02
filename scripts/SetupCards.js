@@ -2,62 +2,13 @@ let countries = null;
 
 function countyInitialization() {
 	let setup = {
-		germany: {
-			territories: germanControled,
-			id: "germanyCardList",
-			allianceName: "axis",
-			productionOil: 0,
-			productionIron: 0,
-			productionOsr: 0
-		},
-		italy: {
-			territories: italyControled,
-			id: "italyCardList",
-			allianceName: "axis",
-			productionOil: 0,
-			productionIron: 0,
-			productionOsr: 0
-		},
-		japan: {
-			territories: japanControled,
-			id: "japanCardList",
-			allianceName: "axis",
-			productionOil: 0,
-			productionIron: 0,
-			productionOsr: 0
-		},
-		usa: {
-			territories: usControled,
-			id: "usaCardList",
-			allianceName: "allies",
-			productionOil: 0,
-			productionIron: 0,
-			productionOsr: 0
-		},
-		china: {
-			territories: chinaControled,
-			id: "chinaCardList",
-			allianceName: "allies",
-			productionOil: 0,
-			productionIron: 0,
-			productionOsr: 0
-		},
-		ussr: {
-			territories: ussrControled,
-			id: "ussrCardList",
-			allianceName: "allies",
-			productionOil: 0,
-			productionIron: 0,
-			productionOsr: 0
-		},
-		uk: {
-			territories: ukControled,
-			id: "ukCardList",
-			allianceName: "allies",
-			productionOil: 0,
-			productionIron: 0,
-			productionOsr: 0
-		}
+		germany: new Country(germanControled, "germanyCardList", "axis"),
+		italy: new Country(italyControled, "italyCardList", "axis"),
+		japan: new Country(japanControled, "japanCardList", "axis"),
+		usa: new Country(usControled, "usaCardList", "allies"),
+		china: new Country(chinaControled, "chinaCardList", "allies"),
+		ussr: new Country(ussrControled, "ussrCardList", "allies"),
+		uk: new Country(ukControled, "ukCardList", "allies")
 	}
 
 	let clone = JSON.parse(JSON.stringify(setup));
