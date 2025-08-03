@@ -88,3 +88,39 @@ div.country {
 .top {
 	vertical-align: top;
 }
+
+.table {
+	display: table;
+}
+
+.tr {
+	display: table-row;
+}
+
+.td {
+	display: table-cell;
+}
+
+.middle {
+	vertical-align: middle;
+}
+
+.center {
+	text-align: center;
+}
+
+.thinBorder{
+    border: 1px solid black;
+}
+
+.thinBorderBottom{
+    border-bottom: 1px solid black;
+}
+
+.thinBorderRight{
+    border-right: 1px solid black;
+}
+
+.paddingFive {
+	padding: 5px;	
+}

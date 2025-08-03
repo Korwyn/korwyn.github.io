@@ -7,5 +7,4 @@ class Country {
 		this.productionIron = 0;
 		this.productionOsr = 0;
 	}
-
 }

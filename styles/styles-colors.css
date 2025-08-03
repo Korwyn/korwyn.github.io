@@ -57,3 +57,40 @@
 .contestedGradient {
 	  background-image: linear-gradient(to top, rgba(254,255,63,0), rgba(254,255,63,.2), rgba(254,255,63,1));
 }
+
+#yellowRoll {
+	background-color: #ffffda;
+}
+#blueRoll {
+	background-color: #cfdbea;
+}
+#greenRoll {
+	background-color: #b5d4b4;
+}
+#redRoll {
+	background-color: #ff7878;
+}
+#whiteRoll {
+	background-color: #DDDDDD;
+}
+#blackRoll {
+	background-color: #777777;
+}
+#yellowRoll .td > div {
+	background-color: #fdff1f;
+}
+#blueRoll .td > div {
+	background-color: #466e9e;
+}
+#greenRoll .td > div {
+	background-color: #477844;
+}
+#redRoll .td > div {
+	background-color: #ff1616;
+}
+#whiteRoll .td > div {
+	background-color: #FFFFFF;
+}
+#blackRoll .td > div {
+	background-color: #000000;
+}

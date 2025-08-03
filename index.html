@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="styles/styles-basic.css">
-<link rel="stylesheet" href="styles/styles-colors.css">
-<link rel="stylesheet" href="styles/styles-button.css">
-<link rel="stylesheet" href="styles/styles-tab.css">
-<title>War Room Helper</title>
+	<meta charset="UTF-8">
+	
+	<link rel="stylesheet" href="styles/styles-basic.css">
+	<link rel="stylesheet" href="styles/styles-colors.css">
+	<link rel="stylesheet" href="styles/styles-button.css">
+	<link rel="stylesheet" href="styles/styles-tab.css">
+	<link rel="stylesheet" href="styles/styles-diceRoller.css">
+	
+	<title>War Room Helper</title>
 </head>
 
 <body>
 	<div class="textRight spacing">
 		<button id="reset" class="button-pushable" role="button">
-			<span class="button-shadow"></span> <span class="button-edge"></span> <span class="button-front text"> Reset </span>
+			<span class="button-shadow"></span>
+			<span class="button-edge"></span>
+			<span class="button-front text"> Reset </span>
 		</button>
 	</div>
 
@@ -51,56 +57,84 @@
 			<div id="japanCardList"></div>
 		</div>
 	</div>
-
+	
 	<div id="diceRollerDiv" class="tabContent hidden">
-		<div class="inlineBlock spacing top">
-			<form id="diceRollerNumberForm">
-				<label class="block">
-					<input type="radio" name="diceRoller" value="2" id="diceRadioTwo" />
-					<span class="diceRollerLabel">2 </span>
-				</label>
-				<label class="block">
-					<input type="radio" name="diceRoller" value="3" id="diceRadioThree" />
-					<span class="diceRollerLabel">3</span>
-				</label>
-				<label class="block">
-					<input type="radio" name="diceRoller" value="4" id="diceRadioFour" />
-					<span class="diceRollerLabel">4</span>
-				</label>
-				<label class="block">
-					<input type="radio" name="diceRoller" value="5" id="diceRadioFive" />
-					<span class="diceRollerLabel">5</span>
-				</label>
-				<label class="block">
-					<input type="radio" name="diceRoller" value="6" id="diceRadioSix" />
-					<span class="diceRollerLabel">6</span>
-				</label>
-				<label class="block">
-					<input type="radio" name="diceRoller" value="7" id="diceRadioSeven" />
-					<span class="diceRollerLabel">7</span>
-				</label>
-				<label class="block">
-					<input type="radio" name="diceRoller" value="8" id="diceRadioEight" />
-					<span class="diceRollerLabel">8</span>
-				</label>
-				<label class="block">
-					<input type="radio" name="diceRoller" value="9" id="diceRadioNine" />
-					<span class="diceRollerLabel">9</span>
-				</label>
-				<label class="block">
-					<input type="radio" name="diceRoller" value="10" id="diceRadioTen" />
-					<span class="diceRollerLabel">10</span>
-				</label>
-			</form>
-		</div>
-		<div class="inlineBlock spacing top">
-			<div class="table">
-				<div class="tableRow" id="yellowRoll"></div>
-				<div class="tableRow" id="blueRoll"></div>
-				<div class="tableRow" id="greenRoll"></div>
-				<div class="tableRow" id="whiteRoll"></div>
-				<div class="tableRow" id="blackRoll"></div>
+	<div class="inlineBlock center">
+		<div class="table spacing thinBorder">
+			<div class="tr">
+				<div class="td center paddingFive thinBorderRight thinBorderBottom">Dice #</div>
+
+				<div class="td center thinBorderBottom">Results</div>
 			</div>
+			<div class="tr">
+				<div class="td middle center thinBorderRight">
+					<form id="diceRollerNumberForm">
+						<label class="block">
+							<input type="radio" name="diceRoller" value="2" id="diceRadioTwo" /><span class="diceRollerLabel">2</span>
+						</label>
+						<label class="block">
+							<input type="radio" name="diceRoller" value="3" id="diceRadioThree" /><span class="diceRollerLabel">3</span>
+						</label>
+						<label class="block">
+							<input type="radio" name="diceRoller" value="4" id="diceRadioFour" /><span class="diceRollerLabel">4</span>
+						</label>
+						<label class="block">
+							<input type="radio" name="diceRoller" value="5" id="diceRadioFive" /><span class="diceRollerLabel">5</span>
+						</label>
+						<label class="block">
+							<input type="radio" name="diceRoller" value="6" id="diceRadioSix" /><span class="diceRollerLabel">6</span>
+						</label>
+						<label class="block">
+							<input type="radio" name="diceRoller" value="7" id="diceRadioSeven" /><span class="diceRollerLabel">7</span>
+						</label>
+						<label class="block">
+							<input type="radio" name="diceRoller" value="8" id="diceRadioEight" /><span class="diceRollerLabel">8</span>
+						</label>
+						<label class="block">
+							<input type="radio" name="diceRoller" value="9" id="diceRadioNine" /><span class="diceRollerLabel">9</span>
+						</label>
+						<label class="block">
+							<input type="radio" name="diceRoller" value="10" id="diceRadioTen" /><span class="diceRollerLabel">10</span>
+						</label>
+					</form>
+				</div>
+				<div class="td">
+					<div id="diceRollerTable" class="table">
+						<div class="tr" id="yellowRoll">
+							<div class="td center middle">
+								<div></div>
+							</div>
+						</div>
+						<div class="tableRow" id="blueRoll">
+							<div class="td center middle">
+								<div></div>
+							</div>
+						</div>
+						<div class="tableRow" id="greenRoll">
+							<div class="td center middle">
+								<div></div>
+							</div>
+						</div>
+						<div class="tableRow" id="redRoll">
+							<div class="td center middle">
+								<div></div>
+							</div>
+						</div>
+						<div class="tableRow" id="whiteRoll">
+							<div class="td center middle ">
+								<div></div>
+							</div>
+						</div>
+						<div class="tableRow" id="blackRoll">
+							<div class="td center middle">
+								<div></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<button id="rollDice"> Roll </button>
 		</div>
 	</div>
 </body>

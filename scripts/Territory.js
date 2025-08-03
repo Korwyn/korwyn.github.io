@@ -9,5 +9,4 @@ class Territory {
 		this.embattledProduction = new Production(embattledProduction);
 		this.isEmbattled = isEmbattled || false;
 	}
-
 }

@@ -1,0 +1,95 @@
+@charset "UTF-8";
+
+#diceRollerTable .td{
+	height: 45px;
+}
+
+#diceRollerNumberForm input {
+	position: relative;
+	top: 1px;
+}
+
+#diceRollerNumberForm label:not(:last-child){
+	margin-bottom: 8px;	
+}
+
+#diceRollerTable .td {
+	width: 500px;
+}
+
+#diceRollerTable .td div {
+	width: 16px;
+	height: 16px;
+	border: 1px solid black;
+	border-radius: 8px;
+	display: inline-block;
+	margin-left: 5px;
+}
+
+#diceRollerTable .td div:not(:first-child){
+	margin-left: 5px;
+}
+
+#rollDice {
+ appearance: button;
+ background-color: #1899D6;
+ border: solid transparent;
+ border-radius: 16px;
+ border-width: 0 0 4px;
+ box-sizing: border-box;
+ color: #FFFFFF;
+ cursor: pointer;
+ display: inline-block;
+ font-size: 15px;
+ font-weight: 700;
+ letter-spacing: .8px;
+ line-height: 20px;
+ margin: 0;
+ outline: none;
+ overflow: visible;
+ padding: 13px 19px;
+ text-align: center;
+ text-transform: uppercase;
+ touch-action: manipulation;
+ transform: translateZ(0);
+ transition: filter .2s;
+ user-select: none;
+ -webkit-user-select: none;
+ vertical-align: middle;
+ white-space: nowrap;
+}
+
+#rollDice:after {
+ background-clip: padding-box;
+ background-color: #1CB0F6;
+ border: solid transparent;
+ border-radius: 16px;
+ border-width: 0 0 4px;
+ bottom: -4px;
+ content: "";
+ left: 0;
+ position: absolute;
+ right: 0;
+ top: 0;
+ z-index: -1;
+}
+
+#rollDice:main, #rollDice:focus {
+ user-select: auto;
+}
+
+#rollDice:hover:not(:disabled) {
+ filter: brightness(1.1);
+}
+
+#rollDice:disabled {
+ cursor: auto;
+}
+
+#rollDice:active:after {
+ border-width: 0 0 0px;
+}
+
+#rollDice:active {
+ padding-bottom: 10px;
+}
