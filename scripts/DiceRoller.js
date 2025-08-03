@@ -21,6 +21,8 @@ let blackResultRoll = document.getElementById("blackResultRoll");
 let rollDiceButton = document.getElementById("rollDice");
 rollDiceButton.addEventListener("click", function() {
 	if (numDiceToRoll && !rollDiceButton.disabled) {
+		rollDiceButton.disabled = true;
+		
 		for (let i = 0; i < resultEls.length; i++) {
 			element = resultEls[i];
 			element.innerHTML = "";
@@ -34,7 +36,6 @@ rollDiceButton.addEventListener("click", function() {
 
 function rollTheDice(rollingNumber) {
 	if (rollingNumber > 0) {
-		rollDiceButton.disabled = true;
 		let resultRoll = randomIntFromInterval(1, 12);
 
 		let newDiv = document.createElement("div");
