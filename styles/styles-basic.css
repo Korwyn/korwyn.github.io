@@ -8,6 +8,10 @@
 	display: inline-block;
 }
 
+.fullWidth {
+	width: 100%;
+}
+
 .block {
 	display: block;
 }
@@ -123,4 +127,8 @@ div.country {
 
 .paddingFive {
 	padding: 5px;	
+}
+
+.marginCenter {
+	margin: 0 auto
 }
