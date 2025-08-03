@@ -14,7 +14,7 @@ function countyInitialization() {
 	let clone = JSON.parse(JSON.stringify(setup));
 
 	return clone;
-}
+}4
 
 function setupCards() {
 	if (!countries) {
