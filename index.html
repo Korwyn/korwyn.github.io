@@ -17,8 +17,8 @@
 	</div>
 
 	<div class="tab">
-		<button class="tablinks" onclick="changeTab(event, 'terriroryDiv')">Territory</button>
-		<button class="tablinks" onclick="changeTab(event, 'diceRollerDiv')">Dice Roller</button>
+		<button id="tabTerritory" class="tablinks active" onclick="changeTab(event, 'terriroryDiv')">Territory</button>
+		<button id="tabDiceRoller" class="tablinks" onclick="changeTab(event, 'diceRollerDiv')">Dice Roller</button>
 	</div>
 
 	<div id="terriroryDiv" class="tabContent">
@@ -52,46 +52,55 @@
 		</div>
 	</div>
 
-	<div id="diceRollerDiv" class="tabContent">
-		<div class="inlineBLock spacing">
+	<div id="diceRollerDiv" class="tabContent hidden">
+		<div class="inlineBlock spacing top">
 			<form id="diceRollerNumberForm">
-				<label>
+				<label class="block">
+					<input type="radio" name="diceRoller" value="2" id="diceRadioTwo" />
 					<span class="diceRollerLabel">2 </span>
-					<input type="radio" name="diceRoller" value="2" id="diceRadioTwo"></input>
 				</label>
-				<label>
+				<label class="block">
+					<input type="radio" name="diceRoller" value="3" id="diceRadioThree" />
 					<span class="diceRollerLabel">3</span>
-					<input type="radio" name="diceRoller" value="3" id="diceRadioTwo" />
 				</label>
-				<label>
+				<label class="block">
+					<input type="radio" name="diceRoller" value="4" id="diceRadioFour" />
 					<span class="diceRollerLabel">4</span>
-					<input type="radio" name="diceRoller" value="4" id="diceRadioTwo" />
 				</label>
-				<label>
+				<label class="block">
+					<input type="radio" name="diceRoller" value="5" id="diceRadioFive" />
 					<span class="diceRollerLabel">5</span>
-					<input type="radio" name="diceRoller" value="5" id="diceRadioTwo" />
 				</label>
-				<label>
+				<label class="block">
+					<input type="radio" name="diceRoller" value="6" id="diceRadioSix" />
 					<span class="diceRollerLabel">6</span>
-					<input type="radio" name="diceRoller" value="6" id="diceRadioTwo" />
 				</label>
-				<label>
+				<label class="block">
+					<input type="radio" name="diceRoller" value="7" id="diceRadioSeven" />
 					<span class="diceRollerLabel">7</span>
-					<input type="radio" name="diceRoller" value="7" id="diceRadioTwo" />
 				</label>
-				<label>
+				<label class="block">
+					<input type="radio" name="diceRoller" value="8" id="diceRadioEight" />
 					<span class="diceRollerLabel">8</span>
-					<input type="radio" name="diceRoller" value="8" id="diceRadioTwo" />
 				</label>
-				<label>
+				<label class="block">
+					<input type="radio" name="diceRoller" value="9" id="diceRadioNine" />
 					<span class="diceRollerLabel">9</span>
-					<input type="radio" name="diceRoller" value="9" id="diceRadioTwo" />
 				</label>
-				<label>
+				<label class="block">
+					<input type="radio" name="diceRoller" value="10" id="diceRadioTen" />
 					<span class="diceRollerLabel">10</span>
-					<input type="radio" name="diceRoller" value="10" id="diceRadioTwo" />
 				</label>
 			</form>
+		</div>
+		<div class="inlineBlock spacing top">
+			<div class="table">
+				<div class="tableRow" id="yellowRoll"></div>
+				<div class="tableRow" id="blueRoll"></div>
+				<div class="tableRow" id="greenRoll"></div>
+				<div class="tableRow" id="whiteRoll"></div>
+				<div class="tableRow" id="blackRoll"></div>
+			</div>
 		</div>
 	</div>
 </body>
@@ -109,5 +118,8 @@
 <script type="text/javascript" src="scripts/countryCards/RussiaCards.js"></script>
 <script type="text/javascript" src="scripts/countryCards/BritainCards.js"></script>
 <script type="text/javascript" src="scripts/SetupCards.js"></script>
+<script type="text/javascript" src="scripts/Save.js"></script>
+<script type="text/javascript" src="scripts/Load.js"></script>
+<script type="text/javascript" src="scripts/Reset.js"></script>
 
 </html>

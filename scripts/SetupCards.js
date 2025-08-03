@@ -14,7 +14,7 @@ function countyInitialization() {
 	let clone = JSON.parse(JSON.stringify(setup));
 
 	return clone;
-}4
+}
 
 function setupCards() {
 	if (!countries) {
@@ -297,24 +297,3 @@ function createControledSelectList(newTerritory, allianceName, territory) {
 
 	return controlledSelect;
 }
-
-function saveGameState() {
-	let savedData = JSON.stringify(countries);
-	localStorage.setItem("countrySetup", savedData);
-}
-
-let savedData = localStorage.getItem("countrySetup");
-
-if (savedData) {
-	countries = JSON.parse(savedData);
-}
-
-let reset = document.getElementById("reset");
-reset.addEventListener("click", function(){
-	if(confirm("Reset Game State?")){
-		countries = null;
-		setupCards();
-	}
-});
-
-setupCards();

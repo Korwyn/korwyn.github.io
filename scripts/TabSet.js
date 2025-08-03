@@ -14,4 +14,6 @@ function changeTab(event, tabName) {
   
   document.getElementById(tabName).style.display = "block";
   event.currentTarget.className += " active";
+
+  localStorage.setItem("activeTab", event.currentTarget.id);
 }

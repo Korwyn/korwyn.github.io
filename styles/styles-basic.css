@@ -1,7 +1,15 @@
 @charset "UTF-8";
 
-div.inlineBlock {
-	display:inline-block;
+.hidden {
+	display: none;
+}
+
+.inlineBlock {
+	display: inline-block;
+}
+
+.block {
+	display: block;
 }
 
 div.country {
@@ -74,5 +82,9 @@ div.country {
 }
 
 .diceRollerLabel {
-	width: 5px;
+	width: 8px;
+}
+
+.top {
+	vertical-align: top;
 }
