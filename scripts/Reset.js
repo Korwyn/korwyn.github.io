@@ -4,5 +4,9 @@ reset.addEventListener("click", function(){
 		countries = null;
 		setupCards();
 		document.getElementById("tabTerritory").click();
+		
+		numDiceToRollSetup = 2;//set Default
+		localStorage.setItem("numDiceToRoll", numDiceToRollSetup);
+		document.getElementById("diceRadio2").checked = true;
 	}
 });

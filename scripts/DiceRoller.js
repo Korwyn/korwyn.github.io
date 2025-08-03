@@ -10,7 +10,6 @@ diceSelection.addEventListener("change", function(event) {
 	localStorage.setItem("numDiceToRoll", numDiceToRoll);
 });
 
-
 resultEls = document.getElementsByClassName("resultRoll");
 let yellowResultRoll = document.getElementById("yellowResultRoll");
 let blueResultRoll = document.getElementById("blueResultRoll");
@@ -18,7 +17,6 @@ let greenResultRoll = document.getElementById("greenResultRoll");
 let redResultRoll = document.getElementById("redResultRoll");
 let whiteResultRoll = document.getElementById("whiteResultRoll");
 let blackResultRoll = document.getElementById("blackResultRoll");
-
 
 let rollDiceButton = document.getElementById("rollDice");
 rollDiceButton.addEventListener("click", function() {
