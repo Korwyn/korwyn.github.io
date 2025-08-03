@@ -237,7 +237,7 @@ function createControledSelectList(newTerritory, allianceName, territory) {
 	let controledDiv = document.createElement("div");
 	controledDiv.classList.add("spacing");
 	let controledLabel = document.createElement("lable");
-	controledLabel.innerText = "Control: ";
+	controledLabel.innerText =  SILHOUETTE + DOUBLE_ARROW + SILHOUETTE;
 	controledDiv.appendChild(controledLabel);
 
 	let controlledSelect = document.createElement("select");
