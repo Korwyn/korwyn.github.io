@@ -64,6 +64,11 @@
  white-space: nowrap;
 }
 
+#rollDice[disabled] {
+ background-color: #333333;
+ color: #888888;
+}
+
 #rollDice:after {
  background-clip: padding-box;
  background-color: #1CB0F6;
