@@ -105,6 +105,10 @@ div.country {
 	display: table-cell;
 }
 
+.column {
+	display: table-column;
+}
+
 .middle {
 	vertical-align: middle;
 }
@@ -130,5 +134,22 @@ div.country {
 }
 
 .marginCenter {
-	margin: 0 auto
+	margin: 0 auto;
+}
+
+input {
+	width: 18px;
+}
+
+td {
+	text-align: center;
+}
+
+th:not(:first-child) {
+	text-align: center;
+	width: 120px;
+}
+
+table {
+	border-collapse: collapse;
 }

@@ -24,6 +24,7 @@
 
 	<div class="tab">
 		<button id="tabTerritory" class="tablinks active" onclick="changeTab(event, 'terriroryDiv')">Territory</button>
+		<button id="tabResourceUse" class="tablinks" onclick="changeTab(event, 'resourceUseDiv')">Resource Use</button>
 		<button id="tabDiceRoller" class="tablinks" onclick="changeTab(event, 'diceRollerDiv')">Dice Roller</button>
 	</div>
 
@@ -57,80 +58,144 @@
 			<div id="japanCardList"></div>
 		</div>
 	</div>
-	
-	<div id="diceRollerDiv" class="tabContent hidden">
-	<div class="inlineBlock center fullWidth paddingFive">
-		<div class="table spacing thinBorder marginCenter">
-			<div class="tr">
-				<div class="td center paddingFive thinBorderRight thinBorderBottom">Dice #</div>
 
-				<div class="td center thinBorderBottom">Results</div>
+
+	<div id="resourceUseDiv" class="tabContent hidden">
+		<form>
+			<table>
+				<colgroup>
+				    <col span="2" />
+				    <col class="usa" span="3" />
+				    <col class="uk" span="3" />
+				    <col class="ussr" span="3" />
+				    <col class="china" span="3" />
+				    <col class="germany" span="3" />
+				    <col class="italy" span="3" />
+				    <col class="japan" span="3" />
+				</colgroup>
+				<thead>
+					<tr>
+						<th></th>
+						<th style="width: 20px"></th>
+						<th colspan="3">United States</th>
+						<th colspan="3">United Kingdom</th>
+						<th colspan="3">USSR</th>
+						<th colspan="3">China</th>
+						<th colspan="3">Germany</th>
+						<th colspan="3">Italy</th>
+						<th colspan="3">Japan</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="tr" id="currentResourceRow">
+						<td class="td">Current</td>
+						<td></td>
+					</tr>
+					<tr class="tr" id="oilBidRow">
+						<td class="td">Oil Bids</td>
+						<td></td>
+					</tr>
+					<tr class="tr" id="stressRow">
+						<td class="td">Stress</td>
+						<td></td>
+					</tr>
+					<tr class="tr" id="repairsRow">
+						<td class="td">Repairs</td>
+						<td></td>
+					</tr>
+					<tr class="tr" id="raidsRow">
+						<td class="td">Raids</td>
+						<td></td>
+					</tr>
+					<tr class="tr" id="tradesRow">
+						<td class="td">Trades</td>
+						<td></td>
+					</tr>
+					<tr class="tr" id="buildsRow">
+						<td class="td">Builds</td>
+						<td></td>
+					</tr>
+					<tr class="tr" id="buildsRow">
+						<td class="td">Final</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</div>
+
+	<div id="diceRollerDiv" class="tabContent hidden">
+		<div class="inlineBlock center fullWidth paddingFive">
+			<div class="inlineBlock center spacing">
+				Odds: Yellow [4/12] &nbsp;&nbsp;|&nbsp;&nbsp; 
+				Blue [3/12] &nbsp;&nbsp;|&nbsp;&nbsp; 
+				Green [2/12] &nbsp;&nbsp;|&nbsp;&nbsp; 
+				Red, White, Black [1/12]
 			</div>
-			<div class="tr">
-				<div id="diceRollerNumberDiv" class="td middle thinBorderRight">
-					<form id="diceRollerNumberForm">
-						<label class="block">
-							<input type="radio" name="diceRoller" value="2" id="diceRadio2" /><span class="diceRollerLabel">2</span>
-						</label>
-						<label class="block">
-							<input type="radio" name="diceRoller" value="3" id="diceRadio3" /><span class="diceRollerLabel">3</span>
-						</label>
-						<label class="block">
-							<input type="radio" name="diceRoller" value="4" id="diceRadio4" /><span class="diceRollerLabel">4</span>
-						</label>
-						<label class="block">
-							<input type="radio" name="diceRoller" value="5" id="diceRadio5" /><span class="diceRollerLabel">5</span>
-						</label>
-						<label class="block">
-							<input type="radio" name="diceRoller" value="6" id="diceRadio6" /><span class="diceRollerLabel">6</span>
-						</label>
-						<label class="block">
-							<input type="radio" name="diceRoller" value="7" id="diceRadio7" /><span class="diceRollerLabel">7</span>
-						</label>
-						<label class="block">
-							<input type="radio" name="diceRoller" value="8" id="diceRadio8" /><span class="diceRollerLabel">8</span>
-						</label>
-						<label class="block">
-							<input type="radio" name="diceRoller" value="9" id="diceRadio9" /><span class="diceRollerLabel">9</span>
-						</label>
-						<label class="block">
-							<input type="radio" name="diceRoller" value="10" id="diceRadio10" /><span class="diceRollerLabel">10</span>
-						</label>
-					</form>
+			<div class="table spacing thinBorder marginCenter">
+				<div class="tr">
+					<div class="td center paddingFive thinBorderRight thinBorderBottom">Dice #</div>
+
+					<div class="td center thinBorderBottom">Results</div>
 				</div>
-				<div class="td">
-					<div id="diceRollerTable" class="table">
-						<div class="tr" id="yellowRoll">
-							<div class="td center middle resultRoll" id="yellowResultRoll">
+				<div class="tr">
+					<div id="diceRollerNumberDiv" class="td middle thinBorderRight">
+						<form id="diceRollerNumberForm">
+							<label class="block">
+								<input type="radio" name="diceRoller" value="2" id="diceRadio2" /><span class="diceRollerLabel">2</span>
+							</label>
+							<label class="block">
+								<input type="radio" name="diceRoller" value="3" id="diceRadio3" /><span class="diceRollerLabel">3</span>
+							</label>
+							<label class="block">
+								<input type="radio" name="diceRoller" value="4" id="diceRadio4" /><span class="diceRollerLabel">4</span>
+							</label>
+							<label class="block">
+								<input type="radio" name="diceRoller" value="5" id="diceRadio5" /><span class="diceRollerLabel">5</span>
+							</label>
+							<label class="block">
+								<input type="radio" name="diceRoller" value="6" id="diceRadio6" /><span class="diceRollerLabel">6</span>
+							</label>
+							<label class="block">
+								<input type="radio" name="diceRoller" value="7" id="diceRadio7" /><span class="diceRollerLabel">7</span>
+							</label>
+							<label class="block">
+								<input type="radio" name="diceRoller" value="8" id="diceRadio8" /><span class="diceRollerLabel">8</span>
+							</label>
+							<label class="block">
+								<input type="radio" name="diceRoller" value="9" id="diceRadio9" /><span class="diceRollerLabel">9</span>
+							</label>
+							<label class="block">
+								<input type="radio" name="diceRoller" value="10" id="diceRadio10" /><span class="diceRollerLabel">10</span>
+							</label>
+						</form>
+					</div>
+					<div class="td">
+						<div id="diceRollerTable" class="table">
+							<div class="tr" id="yellowRoll">
+								<div class="td center middle resultRoll" id="yellowResultRoll"></div>
 							</div>
-						</div>
-						<div class="tableRow" id="blueRoll">
-							<div class="td center middle resultRoll" id="blueResultRoll">
+							<div class="tableRow" id="blueRoll">
+								<div class="td center middle resultRoll" id="blueResultRoll"></div>
 							</div>
-						</div>
-						<div class="tableRow" id="greenRoll">
-							<div class="td center middle resultRoll" id="greenResultRoll">
+							<div class="tableRow" id="greenRoll">
+								<div class="td center middle resultRoll" id="greenResultRoll"></div>
 							</div>
-						</div>
-						<div class="tableRow" id="redRoll">
-							<div class="td center middle resultRoll" id="redResultRoll">
+							<div class="tableRow" id="redRoll">
+								<div class="td center middle resultRoll" id="redResultRoll"></div>
 							</div>
-						</div>
-						<div class="tableRow" id="whiteRoll">
-							<div class="td center middle  resultRoll" id="whiteResultRoll">
+							<div class="tableRow" id="whiteRoll">
+								<div class="td center middle  resultRoll" id="whiteResultRoll"></div>
 							</div>
-						</div>
-						<div class="tableRow" id="blackRoll">
-							<div class="td center middle resultRoll" id="blackResultRoll">
+							<div class="tableRow" id="blackRoll">
+								<div class="td center middle resultRoll" id="blackResultRoll"></div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="spacing inlineBlock">
-			<button id="rollDice" class="spacing"> Roll </button>
-		</div>
+			<div class="spacing inlineBlock">
+				<button id="rollDice" class="spacing">Roll</button>
+			</div>
 		</div>
 	</div>
 </body>
@@ -149,6 +214,7 @@
 <script type="text/javascript" src="scripts/countryCards/BritainCards.js"></script>
 <script type="text/javascript" src="scripts/SetupCards.js"></script>
 <script type="text/javascript" src="scripts/DiceRoller.js"></script>
+<script type="text/javascript" src="scripts/ResourceUse.js"></script>
 <script type="text/javascript" src="scripts/Save.js"></script>
 <script type="text/javascript" src="scripts/Load.js"></script>
 <script type="text/javascript" src="scripts/Reset.js"></script>

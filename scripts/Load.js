@@ -22,3 +22,7 @@ if(numDiceToRollSetup >= 2){
 	document.getElementById(diceIdElName).checked = true;
 	numDiceToRoll = numDiceToRollSetup;
 }
+
+
+//from CalcProduction.js
+calcProduction();
