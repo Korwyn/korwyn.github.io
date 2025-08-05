@@ -8,7 +8,7 @@ let buildsRow = document.getElementById("buildsRow");
 
 let goodsRow = document.getElementById("goodsRow");
 let infantryRow = document.getElementById("infantryRow");
-let artileryRow = document.getElementById("artileryRow");
+let artilleryRow = document.getElementById("artilleryRow");
 let tanksRow = document.getElementById("tanksRow");
 let fightersRow = document.getElementById("fightersRow");
 let bombersRow = document.getElementById("bombersRow");
@@ -386,7 +386,7 @@ function calcProduction() {
 		buildsRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Builds"));
 		goodsRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Goods"));
 		infantryRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Infantry"));
-		artileryRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Builds"));
+		artilleryRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Artillery"));
 		tanksRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Tanks"));
 		fightersRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Fighters"));
 		bombersRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Bombers"));
