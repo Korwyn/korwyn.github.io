@@ -6,7 +6,7 @@ raidsRow = document.getElementById("raidsRow");
 tradesRow = document.getElementById("tradesRow");
 buildsRow = document.getElementById("buildsRow");
 
-infantryRow = document.getElementById("goodsRow");
+goodsRow = document.getElementById("goodsRow");
 infantryRow = document.getElementById("infantryRow");
 artileryRow = document.getElementById("artileryRow");
 tanksRow = document.getElementById("tanksRow");
