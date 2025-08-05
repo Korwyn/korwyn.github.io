@@ -8,5 +8,7 @@ reset.addEventListener("click", function(){
 		numDiceToRollSetup = 2;//set Default
 		localStorage.setItem("numDiceToRoll", numDiceToRollSetup);
 		document.getElementById("diceRadio2").checked = true;
+		
+		calcProduction();
 	}
 });

@@ -137,8 +137,13 @@ div.country {
 	margin: 0 auto;
 }
 
-input {
+#resourceUseDiv input {
 	width: 18px;
+}
+
+#resourceUseDiv input[type="radio"]  {
+	width: 15px;
+	height: 15px;
 }
 
 td {
@@ -147,9 +152,19 @@ td {
 
 th:not(:first-child) {
 	text-align: center;
-	width: 120px;
+	width: 122px;
 }
 
 table {
 	border-collapse: collapse;
+}
+
+.minusDiv {
+	position: relative;
+	top: -3px;
+}
+
+.plusDiv {
+	position: relative;
+	top: 2px;
 }

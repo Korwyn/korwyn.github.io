@@ -94,3 +94,7 @@
 #blackRoll .td > div {
 	background-color: #000000;
 }
+
+tbody tr:nth-child(even) {
+	background-color: rgba(100, 100, 100, .3);
+}

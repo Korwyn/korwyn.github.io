@@ -9,5 +9,7 @@ class Country {
 		this.currentOil = null;
 		this.currentIron = null;
 		this.currentOsr = null;
+		this.tracker = new Tracker();
+		this.trackerLog = [];
 	}
 }

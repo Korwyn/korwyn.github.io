@@ -24,7 +24,7 @@
 
 	<div class="tab">
 		<button id="tabTerritory" class="tablinks active" onclick="changeTab(event, 'terriroryDiv')">Territory</button>
-		<button id="tabResourceUse" class="tablinks" onclick="changeTab(event, 'resourceUseDiv')">Resource Use</button>
+		<button id="tabResourceUse" class="tablinks" onclick="changeTab(event, 'resourceUseDiv')">Resource Tracker</button>
 		<button id="tabDiceRoller" class="tablinks" onclick="changeTab(event, 'diceRollerDiv')">Dice Roller</button>
 	</div>
 
@@ -59,65 +59,49 @@
 		</div>
 	</div>
 
-
 	<div id="resourceUseDiv" class="tabContent hidden">
-		<form>
-			<table>
+		<form id="resourceTrackerForm">
+			<table class="thinBorder">
 				<colgroup>
-				    <col span="2" />
-				    <col class="usa" span="3" />
-				    <col class="uk" span="3" />
-				    <col class="ussr" span="3" />
-				    <col class="china" span="3" />
-				    <col class="germany" span="3" />
-				    <col class="italy" span="3" />
-				    <col class="japan" span="3" />
+					<col span="1" />
+					<col class="usa" span="4" />
+					<col class="uk" span="4" />
+					<col class="ussr" span="4" />
+					<col class="china" span="4" />
+					<col class="germany" span="4" />
+					<col class="italy" span="4" />
+					<col class="japan" span="4" />
 				</colgroup>
 				<thead>
 					<tr>
 						<th></th>
-						<th style="width: 20px"></th>
-						<th colspan="3">United States</th>
-						<th colspan="3">United Kingdom</th>
-						<th colspan="3">USSR</th>
-						<th colspan="3">China</th>
-						<th colspan="3">Germany</th>
-						<th colspan="3">Italy</th>
-						<th colspan="3">Japan</th>
+						<th colspan="4">United States</th>
+						<th colspan="4">United Kingdom</th>
+						<th colspan="4">USSR</th>
+						<th colspan="4">China</th>
+						<th colspan="4">Germany</th>
+						<th colspan="4">Italy</th>
+						<th colspan="4">Japan</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr class="tr" id="currentResourceRow">
-						<td class="td">Current</td>
-						<td></td>
-					</tr>
-					<tr class="tr" id="oilBidRow">
-						<td class="td">Oil Bids</td>
-						<td></td>
-					</tr>
-					<tr class="tr" id="stressRow">
-						<td class="td">Stress</td>
-						<td></td>
-					</tr>
-					<tr class="tr" id="repairsRow">
-						<td class="td">Repairs</td>
-						<td></td>
-					</tr>
-					<tr class="tr" id="raidsRow">
-						<td class="td">Raids</td>
-						<td></td>
-					</tr>
-					<tr class="tr" id="tradesRow">
-						<td class="td">Trades</td>
-						<td></td>
-					</tr>
-					<tr class="tr" id="buildsRow">
-						<td class="td">Builds</td>
-						<td></td>
-					</tr>
-					<tr class="tr" id="buildsRow">
-						<td class="td">Final</td>
-					</tr>
+					<tr id="currentResourceRow"></tr>
+					<tr id="oilBidRow"></tr>
+					<tr id="stressRow"></tr>
+					<tr id="repairsRow"></tr>
+					<tr id="raidsRow"></tr>
+					<tr id="tradesRow"></tr>
+					<tr id="buildsRow"></tr>
+					<tr id="infantryRow"></tr>
+					<tr id="artileryRow"></tr>
+					<tr id="tanksRow"></tr>
+					<tr id="fightersRow"></tr>
+					<tr id="bombersRow"></tr>
+					<tr id="submarinesRow"></tr>
+					<tr id="cruisersRow"></tr>
+					<tr id="carriersRow"></tr>
+					<tr id="battleshipsRow"></tr>
+					<tr id="totalRow"></tr>
 				</tbody>
 			</table>
 		</form>
@@ -126,9 +110,9 @@
 	<div id="diceRollerDiv" class="tabContent hidden">
 		<div class="inlineBlock center fullWidth paddingFive">
 			<div class="inlineBlock center spacing">
-				Odds: Yellow [4/12] &nbsp;&nbsp;|&nbsp;&nbsp; 
-				Blue [3/12] &nbsp;&nbsp;|&nbsp;&nbsp; 
-				Green [2/12] &nbsp;&nbsp;|&nbsp;&nbsp; 
+				Odds: Yellow [4/12] &nbsp;|&nbsp; 
+				Blue [3/12] &nbsp;|&nbsp; 
+				Green [2/12] &nbsp;|&nbsp; 
 				Red, White, Black [1/12]
 			</div>
 			<div class="table spacing thinBorder marginCenter">
@@ -201,6 +185,7 @@
 </body>
 
 <script type="text/javascript" src="scripts/TabSet.js"></script>
+<script type="text/javascript" src="scripts/Tracker.js"></script>
 <script type="text/javascript" src="scripts/Constants.js"></script>
 <script type="text/javascript" src="scripts/Production.js"></script>
 <script type="text/javascript" src="scripts/Territory.js"></script>
