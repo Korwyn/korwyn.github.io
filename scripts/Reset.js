@@ -18,8 +18,6 @@ function resetState() {
 
 }
 
-let version = 2;
-
 let storedVersion = localStorage.getItem("version");
 
 if (storedVersion != version) {
