@@ -18,6 +18,7 @@ function resetState() {
 	clearResultEls();
 	calcProduction();
 	calculateRemainingResources();
+	displayLog();
 }
 
 let storedVersion = localStorage.getItem("version");

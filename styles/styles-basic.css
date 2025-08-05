@@ -147,8 +147,8 @@ div.country {
 	margin: 0 auto;
 }
 
-#resourceUseDiv input {
-	width: 18px;
+#resourceUseDiv input[type="number"] {
+	width: 30px;
 }
 
 #resourceUseDiv input[type="radio"]  {
@@ -162,7 +162,6 @@ td {
 
 th:not(:first-child) {
 	text-align: center;
-	width: 122px;
 }
 
 table {

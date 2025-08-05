@@ -1,5 +1,5 @@
 class Country {
-	constructor(territories, id, allianceName) {
+	constructor(territories, id, allianceName, startOil, startIron, startOsr) {
 		this.territories = territories;
 		this.id = id;
 		this.allianceName = allianceName;

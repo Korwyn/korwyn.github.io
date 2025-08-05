@@ -27,3 +27,4 @@ loadResults();
 //from ResourceTracker.js
 calcProduction();
 calculateRemainingResources();
+displayResourceLog();
