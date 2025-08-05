@@ -1,23 +1,23 @@
-currentResourceRow = document.getElementById("currentResourceRow");
-oilBidRow = document.getElementById("oilBidRow");
-stressRow = document.getElementById("stressRow");
-repairsRow = document.getElementById("repairsRow");
-raidsRow = document.getElementById("raidsRow");
-tradesRow = document.getElementById("tradesRow");
-buildsRow = document.getElementById("buildsRow");
+let currentResourceRow = document.getElementById("currentResourceRow");
+let oilBidRow = document.getElementById("oilBidRow");
+let stressRow = document.getElementById("stressRow");
+let repairsRow = document.getElementById("repairsRow");
+let raidsRow = document.getElementById("raidsRow");
+let tradesRow = document.getElementById("tradesRow");
+let buildsRow = document.getElementById("buildsRow");
 
-goodsRow = document.getElementById("goodsRow");
-infantryRow = document.getElementById("infantryRow");
-artileryRow = document.getElementById("artileryRow");
-tanksRow = document.getElementById("tanksRow");
-fightersRow = document.getElementById("fightersRow");
-bombersRow = document.getElementById("bombersRow");
-submarinesRow = document.getElementById("submarinesRow");
-cruisersRow = document.getElementById("cruisersRow");
-carriersRow = document.getElementById("carriersRow");
-battleshipsRow = document.getElementById("battleshipsRow");
+let goodsRow = document.getElementById("goodsRow");
+let infantryRow = document.getElementById("infantryRow");
+let artileryRow = document.getElementById("artileryRow");
+let tanksRow = document.getElementById("tanksRow");
+let fightersRow = document.getElementById("fightersRow");
+let bombersRow = document.getElementById("bombersRow");
+let submarinesRow = document.getElementById("submarinesRow");
+let cruisersRow = document.getElementById("cruisersRow");
+let carriersRow = document.getElementById("carriersRow");
+let battleshipsRow = document.getElementById("battleshipsRow");
 
-totalRow = document.getElementById("totalRow");
+let totalRow = document.getElementById("totalRow");
 
 let units = {
 	infantry: {
@@ -405,7 +405,7 @@ function calcProduction() {
 		raidsRow.innerHTML = "";
 		tradesRow.innerHTML = "";
 		buildsRow.innerHTML = "";
-		goodsRow.innterHTML = "";
+		goodsRow.innerHTML = "";
 		infantryRow.innerHTML = "";
 		artileryRow.innerHTML = "";
 		tanksRow.innerHTML = "";
