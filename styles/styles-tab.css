@@ -30,3 +30,7 @@
   border: 1px solid #ccc;
   border-top: none;
 }
+
+.overflowAuto {
+	overflow: auto;
+}
