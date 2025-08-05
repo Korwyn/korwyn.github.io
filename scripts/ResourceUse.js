@@ -6,6 +6,7 @@ raidsRow = document.getElementById("raidsRow");
 tradesRow = document.getElementById("tradesRow");
 buildsRow = document.getElementById("buildsRow");
 
+infantryRow = document.getElementById("goodsRow");
 infantryRow = document.getElementById("infantryRow");
 artileryRow = document.getElementById("artileryRow");
 tanksRow = document.getElementById("tanksRow");
@@ -138,6 +139,7 @@ function calcProduction() {
 		tripleResourceInput(stressRow, countryName, "stress", country);
 		tripleResourceInput(repairsRow, countryName, "repairs", country);
 		tripleResourceInput(raidsRow, countryName, "raids", country);
+		tripleResourceInput(goodsRow, countryName, "goods", country);
 		tradeResourceInput(tradesRow, countryName, country);
 		allBlankInputs(buildsRow, country);
 
@@ -382,6 +384,7 @@ function calcProduction() {
 		raidsRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Raid"));
 		tradesRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Trades"));
 		buildsRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Builds"));
+		goodsRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Goods"));
 		infantryRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Infantry"));
 		artileryRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Builds"));
 		tanksRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Tanks"));
@@ -402,6 +405,7 @@ function calcProduction() {
 		raidsRow.innerHTML = "";
 		tradesRow.innerHTML = "";
 		buildsRow.innerHTML = "";
+		goodsRow.innterHTML = "";
 		infantryRow.innerHTML = "";
 		artileryRow.innerHTML = "";
 		tanksRow.innerHTML = "";

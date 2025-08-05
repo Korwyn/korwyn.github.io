@@ -61,7 +61,7 @@
 
 	<div id="resourceUseDiv" class="tabContent hidden">
 		<form id="resourceTrackerForm">
-			<table class="thinBorder">
+			<table>
 				<colgroup>
 					<col span="1" />
 					<col class="usa" span="4" />
@@ -72,7 +72,7 @@
 					<col class="italy" span="4" />
 					<col class="japan" span="4" />
 				</colgroup>
-				<thead>
+				<thead class="thinBorderNoBottom">
 					<tr>
 						<th></th>
 						<th colspan="4">United States</th>
@@ -84,7 +84,7 @@
 						<th colspan="4">Japan</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody class="thinBorderNoTop">
 					<tr id="currentResourceRow"></tr>
 					<tr id="oilBidRow"></tr>
 					<tr id="stressRow"></tr>
@@ -92,6 +92,7 @@
 					<tr id="raidsRow"></tr>
 					<tr id="tradesRow"></tr>
 					<tr id="buildsRow"></tr>
+					<tr id="goodsRow"></tr>
 					<tr id="infantryRow"></tr>
 					<tr id="artileryRow"></tr>
 					<tr id="tanksRow"></tr>
@@ -103,6 +104,18 @@
 					<tr id="battleshipsRow"></tr>
 					<tr id="totalRow"></tr>
 				</tbody>
+				<tfoot id="resourceLog" class="thinBorderNoTop">
+					<tr>
+						<th>Log T1</th>
+						<th colspan="4">United States</th>
+						<th colspan="4">United Kingdom</th>
+						<th colspan="4">USSR</th>
+						<th colspan="4">China</th>
+						<th colspan="4">Germany</th>
+						<th colspan="4">Italy</th>
+						<th colspan="4">Japan</th>
+					</tr>
+				</tfoot>
 			</table>
 		</form>
 	</div>

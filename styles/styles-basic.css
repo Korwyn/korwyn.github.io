@@ -121,6 +121,16 @@ div.country {
     border: 1px solid black;
 }
 
+.thinBorderNoBottom{
+    border: 1px solid black;
+    border-bottom: none;
+}
+
+.thinBorderNoTop{
+    border: 1px solid black;
+    border-Top: none;
+}
+
 .thinBorderBottom{
     border-bottom: 1px solid black;
 }
