@@ -23,6 +23,6 @@ if(numDiceToRollSetup >= 2){
 	numDiceToRoll = numDiceToRollSetup;
 }
 
-
-//from CalcProduction.js
+//from ResourceTracker.js
 calcProduction();
+calculateRemainingResources();

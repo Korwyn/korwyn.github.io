@@ -15,7 +15,7 @@ function resetState() {
 	document.getElementById("diceRadio2").checked = true;
 
 	calcProduction();
-
+	calculateRemainingResources();
 }
 
 let storedVersion = localStorage.getItem("version");

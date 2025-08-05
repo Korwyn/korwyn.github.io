@@ -230,6 +230,7 @@ function setupCards() {
 		baseElement.prepend(productionDiv);
 	}
 	saveGameState();
+	displayCurrentProduction();
 }
 
 function createControledSelectList(newTerritory, allianceName, territory) {

@@ -35,7 +35,7 @@
 	margin-left: 5px;
 }
 
-#rollDice {
+#rollDice, #confirmTurn{
  appearance: button;
  background-color: #1899D6;
  border: solid transparent;
@@ -64,12 +64,12 @@
  white-space: nowrap;
 }
 
-#rollDice[disabled] {
+#rollDice[disabled], #confirmTurn[disabled] {
  background-color: #333333;
  color: #888888;
 }
 
-#rollDice:after {
+#rollDice:after, #confirmTurn:after {
  background-clip: padding-box;
  background-color: #1CB0F6;
  border: solid transparent;
@@ -84,22 +84,22 @@
  z-index: -1;
 }
 
-#rollDice:main, #rollDice:focus {
+#rollDice:main, #rollDice:focus, #confirmTurn:main, #confirmTurn:focus {
  user-select: auto;
 }
 
-#rollDice:hover:not(:disabled) {
+#rollDice:hover:not(:disabled), #confirmTurn:hover:not(:disabled){
  filter: brightness(1.1);
 }
 
-#rollDice:disabled {
+#rollDice:disabled, #confirmTurn:disabled {
  cursor: auto;
 }
 
-#rollDice:active:after {
+#rollDice:active:after, #confirmTurn:active:after {
  border-width: 0 0 0px;
 }
 
-#rollDice:active {
+#rollDice:active, #confirmTurn:active {
  padding-bottom: 10px;
 }
