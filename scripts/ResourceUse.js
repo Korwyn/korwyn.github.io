@@ -26,7 +26,7 @@ let units = {
 	},
 	artillery: {
 		cost: new Production({ iron: 2, osr: 1 }),
-		row: artileryRow
+		row: artilleryRow
 	},
 	tank: {
 		cost: new Production({ oil: 1, iron: 2, osr: 1 }),
@@ -407,7 +407,7 @@ function calcProduction() {
 		buildsRow.innerHTML = "";
 		goodsRow.innerHTML = "";
 		infantryRow.innerHTML = "";
-		artileryRow.innerHTML = "";
+		artilleryRow.innerHTML = "";
 		tanksRow.innerHTML = "";
 		fightersRow.innerHTML = "";
 		bombersRow.innerHTML = "";
