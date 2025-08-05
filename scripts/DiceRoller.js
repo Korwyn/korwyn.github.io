@@ -10,7 +10,7 @@ diceSelection.addEventListener("change", function(event) {
 	localStorage.setItem("numDiceToRoll", numDiceToRoll);
 });
 
-resultEls = document.getElementsByClassName("resultRoll");
+let resultEls = document.getElementsByClassName("resultRoll");
 let yellowResultRoll = document.getElementById("yellowResultRoll");
 let blueResultRoll = document.getElementById("blueResultRoll");
 let greenResultRoll = document.getElementById("greenResultRoll");
@@ -19,14 +19,15 @@ let whiteResultRoll = document.getElementById("whiteResultRoll");
 let blackResultRoll = document.getElementById("blackResultRoll");
 
 let rollDiceButton = document.getElementById("rollDice");
+
+let results = [];
+
 rollDiceButton.addEventListener("click", function() {
 	if (numDiceToRoll && !rollDiceButton.disabled) {
 		rollDiceButton.disabled = true;
+		results = [];
 		
-		for (let i = 0; i < resultEls.length; i++) {
-			element = resultEls[i];
-			element.innerHTML = "";
-		}
+		clearResultEls();
 
 		setTimeout(function() {
 			rollTheDice(numDiceToRoll);
@@ -37,38 +38,9 @@ rollDiceButton.addEventListener("click", function() {
 function rollTheDice(rollingNumber) {
 	if (rollingNumber > 0) {
 		let resultRoll = randomIntFromInterval(1, 12);
+		results.push(resultRoll);
 
-		let newDiv = document.createElement("div");
-
-		let divToApend = {};
-
-		if (resultRoll < 1) {
-			alert("???? something went wrong in the die roll");
-		}
-
-		if (resultRoll < 5) {
-			divToApend = yellowResultRoll;
-		}
-		else if (resultRoll < 8) {
-			divToApend = blueResultRoll;
-		}
-		else if (resultRoll < 10) {
-			divToApend = greenResultRoll;
-		}
-		else if (resultRoll == 10) {
-			divToApend = redResultRoll;
-		}
-		else if (resultRoll == 11) {
-			divToApend = whiteResultRoll;
-		}
-		else if (resultRoll == 12) {
-			divToApend = blackResultRoll;
-		}
-		else if (resultRoll > 12) {
-			alert("???? something went wrong in the die roll");
-		}
-
-		divToApend.appendChild(newDiv);
+		appendRoll(resultRoll)
 
 		setTimeout(function() {
 			rollTheDice(rollingNumber - 1);
@@ -76,8 +48,68 @@ function rollTheDice(rollingNumber) {
 	}
 	else {
 		rollDiceButton.disabled = false;
+		storeResults();
 	}
 };
+
+function clearResultEls(){
+	for (let i = 0; i < resultEls.length; i++) {
+		element = resultEls[i];
+		element.innerHTML = "";
+	}
+}
+
+function storeResults(){
+	let resultJson = JSON.stringify(results);
+	localStorage.setItem("resultRolls", resultJson);
+}
+
+function loadResults(){
+	clearResultEls();
+	let loadResults = localStorage.getItem("resultRolls");
+	
+	if(loadResults){
+		results = JSON.parse(loadResults);
+		
+		for (let i = 0; i < results.length; i++){
+			appendRoll(results[i]);
+		}
+	}
+}
+
+function appendRoll(resultRoll) {
+	let newDiv = document.createElement("div");
+
+	let divToApend = {};
+
+	if (resultRoll < 1) {
+		alert("???? something went wrong in the die roll");
+	}
+
+	if (resultRoll < 5) {
+		divToApend = yellowResultRoll;
+	}
+	else if (resultRoll < 8) {
+		divToApend = blueResultRoll;
+	}
+	else if (resultRoll < 10) {
+		divToApend = greenResultRoll;
+	}
+	else if (resultRoll == 10) {
+		divToApend = redResultRoll;
+	}
+	else if (resultRoll == 11) {
+		divToApend = whiteResultRoll;
+	}
+	else if (resultRoll == 12) {
+		divToApend = blackResultRoll;
+	}
+	else if (resultRoll > 12) {
+		alert("???? something went wrong in the die roll");
+	}
+
+	divToApend.appendChild(newDiv);
+}
 
 function randomIntFromInterval(min, max) { // min and max included 
 	return Math.floor(Math.random() * (max - min + 1) + min);

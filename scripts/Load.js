@@ -22,6 +22,7 @@ if(numDiceToRollSetup >= 2){
 	document.getElementById(diceIdElName).checked = true;
 	numDiceToRoll = numDiceToRollSetup;
 }
+loadResults();
 
 //from ResourceTracker.js
 calcProduction();

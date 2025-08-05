@@ -12,8 +12,10 @@ function resetState() {
 
 	numDiceToRollSetup = 2;//set Default
 	localStorage.setItem("numDiceToRoll", numDiceToRollSetup);
+	localStorage.setItem("resultRolls", JSON.stringify([]));
 	document.getElementById("diceRadio2").checked = true;
-
+	
+	clearResultEls();
 	calcProduction();
 	calculateRemainingResources();
 }
