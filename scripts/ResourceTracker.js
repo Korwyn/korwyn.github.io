@@ -21,39 +21,30 @@ let totalRow = document.getElementById("totalRow");
 
 let units = {
 	infantry: {
-		cost: new Production({ osr: 2 }),
 		row: infantryRow
 	},
 	artillery: {
-		cost: new Production({ iron: 2, osr: 1 }),
 		row: artilleryRow
 	},
 	tank: {
-		cost: new Production({ oil: 1, iron: 2, osr: 1 }),
 		row: tanksRow
 	},
 	fighter: {
-		cost: new Production({ oil: 2, iron: 1, osr: 1 }),
 		row: fightersRow
 	},
 	bomber: {
-		cost: new Production({ oil: 2, iron: 2, osr: 1 }),
 		row: bombersRow
 	},
 	submarine: {
-		cost: new Production({ oil: 1, iron: 2, osr: 1 }),
 		row: submarinesRow
 	},
 	cruiser: {
-		cost: new Production({ oil: 2, iron: 3, osr: 2 }),
 		row: cruisersRow
 	},
 	carrier: {
-		cost: new Production({ oil: 4, iron: 3, osr: 3 }),
 		row: carriersRow
 	},
-	battleShip: {
-		cost: new Production({ oil: 3, iron: 4, osr: 3 }),
+	battleship: {
 		row: battleshipsRow
 	}
 }
@@ -62,8 +53,8 @@ function calcProduction() {
 	createLabelTds();
 
 	for (let i = 0; i < countryOrder.length; i++) {
-		countryName = countryOrder[i];
-		country = countries[countryName];
+		let countryName = countryOrder[i];
+		let country = countries[countryName];
 
 		if (!country.currentOil) {
 			country.currentOil = country.productionOil;
@@ -143,10 +134,10 @@ function calcProduction() {
 		tradeResourceInput(tradesRow, countryName, country);
 		allBlankInputs(buildsRow, country);
 
-		for (unitType in units) {
-			unit = units[unitType];
+		for (let unitType in units) {
+			let unit = units[unitType];
 
-			unitInput(unit, country);
+			unitInput(unit, countryName, unitType, country);
 		}
 
 		allBlankInputs(totalRow, country);
@@ -216,7 +207,15 @@ function calcProduction() {
 		rowToAppend.appendChild(osrCell);
 	}
 
-	function tradeResourceInput(rowToAppend, countryName) {
+	function tradeResourceInput(rowToAppend, countryName, country) {
+		let forOil = country.tracker.tradingFor.oil || 0;
+		let forIron = country.tracker.tradingFor.iron || 0;
+		let forOsr = country.tracker.tradingFor.osr || 0;
+
+		let withOil = country.tracker.tradingWith.oil || 0;
+		let withIron = country.tracker.tradingWith.iron || 0;
+		let withOsr = country.tracker.tradingWith.osr || 0;
+
 		let indicatorCell = document.createElement("td");
 
 		let minusCell = document.createElement("div");
@@ -239,6 +238,11 @@ function calcProduction() {
 		oilInputMinus.setAttribute("type", "radio");
 		oilInputMinus.setAttribute("value", 2);
 		oilInputMinus.setAttribute("name", "minus" + countryName);
+		oilInputMinus.setAttribute("countryName", countryName);
+		oilInputMinus.setAttribute("resourceType", "oil");
+		oilInputMinus.setAttribute("trackingType", "tradingWith");
+		oilInputMinus.checked = (withOil == 2 ? true : false);
+
 		oilMinusDiv.appendChild(oilInputMinus);
 
 		oilCell.appendChild(oilMinusDiv);
@@ -251,6 +255,10 @@ function calcProduction() {
 		oilInputPlus.setAttribute("type", "radio");
 		oilInputPlus.setAttribute("value", 2);
 		oilInputPlus.setAttribute("name", "plus" + countryName);
+		oilInputPlus.setAttribute("countryName", countryName);
+		oilInputPlus.setAttribute("resourceType", "oil");
+		oilInputPlus.setAttribute("trackingType", "tradingFor");
+		oilInputPlus.checked = (forOil == 2 ? true : false);
 		oilPlusDiv.appendChild(oilInputPlus);
 
 		oilCell.appendChild(oilPlusDiv);
@@ -263,6 +271,10 @@ function calcProduction() {
 		ironInputMinus.setAttribute("type", "radio");
 		ironInputMinus.setAttribute("value", 3);
 		ironInputMinus.setAttribute("name", "minus" + countryName);
+		ironInputMinus.setAttribute("countryName", countryName);
+		ironInputMinus.setAttribute("resourceType", "iron");
+		ironInputMinus.setAttribute("trackingType", "tradingWith");
+		ironInputMinus.checked = (withIron == 3 ? true : false);
 		ironMinusDiv.appendChild(ironInputMinus);
 
 		ironCell.appendChild(ironMinusDiv);
@@ -273,6 +285,10 @@ function calcProduction() {
 		ironInputPlus.setAttribute("type", "radio");
 		ironInputPlus.setAttribute("value", 3);
 		ironInputPlus.setAttribute("name", "plus" + countryName);
+		ironInputPlus.setAttribute("countryName", countryName);
+		ironInputPlus.setAttribute("resourceType", "iron");
+		ironInputPlus.setAttribute("trackingType", "tradingFor");
+		ironInputPlus.checked = (forIron == 3 ? true : false);
 		ironPlusDiv.appendChild(ironInputPlus);
 
 		ironCell.appendChild(ironPlusDiv);
@@ -285,8 +301,12 @@ function calcProduction() {
 
 		let osrInputMinus = document.createElement("input");
 		osrInputMinus.setAttribute("type", "radio");
-		osrInputMinus.setAttribute("name", "minus" + countryName);
 		osrInputMinus.setAttribute("value", 5);
+		osrInputMinus.setAttribute("name", "minus" + countryName);
+		osrInputMinus.setAttribute("countryName", countryName);
+		osrInputMinus.setAttribute("resourceType", "osr");
+		osrInputMinus.setAttribute("trackingType", "tradingWith");
+		osrInputMinus.checked = (withOsr == 5 ? true : false);
 		osrMinusDiv.appendChild(osrInputMinus);
 
 		osrCell.appendChild(osrMinusDiv);
@@ -297,6 +317,10 @@ function calcProduction() {
 		osrInputPlus.setAttribute("type", "radio");
 		osrInputPlus.setAttribute("value", 5);
 		osrInputPlus.setAttribute("name", "plus" + countryName);
+		osrInputPlus.setAttribute("countryName", countryName);
+		osrInputPlus.setAttribute("resourceType", "osr");
+		osrInputPlus.setAttribute("trackingType", "tradingFor");
+		osrInputPlus.checked = (forOsr == 5 ? true : false);
 		osrPlusDiv.appendChild(osrInputPlus);
 
 		osrCell.appendChild(osrPlusDiv);
@@ -304,7 +328,7 @@ function calcProduction() {
 		rowToAppend.appendChild(osrCell);
 	}
 
-	function allBlankInputs(rowToAppend, countryName) {
+	function allBlankInputs(rowToAppend) {
 		let blankCell = document.createElement("td");
 		rowToAppend.appendChild(blankCell);
 
@@ -324,15 +348,21 @@ function calcProduction() {
 		rowToAppend.appendChild(osrCell);
 	}
 
-	function unitInput(unit, country) {
+	function unitInput(unit, countryName, unitType, country) {
 		let rowToAppend = unit.row;
 
-		let oilCost = unit.cost.oil;
-		let ironCost = unit.cost.iron;
-		let osrCost = unit.cost.osr;
+		let oilCost = country.tracker[unitType].oil;
+		let ironCost = country.tracker[unitType].iron;
+		let osrCost = country.tracker[unitType].osr;
+		
+		let qty = country.tracker[unitType].qty;
 
 		let buildNumberCell = document.createElement("td");
 		let buildNumberInput = document.createElement("input");
+		buildNumberInput.setAttribute("trackingType", unitType);
+		buildNumberInput.setAttribute("countryName", countryName);
+		buildNumberInput.setAttribute("resourceType", "qty");
+		buildNumberInput.value = (qty ? qty : "");
 		buildNumberCell.appendChild(buildNumberInput);
 		rowToAppend.appendChild(buildNumberCell);
 
@@ -366,13 +396,14 @@ function calcProduction() {
 		let resourceType = target.getAttribute("resourceType");
 		let trackingType = target.getAttribute("trackingType");
 
-		let country = countries[countryName];
+		if (trackingType == "tradingFor" || trackingType == "tradingWith") {
+			countries[countryName].tracker[trackingType] = new Production();
+		}
 
-		country.tracker[trackingType][resourceType] = value;
+		countries[countryName].tracker[trackingType][resourceType] = value;
 
 		saveGameState();
 	});
-
 
 	function createLabelTds() {
 		clearRows();
@@ -384,7 +415,7 @@ function calcProduction() {
 		raidsRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Raid"));
 		tradesRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Trades"));
 		buildsRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Builds"));
-		goodsRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Goods"));
+		goodsRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Goods 5*"));
 		infantryRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Infantry"));
 		artilleryRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Artillery"));
 		tanksRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Tanks"));
@@ -394,7 +425,7 @@ function calcProduction() {
 		cruisersRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Cruisers"));
 		carriersRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Carriers"));
 		battleshipsRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Battleships"));
-		totalRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Total"));
+		totalRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Remaining"));
 	}
 
 	function clearRows() {

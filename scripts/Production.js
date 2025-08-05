@@ -3,11 +3,13 @@ class Production {
 		this.oil = 0;
 		this.iron = 0;
 		this.osr = 0;
+		this.qty = null;
 
 		if (production) {
 			this.oil = production.oil || 0;
 			this.iron = production.iron || 0;
 			this.osr = production.osr || 0;
+			this.qty = production.qty;
 		}
 	}
 }
