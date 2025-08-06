@@ -17,7 +17,6 @@ let greenResultRoll = document.getElementById("greenResultRoll");
 let redResultRoll = document.getElementById("redResultRoll");
 let whiteResultRoll = document.getElementById("whiteResultRoll");
 let blackResultRoll = document.getElementById("blackResultRoll");
-
 let rollDiceButton = document.getElementById("rollDice");
 
 let results = [];
