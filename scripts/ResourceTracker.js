@@ -185,10 +185,8 @@ function oilBidding(rowToAppend, countryName, trackingType, country) {
 		oilBidInput.setAttribute("trackingType", trackingType);
 		oilBidInput.setAttribute("type", "text");
 		oilBidInput.setAttribute("inputmode", "numeric");
-		oilBidInput.setAttribute("min", 0);
-		oilBidInput.setAttribute("max", 99);
 		oilBidInput.value = oil || "";
-		oilBidCell.appendChild(oilBidInput);
+		inputChangeControls(oilBidCell, oilBidInput);
 		rowToAppend.appendChild(oilBidCell);
 	}
 
@@ -220,10 +218,9 @@ function tripleResourceInput(rowToAppend, countryName, trackingType, country) {
 		oilInput.setAttribute("trackingType", trackingType);
 		oilInput.setAttribute("type", "text");
 		oilInput.setAttribute("inputmode", "numeric");
-		oilInput.setAttribute("min", 0);
-		oilInput.setAttribute("max", 99);
 		oilInput.value = oil || "";
-		oilCell.appendChild(oilInput);
+
+		inputChangeControls(oilCell, oilInput);
 		rowToAppend.appendChild(oilCell);
 	}
 
@@ -234,10 +231,8 @@ function tripleResourceInput(rowToAppend, countryName, trackingType, country) {
 	ironInput.setAttribute("trackingType", trackingType);
 	ironInput.setAttribute("type", "text");
 	ironInput.setAttribute("inputmode", "numeric");
-	ironInput.setAttribute("min", 0);
-	ironInput.setAttribute("max", 99);
 	ironInput.value = iron || "";
-	ironCell.appendChild(ironInput);
+	inputChangeControls(ironCell, ironInput);
 	rowToAppend.appendChild(ironCell);
 
 	let osrCell = document.createElement("td");
@@ -247,10 +242,8 @@ function tripleResourceInput(rowToAppend, countryName, trackingType, country) {
 	osrInput.setAttribute("trackingType", trackingType);
 	osrInput.setAttribute("type", "text");
 	osrInput.setAttribute("inputmode", "numeric");
-	osrInput.setAttribute("min", 0);
-	osrInput.setAttribute("max", 99);
 	osrInput.value = osr || "";
-	osrCell.appendChild(osrInput);
+	inputChangeControls(osrCell, osrInput);
 	rowToAppend.appendChild(osrCell);
 }
 
@@ -424,7 +417,7 @@ function unitInput(unit, countryName, unitType, country) {
 		buildNumberInput.setAttribute("min", 0);
 		buildNumberInput.setAttribute("max", 99);
 		buildNumberInput.value = (qty ? qty : "");
-		buildNumberCell.appendChild(buildNumberInput);
+		inputChangeControls(buildNumberCell, buildNumberInput);
 	}
 	rowToAppend.appendChild(buildNumberCell);
 
@@ -460,21 +453,58 @@ let resourceTrackerForm = document.getElementById("resourceTrackerForm");
 resourceTrackerForm.addEventListener("change", function(event) {
 	let target = event.target;
 
+	trackerFormChange(target);
+});
+
+function trackerFormChange(target){
+	target = validateInput(target);
+
+		let value = target.value;
+
+		let countryName = target.getAttribute("countryName");
+		let resourceType = target.getAttribute("resourceType");
+		let trackingType = target.getAttribute("trackingType");
+
+		if (trackingType == "tradingFor" || trackingType == "tradingWith") {
+			countries[countryName].tracker[trackingType] = new Production();
+		}
+
+		countries[countryName].tracker[trackingType][resourceType] = value;
+
+		saveGameState();
+		calculateRemainingResources();
+}
+
+function validateInput(target) {
 	let value = target.value;
 
-	let countryName = target.getAttribute("countryName");
-	let resourceType = target.getAttribute("resourceType");
-	let trackingType = target.getAttribute("trackingType");
+	isNum = isNumeric(value);
 
-	if (trackingType == "tradingFor" || trackingType == "tradingWith") {
-		countries[countryName].tracker[trackingType] = new Production();
+	if (!isNum) {
+		target.value = "";
+	}
+	else if (value > 99) {
+		target.value = 99;
+	}
+	else if (value <= -10) {
+		target.value = -9;
 	}
 
-	countries[countryName].tracker[trackingType][resourceType] = value;
+	return target;
+};
 
-	saveGameState();
-	calculateRemainingResources();
-});
+function isNumeric(str) {
+	let isNum = true;
+
+	if (typeof str != "string") {// we only process strings!
+		isNum = false;
+	}
+	else if (isNaN(str) && isNaN(parseFloat(str))) {
+		isNum = false;
+	}
+
+	return isNum;
+}
 
 function createLabelTds() {
 	clearRows();
@@ -577,6 +607,48 @@ function calculateRemainingResources() {
 		country.remainingOsr = osrRemaining;
 	}
 }
+
+function inputChangeControls(parentEl, inputEl) {
+
+	let minusControlDiv = document.createElement("div");
+	minusControlDiv.classList.add("inputControl");
+	minusControlDiv.classList.add("minusControl");
+	minusControlDiv.innerText = ARROW_LEFT;
+	parentEl.appendChild(minusControlDiv);
+	
+	parentEl.appendChild(inputEl);
+
+	let plusControlDiv = document.createElement("div");
+	plusControlDiv.classList.add("inputControl");
+	plusControlDiv.classList.add("plusControl");
+	plusControlDiv.innerText = ARROW_RIGHT;
+	parentEl.appendChild(plusControlDiv);
+
+	minusControlDiv.addEventListener("click", function() {
+		let value = inputEl.value;
+
+		if (!value) {
+			value = 0;
+		}
+
+		inputEl.value = --value;
+
+		trackerFormChange(inputEl);
+	});
+
+	plusControlDiv.addEventListener("click", function() {
+		let value = inputEl.value;
+
+		if (!value) {
+			value = 0;
+		}
+
+		inputEl.value = ++value;
+		
+		trackerFormChange(inputEl);
+	});
+};
+
 
 function displayCurrentProduction() {
 	productionRow.innerHTML = "";
