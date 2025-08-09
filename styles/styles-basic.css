@@ -38,7 +38,7 @@ div.country {
 }
 
 .bigger {
-	font-size: 16px;
+	font-size: 20px;
 }
 
 .checkboxPosition {
@@ -189,6 +189,7 @@ table {
 .inputControlDiv {
 	height: 40px;
 	width: 20px;
+	margin: 0 auto;
 }
 
 .inputControl {
