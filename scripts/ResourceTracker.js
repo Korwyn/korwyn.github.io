@@ -619,23 +619,23 @@ function inputChangeControls(parentEl, inputEl) {
 	containControlDiv.classList.add("relative");
 	containControlDiv.classList.add("inputControlDiv");
 
-	let minusControlDiv = document.createElement("span");
-	minusControlDiv.classList.add("inputControl");
-	minusControlDiv.classList.add("minusControl");
-	minusControlDiv.innerText = ARROW_LEFT;
-	containControlDiv.appendChild(minusControlDiv);
+	let minusControlSpan = document.createElement("span");
+	minusControlSpan.classList.add("inputControl");
+	minusControlSpan.classList.add("minusControl");
+	minusControlSpan.innerText = ARROW_LEFT;
+	containControlDiv.appendChild(minusControlSpan);
 	
 	containControlDiv.appendChild(inputEl);
 
-	let plusControlDiv = document.createElement("span");
-	plusControlDiv.classList.add("inputControl");
-	plusControlDiv.classList.add("plusControl");
-	plusControlDiv.innerText = ARROW_RIGHT;
-	containControlDiv.appendChild(plusControlDiv);
+	let plusControlSpan = document.createElement("span");
+	plusControlSpan.classList.add("inputControl");
+	plusControlSpan.classList.add("plusControl");
+	plusControlSpan.innerText = ARROW_RIGHT;
+	containControlDiv.appendChild(plusControlSpan);
 	
 	parentEl.appendChild(containControlDiv);
 
-	minusControlDiv.addEventListener("click", function() {
+	minusControlSpan.addEventListener("click", function() {
 		let value = inputEl.value;
 
 		if (!value) {
@@ -647,7 +647,7 @@ function inputChangeControls(parentEl, inputEl) {
 		trackerFormChange(inputEl);
 	});
 
-	plusControlDiv.addEventListener("click", function() {
+	plusControlSpan.addEventListener("click", function() {
 		let value = inputEl.value;
 
 		if (!value) {

@@ -191,18 +191,21 @@ table {
 }
 
 .inputControl {
-	font-size: larger;
-	position: absolute;
-	left: 0;
-	right: 0;
-	cursor: pointer;
+    font-size: larger;
+    position: absolute;
+    cursor: pointer;
+    display: inline;
+    width: 20px;
+    height: 10px;
 }
 
 
-.plusControl {
-	bottom: -5px;
+.plusControl {    
+	bottom: 8px;
+    left: 10px;
 }
 
-.minusControl {
-	bottom: 18px;
+.minusControl {    
+	left: 10px;
+    bottom: 30px;
 }
