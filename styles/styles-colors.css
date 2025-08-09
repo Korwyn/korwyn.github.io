@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+.negative {
+	color: red;
+}
+
 .usa {
 	background-color: #9DD496;
 }

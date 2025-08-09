@@ -590,8 +590,11 @@ function calculateRemainingResources() {
 		if (countryName != "china") {
 			let oilCell = document.createElement("td");
 			let oilSpan = document.createElement("span");
-			oilSpan.classList.add("bold");
-			oilSpan.classList.add("bigger");
+
+			if (oilRemaining && oilRemaining < 0){
+				oilSpan.classList.add("negative");
+			}
+			
 			oilSpan.textContent = oilRemaining;
 			oilCell.appendChild(oilSpan);
 			remainingRow.appendChild(oilCell);
@@ -599,16 +602,22 @@ function calculateRemainingResources() {
 
 		let ironCell = document.createElement("td");
 		let ironSpan = document.createElement("span");
-		ironSpan.classList.add("bold");
-		ironSpan.classList.add("bigger");
+		
+		if (ironRemaining && ironRemaining < 0){
+			ironSpan.classList.add("negative");
+		}
+		
 		ironSpan.textContent = ironRemaining;
 		ironCell.appendChild(ironSpan);
 		remainingRow.appendChild(ironCell);
 
 		let osrCell = document.createElement("td");
 		let osrSpan = document.createElement("span");
-		osrSpan.classList.add("bold");
-		osrSpan.classList.add("bigger");
+
+		if (osrRemaining && osrRemaining < 0){
+			osrSpan.classList.add("negative");
+		}
+		
 		osrSpan.textContent = osrRemaining;
 		osrCell.appendChild(osrSpan);
 		remainingRow.appendChild(osrCell);
