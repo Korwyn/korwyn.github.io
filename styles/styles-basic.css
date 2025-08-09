@@ -195,6 +195,7 @@ table {
 	position: absolute;
 	left: 0;
 	right: 0;
+	cursor: pointer;
 }
 
 
@@ -203,5 +204,5 @@ table {
 }
 
 .minusControl {
-	top: -15px;
+	bottom: 18px;
 }

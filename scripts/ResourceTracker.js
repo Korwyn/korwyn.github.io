@@ -625,7 +625,7 @@ function inputChangeControls(parentEl, inputEl) {
 	minusControlDiv.innerText = ARROW_LEFT;
 	containControlDiv.appendChild(minusControlDiv);
 	
-	//containControlDiv.appendChild(inputEl);
+	containControlDiv.appendChild(inputEl);
 
 	let plusControlDiv = document.createElement("span");
 	plusControlDiv.classList.add("inputControl");
