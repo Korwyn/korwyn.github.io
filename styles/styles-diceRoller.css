@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 #diceRollerTable .td{
-	height: 45px;
+	height: 55px;
 }
 
 #diceRollerNumberForm input {
@@ -10,7 +10,7 @@
 }
 
 #diceRollerNumberForm label:not(:last-child){
-	margin-bottom: 8px;
+	margin-bottom: 12px;
 }
 
 #diceRollerNumberForm label {
@@ -19,7 +19,7 @@
 }
 
 #diceRollerTable .td {
-	width: 500px;
+	width: 570px;
 }
 
 #diceRollerTable .td div {
