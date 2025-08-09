@@ -186,12 +186,17 @@ table {
 	top: 2px;
 }
 
+.inputControlDiv {
+	height: 36px;
+}
+
 .inputControl {
 	font-size: larger;
 	position: absolute;
 	left: 0;
 	right: 0;
 }
+
 
 .plusControl {
 	bottom: -5px;

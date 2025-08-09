@@ -617,16 +617,17 @@ function inputChangeControls(parentEl, inputEl) {
 	
 	let containControlDiv = document.createElement("div");
 	containControlDiv.classList.add("relative");
+	containControlDiv.classList.add("inputControlDiv");
 
-	let minusControlDiv = document.createElement("div");
+	let minusControlDiv = document.createElement("span");
 	minusControlDiv.classList.add("inputControl");
 	minusControlDiv.classList.add("minusControl");
 	minusControlDiv.innerText = ARROW_LEFT;
 	containControlDiv.appendChild(minusControlDiv);
 	
-	containControlDiv.appendChild(inputEl);
+	//containControlDiv.appendChild(inputEl);
 
-	let plusControlDiv = document.createElement("div");
+	let plusControlDiv = document.createElement("span");
 	plusControlDiv.classList.add("inputControl");
 	plusControlDiv.classList.add("plusControl");
 	plusControlDiv.innerText = ARROW_RIGHT;
