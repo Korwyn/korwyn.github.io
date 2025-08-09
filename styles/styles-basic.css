@@ -187,9 +187,6 @@ table {
 }
 
 .inputControl {
-	width:20px;
-	height: 14px;
-	margin: 0 auto;
 	font-size: larger;
 	position: absolute;
 	left: 0;
@@ -197,7 +194,7 @@ table {
 }
 
 .plusControl {
-	bottom: 5px;
+	bottom: -5px;
 }
 
 .minusControl {
