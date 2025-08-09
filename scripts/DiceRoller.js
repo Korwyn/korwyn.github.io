@@ -111,5 +111,8 @@ function appendRoll(resultRoll) {
 }
 
 function randomIntFromInterval(min, max) { // min and max included 
-	return Math.floor(Math.random() * (max - min + 1) + min);
+	let randomNum = Math.random(); //0-1
+	let minMax = randomNum * (max - min + 1) + min; // give interval desired
+	let wholeNumber = Math.floor(minMax);// remove  decimal places
+	return wholeNumber;
 }

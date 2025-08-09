@@ -183,7 +183,8 @@ function oilBidding(rowToAppend, countryName, trackingType, country) {
 		oilBidInput.setAttribute("countryName", countryName);
 		oilBidInput.setAttribute("resourceType", "oil");
 		oilBidInput.setAttribute("trackingType", trackingType);
-		oilBidInput.setAttribute("type", "number");
+		oilBidInput.setAttribute("type", "text");
+		oilBidInput.setAttribute("inputmode", "numeric");
 		oilBidInput.setAttribute("min", 0);
 		oilBidInput.setAttribute("max", 99);
 		oilBidInput.value = oil || "";
@@ -217,7 +218,8 @@ function tripleResourceInput(rowToAppend, countryName, trackingType, country) {
 		oilInput.setAttribute("countryName", countryName);
 		oilInput.setAttribute("resourceType", "oil");
 		oilInput.setAttribute("trackingType", trackingType);
-		oilInput.setAttribute("type", "number");
+		oilInput.setAttribute("type", "text");
+		oilInput.setAttribute("inputmode", "numeric");
 		oilInput.setAttribute("min", 0);
 		oilInput.setAttribute("max", 99);
 		oilInput.value = oil || "";
@@ -230,7 +232,8 @@ function tripleResourceInput(rowToAppend, countryName, trackingType, country) {
 	ironInput.setAttribute("countryName", countryName);
 	ironInput.setAttribute("resourceType", "iron");
 	ironInput.setAttribute("trackingType", trackingType);
-	ironInput.setAttribute("type", "number");
+	ironInput.setAttribute("type", "text");
+	ironInput.setAttribute("inputmode", "numeric");
 	ironInput.setAttribute("min", 0);
 	ironInput.setAttribute("max", 99);
 	ironInput.value = iron || "";
@@ -242,7 +245,8 @@ function tripleResourceInput(rowToAppend, countryName, trackingType, country) {
 	osrInput.setAttribute("countryName", countryName);
 	osrInput.setAttribute("resourceType", "osr");
 	osrInput.setAttribute("trackingType", trackingType);
-	osrInput.setAttribute("type", "number");
+	osrInput.setAttribute("type", "text");
+	osrInput.setAttribute("inputmode", "numeric");
 	osrInput.setAttribute("min", 0);
 	osrInput.setAttribute("max", 99);
 	osrInput.value = osr || "";
@@ -415,7 +419,8 @@ function unitInput(unit, countryName, unitType, country) {
 		buildNumberInput.setAttribute("trackingType", unitType);
 		buildNumberInput.setAttribute("countryName", countryName);
 		buildNumberInput.setAttribute("resourceType", "qty");
-		buildNumberInput.setAttribute("type", "number");
+		buildNumberInput.setAttribute("type", "text");
+		buildNumberInput.setAttribute("inputmode", "numeric");
 		buildNumberInput.setAttribute("min", 0);
 		buildNumberInput.setAttribute("max", 99);
 		buildNumberInput.value = (qty ? qty : "");
