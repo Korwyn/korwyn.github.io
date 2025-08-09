@@ -96,5 +96,5 @@
 }
 
 tbody tr:nth-child(even) {
-	background-color: rgba(100, 100, 100, .3);
+	background-color: rgba(100, 100, 100, .2);
 }
