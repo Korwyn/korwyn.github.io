@@ -197,14 +197,14 @@ table {
     position: absolute;
     cursor: pointer;
     display: inline;
-    width: 20px;
+    width: 28px;
     height: 10px;
 }
 
 
 .plusControl {    
 	top: -3px;
-    right: -6px;
+    right: 2px;
 }
 
 .minusControl {   
