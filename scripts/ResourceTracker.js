@@ -180,6 +180,7 @@ function oilBidding(rowToAppend, countryName, trackingType, country) {
 	if (countryName != "china") {
 		let oilBidCell = document.createElement("td");
 		let oilBidInput = document.createElement("input");
+		oilBidInput.setAttribute("name", "resource");
 		oilBidInput.setAttribute("countryName", countryName);
 		oilBidInput.setAttribute("resourceType", "oil");
 		oilBidInput.setAttribute("trackingType", trackingType);
@@ -213,6 +214,7 @@ function tripleResourceInput(rowToAppend, countryName, trackingType, country) {
 	if (countryName != "china") {
 		let oilCell = document.createElement("td");
 		let oilInput = document.createElement("input");
+		oilInput.setAttribute("name", "resource");
 		oilInput.setAttribute("countryName", countryName);
 		oilInput.setAttribute("resourceType", "oil");
 		oilInput.setAttribute("trackingType", trackingType);
@@ -226,6 +228,7 @@ function tripleResourceInput(rowToAppend, countryName, trackingType, country) {
 
 	let ironCell = document.createElement("td");
 	let ironInput = document.createElement("input");
+	ironInput.setAttribute("name", "resource");
 	ironInput.setAttribute("countryName", countryName);
 	ironInput.setAttribute("resourceType", "iron");
 	ironInput.setAttribute("trackingType", trackingType);
@@ -237,6 +240,7 @@ function tripleResourceInput(rowToAppend, countryName, trackingType, country) {
 
 	let osrCell = document.createElement("td");
 	let osrInput = document.createElement("input");
+	osrInput.setAttribute("name", "resource");
 	osrInput.setAttribute("countryName", countryName);
 	osrInput.setAttribute("resourceType", "osr");
 	osrInput.setAttribute("trackingType", trackingType);
@@ -409,6 +413,7 @@ function unitInput(unit, countryName, unitType, country) {
 
 	if (countryName != "china" || oilCost == 0) {
 		let buildNumberInput = document.createElement("input");
+		buildNumberInput.setAttribute("name", "resource");
 		buildNumberInput.setAttribute("trackingType", unitType);
 		buildNumberInput.setAttribute("countryName", countryName);
 		buildNumberInput.setAttribute("resourceType", "qty");
@@ -609,20 +614,25 @@ function calculateRemainingResources() {
 }
 
 function inputChangeControls(parentEl, inputEl) {
+	
+	let containControlDiv = document.createElement("div");
+	containControlDiv.classList.add("relative");
 
 	let minusControlDiv = document.createElement("div");
 	minusControlDiv.classList.add("inputControl");
 	minusControlDiv.classList.add("minusControl");
 	minusControlDiv.innerText = ARROW_LEFT;
-	parentEl.appendChild(minusControlDiv);
+	containControlDiv.appendChild(minusControlDiv);
 	
-	parentEl.appendChild(inputEl);
+	containControlDiv.appendChild(inputEl);
 
 	let plusControlDiv = document.createElement("div");
 	plusControlDiv.classList.add("inputControl");
 	plusControlDiv.classList.add("plusControl");
 	plusControlDiv.innerText = ARROW_RIGHT;
-	parentEl.appendChild(plusControlDiv);
+	containControlDiv.appendChild(plusControlDiv);
+	
+	parentEl.appendChild(containControlDiv);
 
 	minusControlDiv.addEventListener("click", function() {
 		let value = inputEl.value;
