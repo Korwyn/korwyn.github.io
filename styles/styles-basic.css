@@ -188,7 +188,7 @@ table {
 
 .inputControlDiv {
 	height: 40px;
-	width: 20px;
+	width: 26px;
 	margin: 0 auto;
 }
 
@@ -197,17 +197,21 @@ table {
     position: absolute;
     cursor: pointer;
     display: inline;
-    width: 28px;
+    width: 20px;
     height: 10px;
 }
 
-
-.plusControl {    
-	top: -3px;
-    right: 2px;
+.inputControl img {
+	width: 20px;
+	height: 20px;
 }
 
-.minusControl {   
-	left: 2px; 
-	bottom: 8px;
+.plusControl {
+	top: -3px;
+    right: 0px;
+}
+
+.minusControl {
+    left: 2px;
+    bottom: 8px;
 }
