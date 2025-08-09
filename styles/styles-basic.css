@@ -163,6 +163,8 @@ div {
 
 td {
 	text-align: center;
+	padding-top: 4px;
+	padding-bottom: 4px;
 }
 
 th:not(:first-child) {
