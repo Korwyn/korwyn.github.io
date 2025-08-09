@@ -619,17 +619,6 @@ function inputChangeControls(parentEl, inputEl) {
 	containControlDiv.classList.add("relative");
 	containControlDiv.classList.add("inputControlDiv");
 
-	let containerMinus = document.createElement("div");
-	containerMinus.classList.add("inputControl");
-	containerMinus.classList.add("minusControl");
-	let minusControlImg = document.createElement("img");
-	minusControlImg.setAttribute("src", "icons/arrow-left.svg");
-	containerMinus.appendChild(minusControlImg);
-	containControlDiv.appendChild(containerMinus);
-	
-	
-	containControlDiv.appendChild(inputEl);
-
 	let containerPlus = document.createElement("div");
 	containerPlus.classList.add("inputControl");
 	containerPlus.classList.add("plusControl");
@@ -637,6 +626,16 @@ function inputChangeControls(parentEl, inputEl) {
 	plusControlImg.setAttribute("src", "icons/arrow-right.svg");
 	containerPlus.appendChild(plusControlImg);
 	containControlDiv.appendChild(containerPlus);
+	
+	containControlDiv.appendChild(inputEl);
+	
+	let containerMinus = document.createElement("div");
+	containerMinus.classList.add("inputControl");
+	containerMinus.classList.add("minusControl");
+	let minusControlImg = document.createElement("img");
+	minusControlImg.setAttribute("src", "icons/arrow-left.svg");
+	containerMinus.appendChild(minusControlImg);
+	containControlDiv.appendChild(containerMinus);
 	
 	parentEl.appendChild(containControlDiv);
 
