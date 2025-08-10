@@ -60,7 +60,6 @@ confirmTurnButton.addEventListener("click", function() {
 		country.tracker.startedWith = new Production({ oil: country.currentOil, iron: country.currentIron, osr: country.currentOsr });
 		country.tracker.producing = new Production({ oil: country.productionOil, iron: country.productionIron, osr: country.productionOsr });
 
-
 		country.currentOil = country.remainingOil + country.productionOil;
 		country.currentIron = country.remainingIron + country.productionIron;
 		country.currentOsr = country.remainingOsr + country.productionOsr;
@@ -290,6 +289,7 @@ function tradeResourceInput(rowToAppend, countryName, country) {
 		let oilInputMinus = document.createElement("input");
 		oilInputMinus.setAttribute("type", "radio");
 		oilInputMinus.setAttribute("value", 2);
+		oilInputMinus.setAttribute("id", countryName+"oil"+"tradingWith");
 		oilInputMinus.setAttribute("name", "minus" + countryName);
 		oilInputMinus.setAttribute("countryName", countryName);
 		oilInputMinus.setAttribute("resourceType", "oil");
@@ -305,6 +305,7 @@ function tradeResourceInput(rowToAppend, countryName, country) {
 		let oilInputPlus = document.createElement("input");
 		oilInputPlus.setAttribute("type", "radio");
 		oilInputPlus.setAttribute("value", -2);
+		oilInputPlus.setAttribute("id", countryName+"oil"+"tradingFor");
 		oilInputPlus.setAttribute("name", "plus" + countryName);
 		oilInputPlus.setAttribute("countryName", countryName);
 		oilInputPlus.setAttribute("resourceType", "oil");
@@ -326,6 +327,7 @@ function tradeResourceInput(rowToAppend, countryName, country) {
 		let ironInputMinus = document.createElement("input");
 		ironInputMinus.setAttribute("type", "radio");
 		ironInputMinus.setAttribute("value", 3);
+		ironInputMinus.setAttribute("id", countryName+"iron"+"tradingWith");
 		ironInputMinus.setAttribute("name", "minus" + countryName);
 		ironInputMinus.setAttribute("countryName", countryName);
 		ironInputMinus.setAttribute("resourceType", "iron");
@@ -340,6 +342,7 @@ function tradeResourceInput(rowToAppend, countryName, country) {
 		let ironInputPlus = document.createElement("input");
 		ironInputPlus.setAttribute("type", "radio");
 		ironInputPlus.setAttribute("value", -3);
+		ironInputPlus.setAttribute("id", countryName+"iron"+"tradingFor");
 		ironInputPlus.setAttribute("name", "plus" + countryName);
 		ironInputPlus.setAttribute("countryName", countryName);
 		ironInputPlus.setAttribute("resourceType", "iron");
@@ -360,6 +363,7 @@ function tradeResourceInput(rowToAppend, countryName, country) {
 		let osrInputMinus = document.createElement("input");
 		osrInputMinus.setAttribute("type", "radio");
 		osrInputMinus.setAttribute("value", 5);
+		osrInputMinus.setAttribute("id", countryName+"osr"+"tradingWith");
 		osrInputMinus.setAttribute("name", "minus" + countryName);
 		osrInputMinus.setAttribute("countryName", countryName);
 		osrInputMinus.setAttribute("resourceType", "osr");
@@ -374,6 +378,7 @@ function tradeResourceInput(rowToAppend, countryName, country) {
 		let osrInputPlus = document.createElement("input");
 		osrInputPlus.setAttribute("type", "radio");
 		osrInputPlus.setAttribute("value", -5);
+		osrInputPlus.setAttribute("id", countryName+"osr"+"tradingFor");
 		osrInputPlus.setAttribute("name", "plus" + countryName);
 		osrInputPlus.setAttribute("countryName", countryName);
 		osrInputPlus.setAttribute("resourceType", "osr");
@@ -480,10 +485,26 @@ function trackerFormChange(target) {
 	let trackingType = target.getAttribute("trackingType");
 
 	if (trackingType == "tradingFor" || trackingType == "tradingWith") {
-		countries[countryName].tracker[trackingType] = new Production();
+		let valueTradingWith = countries[countryName].tracker.tradingWith[resourceType];
+		let valueTradingFor = countries[countryName].tracker.tradingFor[resourceType];
+		
+		let partnerValue = (trackingType == "tradingFor" ? valueTradingWith : valueTradingFor);
+		let isEqualValues = parseInt(value) + parseInt(partnerValue);
+		
+		if(!isEqualValues){
+			document.getElementById(countryName + resourceType + "tradingFor").checked = false;
+			document.getElementById(countryName + resourceType + "tradingWith").checked = false;
+			countries[countryName].tracker.tradingWith = new Production();
+			countries[countryName].tracker.tradingFor = new Production();
+		}
+		else {
+			countries[countryName].tracker[trackingType] = new Production();
+			countries[countryName].tracker[trackingType][resourceType] = value;
+		}
 	}
-
-	countries[countryName].tracker[trackingType][resourceType] = value;
+	else{
+		countries[countryName].tracker[trackingType][resourceType] = value;
+	}
 
 	saveGameState();
 	calculateRemainingResources();
@@ -497,8 +518,11 @@ function validateInput(target) {
 
 	if (!isNum) {
 		target.value = "";
-	} 
-	else if (value <= 0 && trackingType != "goods" && trackingType != "tradingFor") {
+	}
+	else if (value == 0){
+		target.value = "";
+	}
+	else if (value < 0 && trackingType != "goods" && trackingType != "tradingFor") {
 		target.value = "";
 	}
 	else if (value > 99) {
@@ -531,7 +555,7 @@ function createLabelTds() {
 	oilBidRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Oil Bids"));
 	stressRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Civil Unrest"));
 	repairsRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Repairs"));
-	raidsRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Raid"));
+	raidsRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Raids"));
 	tradesRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Trades"));
 	buildsRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Builds"));
 	goodsRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Goods 5*"));
@@ -758,7 +782,6 @@ function displayResourceLog() {
 
 			if (tracker.startedWith.oil || tracker.startedWith.iron || tracker.startedWith.osr) {
 				let startedWithSpan = document.createElement("span");
-				startedWithSpan.classList.add("smaller");
 
 				let startedWithLog = "Starting: ";
 
@@ -782,7 +805,6 @@ function displayResourceLog() {
 
 			if (tracker.bidding.oil) {
 				let biddingSpan = document.createElement("span");
-				biddingSpan.classList.add("smaller");
 				biddingSpan.innerText = "Used " + tracker.bidding.oil + NOBREAKSPACE + "Oil on oil bidding"
 
 				countryCell.appendChild(biddingSpan);
@@ -791,7 +813,6 @@ function displayResourceLog() {
 
 			if (tracker.stress.oil || tracker.stress.iron || tracker.stress.osr) {
 				let stressSpan = document.createElement("span");
-				stressSpan.classList.add("smaller");
 
 				let stressLog = "Civil Unrest caused a loss of: ";
 
@@ -815,7 +836,6 @@ function displayResourceLog() {
 
 			if (tracker.raids.oil || tracker.raids.iron || tracker.raids.osr) {
 				let raidsSpan = document.createElement("span");
-				raidsSpan.classList.add("smaller");
 
 				let raidsLog = "Lost due to raids: ";
 
@@ -839,7 +859,6 @@ function displayResourceLog() {
 
 			if (tracker.repairs.oil || tracker.repairs.iron || tracker.repairs.osr) {
 				let repairsSpan = document.createElement("span");
-				repairsSpan.classList.add("smaller");
 
 				let repairsLog = "Lost due to repairs: ";
 
@@ -865,7 +884,6 @@ function displayResourceLog() {
 				tracker.tradingWith.oil || tracker.tradingWith.iron || tracker.tradingWith.osr) {
 
 				let tradesSpan = document.createElement("span");
-				tradesSpan.classList.add("smaller");
 
 				let tradeLog = "Traded ";
 
@@ -903,7 +921,6 @@ function displayResourceLog() {
 
 			if (tracker.goods.oil || tracker.goods.iron || tracker.goods.osr) {
 				let goodsSpan = document.createElement("span");
-				goodsSpan.classList.add("smaller");
 
 				let goodsLog = "Spent on Consumer Goods: ";
 
@@ -927,7 +944,6 @@ function displayResourceLog() {
 
 			if (tracker.infantry.qty) {
 				let infantrySpan = document.createElement("span");
-				infantrySpan.classList.add("smaller");
 
 				let infantryLog = tracker.infantry.qty + NOBREAKSPACE + "Infantry";
 				infantryLog += " for a total of ";
@@ -941,7 +957,6 @@ function displayResourceLog() {
 
 			if (tracker.artillery.qty) {
 				let artillerySpan = document.createElement("span");
-				artillerySpan.classList.add("smaller");
 
 				let artilleryLog = tracker.artillery.qty + NOBREAKSPACE + "Artillery";
 				artilleryLog += " for a total of ";
@@ -956,7 +971,6 @@ function displayResourceLog() {
 
 			if (tracker.tank.qty) {
 				let tankSpan = document.createElement("span");
-				tankSpan.classList.add("smaller");
 
 				let tankLog = tracker.tank.qty + NOBREAKSPACE + "Tanks";
 				tankLog += " for a total of ";
@@ -972,7 +986,6 @@ function displayResourceLog() {
 
 			if (tracker.fighter.qty) {
 				let fighterSpan = document.createElement("span");
-				fighterSpan.classList.add("smaller");
 
 				let fighterLog = tracker.fighter.qty + NOBREAKSPACE + "Fighters";
 				fighterLog += " for a total of ";
@@ -988,7 +1001,6 @@ function displayResourceLog() {
 
 			if (tracker.bomber.qty) {
 				let bomberSpan = document.createElement("span");
-				bomberSpan.classList.add("smaller");
 
 				let bomberLog = tracker.bomber.qty + NOBREAKSPACE + "Bombers";
 				bomberLog += " for a total of ";
@@ -1004,7 +1016,6 @@ function displayResourceLog() {
 
 			if (tracker.submarine.qty) {
 				let submarineSpan = document.createElement("span");
-				submarineSpan.classList.add("smaller");
 
 				let submarineLog = tracker.submarine.qty + NOBREAKSPACE + "Submarines";
 				submarineLog += " for a total of ";
@@ -1020,7 +1031,6 @@ function displayResourceLog() {
 
 			if (tracker.cruiser.qty) {
 				let cruiserSpan = document.createElement("span");
-				cruiserSpan.classList.add("smaller");
 
 				let cruiserLog = tracker.cruiser.qty + NOBREAKSPACE + "Cruisers";
 				cruiserLog += " for a total of ";
@@ -1036,7 +1046,6 @@ function displayResourceLog() {
 
 			if (tracker.carrier.qty) {
 				let carrierSpan = document.createElement("span");
-				carrierSpan.classList.add("smaller");
 
 				let carrierLog = tracker.carrier.qty + NOBREAKSPACE + "Carriers";
 				carrierLog += " for a total of ";
@@ -1052,7 +1061,6 @@ function displayResourceLog() {
 
 			if (tracker.battleship.qty) {
 				let battleshipSpan = document.createElement("span");
-				battleshipSpan.classList.add("smaller");
 
 				let battleshipLog = tracker.battleship.qty + NOBREAKSPACE + "Battleships";
 				battleshipLog += " for a total of ";
@@ -1068,7 +1076,6 @@ function displayResourceLog() {
 
 			if (tracker.producing.oil || tracker.producing.iron || tracker.producing.osr) {
 				let producingSpan = document.createElement("span");
-				producingSpan.classList.add("smaller");
 
 				let producingLog = "Producing: ";
 
@@ -1092,7 +1099,6 @@ function displayResourceLog() {
 
 			if (tracker.endedWith.oil || tracker.endedWith.iron || tracker.endedWith.osr) {
 				let endedWithSpan = document.createElement("span");
-				endedWithSpan.classList.add("smaller");
 
 				let endedWithLog = "Ending: ";
 
