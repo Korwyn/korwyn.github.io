@@ -283,6 +283,7 @@ function tradeResourceInput(rowToAppend, countryName, country) {
 
 	if (countryName != "china") {
 		let oilCell = document.createElement("td");
+		oilCell.classList.add("backgroundTwo");
 
 		let oilMinusDiv = document.createElement("div");
 
@@ -319,6 +320,7 @@ function tradeResourceInput(rowToAppend, countryName, country) {
 	let ironCell = document.createElement("td");
 
 	if (countryName != "china") {
+		ironCell.classList.add("backgroundThree");
 		let ironMinusDiv = document.createElement("div");
 
 		let ironInputMinus = document.createElement("input");
@@ -352,6 +354,7 @@ function tradeResourceInput(rowToAppend, countryName, country) {
 	let osrCell = document.createElement("td");
 
 	if (countryName != "china") {
+		osrCell.classList.add("backgroundFive");
 		let osrMinusDiv = document.createElement("div");
 
 		let osrInputMinus = document.createElement("input");
