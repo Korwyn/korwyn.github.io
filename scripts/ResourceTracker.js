@@ -730,9 +730,12 @@ function displayResourceLog() {
 	for (let i = (logLength - 1); i >= 0; i--) {
 		let row = document.createElement("tr");
 
-		let header = document.createElement("th");
+		let header = document.createElement("td");
+		header.classList.add("valignTop");
 
 		let turnSpan = document.createElement("span");
+		turnSpan.classList.add("bold");
+		turnSpan.classList.add("bigger");
 		turnSpan.textContent = "Turn " + (i + 1);
 		header.appendChild(turnSpan);
 		row.appendChild(header);

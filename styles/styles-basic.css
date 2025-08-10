@@ -218,6 +218,10 @@ table {
     bottom: 8px;
 }
 
+.valignTop {
+	vertical-align: top;
+}
+
 
 tfoot tr:not(:first-child){
 	border-top: 1px solid;
