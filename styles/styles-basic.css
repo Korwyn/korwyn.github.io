@@ -252,7 +252,7 @@ tfoot tr:not(:first-child){
 #resourceUseDiv label input:checked + span {
 	background-color: rgba(38, 38, 230, .7);
 	border: 2px solid;
-	border-color: rgba(255, 255, 255, .7);
+	border-color: rgba(255, 255, 255, .8);
 	border-radius: 8px;
 	width: 13px;
 	height: 13px;
@@ -265,7 +265,7 @@ tfoot tr:not(:first-child){
 	background-color: rgba(255, 255, 255, .7);
 	border: 1px solid;
 	border-radius: 8px;
-	border-color: rgba(50, 50, 50, .7);
+	border-color: rgba(30, 30, 30, .7);
 }
 
 .labelPlus {
