@@ -54,23 +54,24 @@ let units = {
 }
 
 confirmTurnButton.addEventListener("click", function() {
-	if(confirm("Confirm resources and advance to the next turn?")){
+	if (confirm("Confirm resources and advance to the next turn?")) {
 		for (let countryName in countries) {
 			let country = countries[countryName];
-	
+
 			country.tracker.startedWith = new Production({ oil: country.currentOil, iron: country.currentIron, osr: country.currentOsr });
+			country.tracker.remaining = new Production({ oil: country.remainingOil, iron: country.remainingIron, osr: country.remainingOsr });
 			country.tracker.producing = new Production({ oil: country.productionOil, iron: country.productionIron, osr: country.productionOsr });
-	
+
 			country.currentOil = country.remainingOil + country.productionOil;
 			country.currentIron = country.remainingIron + country.productionIron;
 			country.currentOsr = country.remainingOsr + country.productionOsr;
-	
+
 			country.tracker.endedWith = new Production({ oil: country.currentOil, iron: country.currentIron, osr: country.currentOsr });
-	
+
 			country.trackerLog.push(country.tracker);
 			country.tracker = new Tracker();
 		}
-	
+
 		calcProduction();
 		calculateRemainingResources();
 		saveGameState();
@@ -296,7 +297,7 @@ function tradeResourceInput(rowToAppend, countryName, country) {
 		let oilInputMinus = document.createElement("input");
 		oilInputMinus.setAttribute("type", "radio");
 		oilInputMinus.setAttribute("value", 2);
-		oilInputMinus.setAttribute("id", countryName+"oil"+"tradingWith");
+		oilInputMinus.setAttribute("id", countryName + "oil" + "tradingWith");
 		oilInputMinus.setAttribute("name", "minus" + countryName);
 		oilInputMinus.setAttribute("countryName", countryName);
 		oilInputMinus.setAttribute("resourceType", "oil");
@@ -316,7 +317,7 @@ function tradeResourceInput(rowToAppend, countryName, country) {
 		let oilInputPlus = document.createElement("input");
 		oilInputPlus.setAttribute("type", "radio");
 		oilInputPlus.setAttribute("value", -2);
-		oilInputPlus.setAttribute("id", countryName+"oil"+"tradingFor");
+		oilInputPlus.setAttribute("id", countryName + "oil" + "tradingFor");
 		oilInputPlus.setAttribute("name", "plus" + countryName);
 		oilInputPlus.setAttribute("countryName", countryName);
 		oilInputPlus.setAttribute("resourceType", "oil");
@@ -341,7 +342,7 @@ function tradeResourceInput(rowToAppend, countryName, country) {
 		let ironInputMinus = document.createElement("input");
 		ironInputMinus.setAttribute("type", "radio");
 		ironInputMinus.setAttribute("value", 3);
-		ironInputMinus.setAttribute("id", countryName+"iron"+"tradingWith");
+		ironInputMinus.setAttribute("id", countryName + "iron" + "tradingWith");
 		ironInputMinus.setAttribute("name", "minus" + countryName);
 		ironInputMinus.setAttribute("countryName", countryName);
 		ironInputMinus.setAttribute("resourceType", "iron");
@@ -361,7 +362,7 @@ function tradeResourceInput(rowToAppend, countryName, country) {
 		let ironInputPlus = document.createElement("input");
 		ironInputPlus.setAttribute("type", "radio");
 		ironInputPlus.setAttribute("value", -3);
-		ironInputPlus.setAttribute("id", countryName+"iron"+"tradingFor");
+		ironInputPlus.setAttribute("id", countryName + "iron" + "tradingFor");
 		ironInputPlus.setAttribute("name", "plus" + countryName);
 		ironInputPlus.setAttribute("countryName", countryName);
 		ironInputPlus.setAttribute("resourceType", "iron");
@@ -386,7 +387,7 @@ function tradeResourceInput(rowToAppend, countryName, country) {
 		let osrInputMinus = document.createElement("input");
 		osrInputMinus.setAttribute("type", "radio");
 		osrInputMinus.setAttribute("value", 5);
-		osrInputMinus.setAttribute("id", countryName+"osr"+"tradingWith");
+		osrInputMinus.setAttribute("id", countryName + "osr" + "tradingWith");
 		osrInputMinus.setAttribute("name", "minus" + countryName);
 		osrInputMinus.setAttribute("countryName", countryName);
 		osrInputMinus.setAttribute("resourceType", "osr");
@@ -404,11 +405,11 @@ function tradeResourceInput(rowToAppend, countryName, country) {
 		let osrPlusDiv = document.createElement("div");
 		let osrInputPlusLabel = document.createElement("label");
 		osrInputPlusLabel.classList.add("labelPlus");
-		
+
 		let osrInputPlus = document.createElement("input");
 		osrInputPlus.setAttribute("type", "radio");
 		osrInputPlus.setAttribute("value", -5);
-		osrInputPlus.setAttribute("id", countryName+"osr"+"tradingFor");
+		osrInputPlus.setAttribute("id", countryName + "osr" + "tradingFor");
 		osrInputPlus.setAttribute("name", "plus" + countryName);
 		osrInputPlus.setAttribute("countryName", countryName);
 		osrInputPlus.setAttribute("resourceType", "osr");
@@ -418,7 +419,7 @@ function tradeResourceInput(rowToAppend, countryName, country) {
 
 		let osrInputPlusSpan = document.createElement("span");
 		osrInputPlusLabel.appendChild(osrInputPlusSpan);
-		
+
 		osrPlusDiv.appendChild(osrInputPlusLabel);
 
 		osrCell.appendChild(osrPlusDiv);
@@ -522,11 +523,11 @@ function trackerFormChange(target) {
 	if (trackingType == "tradingFor" || trackingType == "tradingWith") {
 		let valueTradingWith = countries[countryName].tracker.tradingWith[resourceType];
 		let valueTradingFor = countries[countryName].tracker.tradingFor[resourceType];
-		
+
 		let partnerValue = (trackingType == "tradingFor" ? valueTradingWith : valueTradingFor);
 		let isEqualValues = parseInt(value) + parseInt(partnerValue);
-		
-		if(!isEqualValues){
+
+		if (!isEqualValues) {
 			document.getElementById(countryName + resourceType + "tradingFor").checked = false;
 			document.getElementById(countryName + resourceType + "tradingWith").checked = false;
 			countries[countryName].tracker.tradingWith = new Production();
@@ -537,7 +538,7 @@ function trackerFormChange(target) {
 			countries[countryName].tracker[trackingType][resourceType] = value;
 		}
 	}
-	else{
+	else {
 		countries[countryName].tracker[trackingType][resourceType] = value;
 	}
 
@@ -554,7 +555,7 @@ function validateInput(target) {
 	if (!isNum) {
 		target.value = "";
 	}
-	else if (value == 0){
+	else if (value == 0) {
 		target.value = "";
 	}
 	else if (value < 0 && trackingType != "goods" && trackingType != "tradingFor") {
@@ -815,27 +816,25 @@ function displayResourceLog() {
 
 			let tracker = countries[countryName].trackerLog[i];
 
-			if (tracker.startedWith.oil || tracker.startedWith.iron || tracker.startedWith.osr) {
-				let startedWithSpan = document.createElement("p");
+			let startedWithSpan = document.createElement("p");
 
-				let startedWithLog = "Starting: ";
+			let startedWithLog = "Starting: ";
 
-				if (tracker.startedWith.oil) {
-					startedWithLog += "[" + tracker.startedWith.oil + NOBREAKSPACE + "Oil] "
-				}
-
-				if (tracker.startedWith.iron) {
-					startedWithLog += "[" + tracker.startedWith.iron + NOBREAKSPACE + "Iron] "
-				}
-
-				if (tracker.startedWith.osr) {
-					startedWithLog += "[" + tracker.startedWith.osr + NOBREAKSPACE + "Osr] "
-				}
-
-				startedWithSpan.innerText = startedWithLog;
-
-				countryCell.appendChild(startedWithSpan);
+			if (tracker.startedWith.oil) {
+				startedWithLog += "[" + tracker.startedWith.oil + NOBREAKSPACE + "Oil] "
 			}
+
+			if (tracker.startedWith.iron) {
+				startedWithLog += "[" + tracker.startedWith.iron + NOBREAKSPACE + "Iron] "
+			}
+
+			if (tracker.startedWith.osr) {
+				startedWithLog += "[" + tracker.startedWith.osr + NOBREAKSPACE + "Osr] "
+			}
+
+			startedWithSpan.innerText = startedWithLog;
+
+			countryCell.appendChild(startedWithSpan);
 
 			if (tracker.bidding.oil) {
 				let biddingSpan = document.createElement("p");
@@ -1093,49 +1092,65 @@ function displayResourceLog() {
 				countryCell.appendChild(battleshipSpan);
 			}
 
-			if (tracker.producing.oil || tracker.producing.iron || tracker.producing.osr) {
-				let producingSpan = document.createElement("p");
+			let remainingSpan = document.createElement("p");
 
-				let producingLog = "Producing: ";
+			let remainingLog = "Remaining: ";
 
-				if (tracker.producing.oil) {
-					producingLog += "[" + tracker.producing.oil + NOBREAKSPACE + "Oil] "
-				}
-
-				if (tracker.producing.iron) {
-					producingLog += "[" + tracker.producing.iron + NOBREAKSPACE + "Iron] "
-				}
-
-				if (tracker.producing.osr) {
-					producingLog += "[" + tracker.producing.osr + NOBREAKSPACE + "Osr] "
-				}
-
-				producingSpan.innerText = producingLog;
-
-				countryCell.appendChild(producingSpan);
+			if (tracker.remaining.oil) {
+				remainingLog += "[" + tracker.remaining.oil + NOBREAKSPACE + "Oil] "
 			}
 
-			if (tracker.endedWith.oil || tracker.endedWith.iron || tracker.endedWith.osr) {
-				let endedWithSpan = document.createElement("p");
-
-				let endedWithLog = "Ending: ";
-
-				if (tracker.startedWith.oil) {
-					endedWithLog += "[" + tracker.endedWith.oil + NOBREAKSPACE + "Oil] "
-				}
-
-				if (tracker.startedWith.iron) {
-					endedWithLog += "[" + tracker.endedWith.iron + NOBREAKSPACE + "Iron] "
-				}
-
-				if (tracker.startedWith.osr) {
-					endedWithLog += "[" + tracker.endedWith.osr + NOBREAKSPACE + "Osr] "
-				}
-
-				endedWithSpan.innerText = endedWithLog;
-
-				countryCell.appendChild(endedWithSpan);
+			if (tracker.remaining.iron) {
+				remainingLog += "[" + tracker.remaining.iron + NOBREAKSPACE + "Iron] "
 			}
+
+			if (tracker.remaining.osr) {
+				remainingLog += "[" + tracker.remaining.osr + NOBREAKSPACE + "Osr] "
+			}
+
+			remainingSpan.innerText = remainingLog;
+
+			countryCell.appendChild(remainingSpan);
+
+			let producingSpan = document.createElement("p");
+
+			let producingLog = "Producing: ";
+
+			if (tracker.producing.oil) {
+				producingLog += "[" + tracker.producing.oil + NOBREAKSPACE + "Oil] "
+			}
+
+			if (tracker.producing.iron) {
+				producingLog += "[" + tracker.producing.iron + NOBREAKSPACE + "Iron] "
+			}
+
+			if (tracker.producing.osr) {
+				producingLog += "[" + tracker.producing.osr + NOBREAKSPACE + "Osr] "
+			}
+
+			producingSpan.innerText = producingLog;
+
+			countryCell.appendChild(producingSpan);
+
+			let endedWithSpan = document.createElement("p");
+
+			let endedWithLog = "Ending: ";
+
+			if (tracker.startedWith.oil) {
+				endedWithLog += "[" + tracker.endedWith.oil + NOBREAKSPACE + "Oil] "
+			}
+
+			if (tracker.startedWith.iron) {
+				endedWithLog += "[" + tracker.endedWith.iron + NOBREAKSPACE + "Iron] "
+			}
+
+			if (tracker.startedWith.osr) {
+				endedWithLog += "[" + tracker.endedWith.osr + NOBREAKSPACE + "Osr] "
+			}
+
+			endedWithSpan.innerText = endedWithLog;
+
+			countryCell.appendChild(endedWithSpan);
 
 			row.appendChild(countryCell);
 		}

@@ -19,5 +19,6 @@ class Tracker {
 		this.startedWith = new Production();
 		this.endedWith = new Production();
 		this.producing = new Production();
+		this.remaining = new Production();
 	}
 }
