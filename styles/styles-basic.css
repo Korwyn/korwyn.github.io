@@ -217,3 +217,8 @@ table {
     left: 2px;
     bottom: 8px;
 }
+
+
+tfoot tr:not(:first-child){
+	border-top: 1px solid;
+}

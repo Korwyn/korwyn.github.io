@@ -16,5 +16,8 @@ class Tracker {
 		this.cruiser = new Production({ qty: 0, oil: 2, iron: 3, osr: 2 });
 		this.carrier = new Production({ qty: 0, oil: 4, iron: 3, osr: 3 });
 		this.battleship = new Production({ qty: 0, oil: 3, iron: 4, osr: 3 });
+		this.startedWith = new Production();
+		this.endedWith = new Production();
+		this.producing = new Production();
 	}
 }
