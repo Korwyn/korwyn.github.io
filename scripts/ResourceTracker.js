@@ -498,7 +498,7 @@ function validateInput(target) {
 	if (!isNum) {
 		target.value = "";
 	} 
-	else if (value <= 0 && trackingType != "goods") {
+	else if (value <= 0 && trackingType != "goods" && trackingType != "tradingFor") {
 		target.value = "";
 	}
 	else if (value > 99) {
