@@ -269,11 +269,15 @@ function tradeResourceInput(rowToAppend, countryName, country) {
 	if (countryName != "china") {
 		let minusCell = document.createElement("div");
 		minusCell.classList.add("minusDiv");
+		minusCell.classList.add("bigger");
+		minusCell.classList.add("bold");
 		minusCell.textContent = "-";
 		indicatorCell.appendChild(minusCell);
 
 		let plusCell = document.createElement("div");
 		plusCell.classList.add("plusDiv");
+		plusCell.classList.add("bigger");
+		plusCell.classList.add("bold");
 		plusCell.textContent = "+";
 		indicatorCell.appendChild(plusCell);
 	}
@@ -285,6 +289,7 @@ function tradeResourceInput(rowToAppend, countryName, country) {
 		oilCell.classList.add("backgroundTwo");
 
 		let oilMinusDiv = document.createElement("div");
+		let oilInputMinusLabel = document.createElement("label");
 
 		let oilInputMinus = document.createElement("input");
 		oilInputMinus.setAttribute("type", "radio");
@@ -296,11 +301,15 @@ function tradeResourceInput(rowToAppend, countryName, country) {
 		oilInputMinus.setAttribute("trackingType", "tradingWith");
 		oilInputMinus.checked = (withOil == 2 ? true : false);
 
-		oilMinusDiv.appendChild(oilInputMinus);
-
+		oilInputMinusLabel.appendChild(oilInputMinus);
+		let oilInputMinusSpan = document.createElement("span");
+		oilInputMinusLabel.appendChild(oilInputMinusSpan);
+		oilMinusDiv.appendChild(oilInputMinusLabel);
 		oilCell.appendChild(oilMinusDiv);
 
 		let oilPlusDiv = document.createElement("div");
+		let oilInputPlusLabel = document.createElement("label");
+		oilInputPlusLabel.classList.add("labelPlus");
 
 		let oilInputPlus = document.createElement("input");
 		oilInputPlus.setAttribute("type", "radio");
@@ -311,10 +320,12 @@ function tradeResourceInput(rowToAppend, countryName, country) {
 		oilInputPlus.setAttribute("resourceType", "oil");
 		oilInputPlus.setAttribute("trackingType", "tradingFor");
 		oilInputPlus.checked = (forOil == -2 ? true : false);
-		oilPlusDiv.appendChild(oilInputPlus);
+		oilInputPlusLabel.appendChild(oilInputPlus);
 
+		let ironInputMinusSpan = document.createElement("span");
+		oilInputPlusLabel.appendChild(ironInputMinusSpan);
+		oilPlusDiv.appendChild(oilInputPlusLabel);
 		oilCell.appendChild(oilPlusDiv);
-
 		rowToAppend.appendChild(oilCell);
 	}
 
@@ -323,6 +334,7 @@ function tradeResourceInput(rowToAppend, countryName, country) {
 	if (countryName != "china") {
 		ironCell.classList.add("backgroundThree");
 		let ironMinusDiv = document.createElement("div");
+		let ironInputMinusLabel = document.createElement("label");
 
 		let ironInputMinus = document.createElement("input");
 		ironInputMinus.setAttribute("type", "radio");
@@ -333,11 +345,16 @@ function tradeResourceInput(rowToAppend, countryName, country) {
 		ironInputMinus.setAttribute("resourceType", "iron");
 		ironInputMinus.setAttribute("trackingType", "tradingWith");
 		ironInputMinus.checked = (withIron == 3 ? true : false);
-		ironMinusDiv.appendChild(ironInputMinus);
+		ironInputMinusLabel.appendChild(ironInputMinus);
 
+		let ironInputMinusSpan = document.createElement("span");
+		ironInputMinusLabel.appendChild(ironInputMinusSpan);
+		ironMinusDiv.appendChild(ironInputMinusLabel);
 		ironCell.appendChild(ironMinusDiv);
 
 		let ironPlusDiv = document.createElement("div");
+		let ironInputPlusLabel = document.createElement("label");
+		ironInputPlusLabel.classList.add("labelPlus");
 
 		let ironInputPlus = document.createElement("input");
 		ironInputPlus.setAttribute("type", "radio");
@@ -348,8 +365,11 @@ function tradeResourceInput(rowToAppend, countryName, country) {
 		ironInputPlus.setAttribute("resourceType", "iron");
 		ironInputPlus.setAttribute("trackingType", "tradingFor");
 		ironInputPlus.checked = (forIron == -3 ? true : false);
-		ironPlusDiv.appendChild(ironInputPlus);
+		ironInputPlusLabel.appendChild(ironInputPlus);
 
+		let ironInputPlusSpan = document.createElement("span");
+		ironInputPlusLabel.appendChild(ironInputPlusSpan);
+		ironPlusDiv.appendChild(ironInputPlusLabel);
 		ironCell.appendChild(ironPlusDiv);
 	}
 	rowToAppend.appendChild(ironCell);
@@ -359,6 +379,7 @@ function tradeResourceInput(rowToAppend, countryName, country) {
 	if (countryName != "china") {
 		osrCell.classList.add("backgroundFive");
 		let osrMinusDiv = document.createElement("div");
+		let osrInputMinusLabel = document.createElement("label");
 
 		let osrInputMinus = document.createElement("input");
 		osrInputMinus.setAttribute("type", "radio");
@@ -369,12 +390,19 @@ function tradeResourceInput(rowToAppend, countryName, country) {
 		osrInputMinus.setAttribute("resourceType", "osr");
 		osrInputMinus.setAttribute("trackingType", "tradingWith");
 		osrInputMinus.checked = (withOsr == 5 ? true : false);
-		osrMinusDiv.appendChild(osrInputMinus);
+		osrInputMinusLabel.appendChild(osrInputMinus);
+
+		let osrInputMinusSpan = document.createElement("span");
+		osrInputMinusLabel.appendChild(osrInputMinusSpan);
+
+		osrMinusDiv.appendChild(osrInputMinusLabel);
 
 		osrCell.appendChild(osrMinusDiv);
 
 		let osrPlusDiv = document.createElement("div");
-
+		let osrInputPlusLabel = document.createElement("label");
+		osrInputPlusLabel.classList.add("labelPlus");
+		
 		let osrInputPlus = document.createElement("input");
 		osrInputPlus.setAttribute("type", "radio");
 		osrInputPlus.setAttribute("value", -5);
@@ -384,7 +412,12 @@ function tradeResourceInput(rowToAppend, countryName, country) {
 		osrInputPlus.setAttribute("resourceType", "osr");
 		osrInputPlus.setAttribute("trackingType", "tradingFor");
 		osrInputPlus.checked = (forOsr == -5 ? true : false);
-		osrPlusDiv.appendChild(osrInputPlus);
+		osrInputPlusLabel.appendChild(osrInputPlus);
+
+		let osrInputPlusSpan = document.createElement("span");
+		osrInputPlusLabel.appendChild(osrInputPlusSpan);
+		
+		osrPlusDiv.appendChild(osrInputPlusLabel);
 
 		osrCell.appendChild(osrPlusDiv);
 	}
