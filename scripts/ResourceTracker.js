@@ -56,17 +56,17 @@ let units = {
 confirmTurnButton.addEventListener("click", function() {
 	for (let countryName in countries) {
 		let country = countries[countryName];
-		
-		country.tracker.startedWith = new Production({oil: country.currentOil, iron: country.currentIron, osr: country.currentOsr});
-		country.tracker.producing = new Production({oil: country.productionOil,  iron: country.productionIron,  osr: country.productionOsr});
+
+		country.tracker.startedWith = new Production({ oil: country.currentOil, iron: country.currentIron, osr: country.currentOsr });
+		country.tracker.producing = new Production({ oil: country.productionOil, iron: country.productionIron, osr: country.productionOsr });
 
 
 		country.currentOil = country.remainingOil + country.productionOil;
 		country.currentIron = country.remainingIron + country.productionIron;
 		country.currentOsr = country.remainingOsr + country.productionOsr;
-		
-		country.tracker.endedWith = new Production({oil: country.currentOil,  iron: country.currentIron,  osr: country.currentOsr});
-		
+
+		country.tracker.endedWith = new Production({ oil: country.currentOil, iron: country.currentIron, osr: country.currentOsr });
+
 		country.trackerLog.push(country.tracker);
 		country.tracker = new Tracker();
 	}
@@ -467,31 +467,35 @@ resourceTrackerForm.addEventListener("change", function(event) {
 	trackerFormChange(target);
 });
 
-function trackerFormChange(target){
+function trackerFormChange(target) {
 	target = validateInput(target);
 
-		let value = target.value;
+	let value = target.value;
 
-		let countryName = target.getAttribute("countryName");
-		let resourceType = target.getAttribute("resourceType");
-		let trackingType = target.getAttribute("trackingType");
+	let countryName = target.getAttribute("countryName");
+	let resourceType = target.getAttribute("resourceType");
+	let trackingType = target.getAttribute("trackingType");
 
-		if (trackingType == "tradingFor" || trackingType == "tradingWith") {
-			countries[countryName].tracker[trackingType] = new Production();
-		}
+	if (trackingType == "tradingFor" || trackingType == "tradingWith") {
+		countries[countryName].tracker[trackingType] = new Production();
+	}
 
-		countries[countryName].tracker[trackingType][resourceType] = value;
+	countries[countryName].tracker[trackingType][resourceType] = value;
 
-		saveGameState();
-		calculateRemainingResources();
+	saveGameState();
+	calculateRemainingResources();
 }
 
 function validateInput(target) {
 	let value = target.value;
+	let trackingType = target.getAttribute("trackingType");
 
 	isNum = isNumeric(value);
 
 	if (!isNum) {
+		target.value = "";
+	} 
+	else if (value <= 0 && trackingType != "goods") {
 		target.value = "";
 	}
 	else if (value > 99) {
@@ -522,7 +526,7 @@ function createLabelTds() {
 
 	currentResourceRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Current"));
 	oilBidRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Oil Bids"));
-	stressRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Stress"));
+	stressRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Civil Unrest"));
 	repairsRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Repairs"));
 	raidsRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Raid"));
 	tradesRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Trades"));
@@ -597,10 +601,10 @@ function calculateRemainingResources() {
 			let oilCell = document.createElement("td");
 			let oilSpan = document.createElement("span");
 
-			if (oilRemaining && oilRemaining < 0){
+			if (oilRemaining && oilRemaining < 0) {
 				oilSpan.classList.add("negative");
 			}
-			
+
 			oilSpan.textContent = oilRemaining;
 			oilCell.appendChild(oilSpan);
 			remainingRow.appendChild(oilCell);
@@ -608,11 +612,11 @@ function calculateRemainingResources() {
 
 		let ironCell = document.createElement("td");
 		let ironSpan = document.createElement("span");
-		
-		if (ironRemaining && ironRemaining < 0){
+
+		if (ironRemaining && ironRemaining < 0) {
 			ironSpan.classList.add("negative");
 		}
-		
+
 		ironSpan.textContent = ironRemaining;
 		ironCell.appendChild(ironSpan);
 		remainingRow.appendChild(ironCell);
@@ -620,10 +624,10 @@ function calculateRemainingResources() {
 		let osrCell = document.createElement("td");
 		let osrSpan = document.createElement("span");
 
-		if (osrRemaining && osrRemaining < 0){
+		if (osrRemaining && osrRemaining < 0) {
 			osrSpan.classList.add("negative");
 		}
-		
+
 		osrSpan.textContent = osrRemaining;
 		osrCell.appendChild(osrSpan);
 		remainingRow.appendChild(osrCell);
@@ -635,7 +639,7 @@ function calculateRemainingResources() {
 }
 
 function inputChangeControls(parentEl, inputEl) {
-	
+
 	let containControlDiv = document.createElement("div");
 	containControlDiv.classList.add("relative");
 	containControlDiv.classList.add("inputControlDiv");
@@ -647,9 +651,9 @@ function inputChangeControls(parentEl, inputEl) {
 	plusControlImg.setAttribute("src", "icons/arrow-right.svg");
 	containerPlus.appendChild(plusControlImg);
 	containControlDiv.appendChild(containerPlus);
-	
+
 	containControlDiv.appendChild(inputEl);
-	
+
 	let containerMinus = document.createElement("div");
 	containerMinus.classList.add("inputControl");
 	containerMinus.classList.add("minusControl");
@@ -657,7 +661,7 @@ function inputChangeControls(parentEl, inputEl) {
 	minusControlImg.setAttribute("src", "icons/arrow-left.svg");
 	containerMinus.appendChild(minusControlImg);
 	containControlDiv.appendChild(containerMinus);
-	
+
 	parentEl.appendChild(containControlDiv);
 
 	containerMinus.addEventListener("click", function() {
@@ -680,7 +684,7 @@ function inputChangeControls(parentEl, inputEl) {
 		}
 
 		inputEl.value = ++value;
-		
+
 		trackerFormChange(inputEl);
 	});
 };
@@ -743,7 +747,7 @@ function displayResourceLog() {
 
 		for (let j = 0; j < countryOrder.length; j++) {
 			let countryName = countryOrder[j];
-			
+
 			let countryCell = document.createElement("td");
 			countryCell.setAttribute("colspan", countryName == "china" ? 3 : 4);
 
@@ -751,21 +755,22 @@ function displayResourceLog() {
 
 			if (tracker.startedWith.oil || tracker.startedWith.iron || tracker.startedWith.osr) {
 				let startedWithSpan = document.createElement("span");
-				
-				let startedWithLog = "Started with: ";
+				startedWithSpan.classList.add("smaller");
 
-				if(tracker.startedWith.oil){
+				let startedWithLog = "Starting: ";
+
+				if (tracker.startedWith.oil) {
 					startedWithLog += "[" + tracker.startedWith.oil + NOBREAKSPACE + "Oil] "
 				}
-				
-				if(tracker.startedWith.iron){
+
+				if (tracker.startedWith.iron) {
 					startedWithLog += "[" + tracker.startedWith.iron + NOBREAKSPACE + "Iron] "
 				}
-				
-				if(tracker.startedWith.osr){
+
+				if (tracker.startedWith.osr) {
 					startedWithLog += "[" + tracker.startedWith.osr + NOBREAKSPACE + "Osr] "
 				}
-				
+
 				startedWithSpan.innerText = startedWithLog;
 
 				countryCell.appendChild(startedWithSpan);
@@ -774,6 +779,7 @@ function displayResourceLog() {
 
 			if (tracker.bidding.oil) {
 				let biddingSpan = document.createElement("span");
+				biddingSpan.classList.add("smaller");
 				biddingSpan.innerText = "Used " + tracker.bidding.oil + NOBREAKSPACE + "Oil on oil bidding"
 
 				countryCell.appendChild(biddingSpan);
@@ -782,21 +788,22 @@ function displayResourceLog() {
 
 			if (tracker.stress.oil || tracker.stress.iron || tracker.stress.osr) {
 				let stressSpan = document.createElement("span");
-				
-				let stressLog = "Stess caused a loss of: ";
+				stressSpan.classList.add("smaller");
 
-				if(tracker.stress.oil){
+				let stressLog = "Civil Unrest caused a loss of: ";
+
+				if (tracker.stress.oil) {
 					stressLog += "[" + tracker.stress.oil + NOBREAKSPACE + "Oil] "
 				}
-				
-				if(tracker.stress.iron){
+
+				if (tracker.stress.iron) {
 					stressLog += "[" + tracker.stress.iron + NOBREAKSPACE + "Iron] "
 				}
-				
-				if(tracker.stress.osr){
+
+				if (tracker.stress.osr) {
 					stressLog += "[" + tracker.stress.osr + NOBREAKSPACE + "Osr] "
 				}
-				
+
 				stressSpan.innerText = stressLog;
 
 				countryCell.appendChild(stressSpan);
@@ -805,21 +812,22 @@ function displayResourceLog() {
 
 			if (tracker.raids.oil || tracker.raids.iron || tracker.raids.osr) {
 				let raidsSpan = document.createElement("span");
-				
+				raidsSpan.classList.add("smaller");
+
 				let raidsLog = "Lost due to raids: ";
 
-				if(tracker.raids.oil){
+				if (tracker.raids.oil) {
 					raidsLog += "[" + tracker.raids.oil + NOBREAKSPACE + "Oil] "
 				}
-				
-				if(tracker.raids.iron){
+
+				if (tracker.raids.iron) {
 					raidsLog += "[" + tracker.raids.iron + NOBREAKSPACE + "Iron] "
 				}
-				
-				if(tracker.raids.osr){
+
+				if (tracker.raids.osr) {
 					raidsLog += "[" + tracker.raids.osr + NOBREAKSPACE + "Osr] "
 				}
-				
+
 				raidsSpan.innerText = raidsLog;
 
 				countryCell.appendChild(raidsSpan);
@@ -828,21 +836,22 @@ function displayResourceLog() {
 
 			if (tracker.repairs.oil || tracker.repairs.iron || tracker.repairs.osr) {
 				let repairsSpan = document.createElement("span");
-				
+				repairsSpan.classList.add("smaller");
+
 				let repairsLog = "Lost due to repairs: ";
 
-				if(tracker.repairs.oil){
+				if (tracker.repairs.oil) {
 					repairsLog += "[" + tracker.repairs.oil + NOBREAKSPACE + "Oil] "
 				}
-				
-				if(tracker.repairs.iron){
+
+				if (tracker.repairs.iron) {
 					repairsLog += "[" + tracker.repairs.iron + NOBREAKSPACE + "Iron] "
 				}
-				
-				if(tracker.repairs.osr){
+
+				if (tracker.repairs.osr) {
 					repairsLog += "[" + tracker.repairs.osr + NOBREAKSPACE + "Osr] "
 				}
-				
+
 				repairsSpan.innerText = repairsLog;
 
 				countryCell.appendChild(repairsSpan);
@@ -853,6 +862,7 @@ function displayResourceLog() {
 				tracker.tradingWith.oil || tracker.tradingWith.iron || tracker.tradingWith.osr) {
 
 				let tradesSpan = document.createElement("span");
+				tradesSpan.classList.add("smaller");
 
 				let tradeLog = "Traded ";
 
@@ -867,9 +877,9 @@ function displayResourceLog() {
 				if (tracker.tradingWith.osr) {
 					tradeLog += tracker.tradingWith.osr + NOBREAKSPACE + "Osr";
 				}
-				
+
 				tradeLog += " for "
-				
+
 				if (tracker.tradingFor.oil) {
 					tradeLog += Math.abs(tracker.tradingFor.oil) + NOBREAKSPACE + "Oil";
 				}
@@ -881,30 +891,31 @@ function displayResourceLog() {
 				if (tracker.tradingFor.osr) {
 					tradeLog += Math.abs(tracker.tradingFor.osr) + NOBREAKSPACE + "Osr";
 				}
-				
+
 				tradesSpan.innerText = tradeLog;
 
 				countryCell.appendChild(tradesSpan);
 				countryCell.appendChild(document.createElement("br"));
 			}
-			
+
 			if (tracker.goods.oil || tracker.goods.iron || tracker.goods.osr) {
 				let goodsSpan = document.createElement("span");
-				
+				goodsSpan.classList.add("smaller");
+
 				let goodsLog = "Spent on Consumer Goods: ";
 
-				if(tracker.goods.oil){
+				if (tracker.goods.oil) {
 					goodsLog += "[" + tracker.goods.oil + NOBREAKSPACE + "Oil] "
 				}
-				
-				if(tracker.goods.iron){
+
+				if (tracker.goods.iron) {
 					goodsLog += "[" + tracker.goods.iron + NOBREAKSPACE + "Iron] "
 				}
-				
-				if(tracker.goods.osr){
+
+				if (tracker.goods.osr) {
 					goodsLog += "[" + tracker.goods.osr + NOBREAKSPACE + "Osr] "
 				}
-				
+
 				goodsSpan.innerText = goodsLog;
 
 				countryCell.appendChild(goodsSpan);
@@ -913,11 +924,12 @@ function displayResourceLog() {
 
 			if (tracker.infantry.qty) {
 				let infantrySpan = document.createElement("span");
-				
+				infantrySpan.classList.add("smaller");
+
 				let infantryLog = tracker.infantry.qty + NOBREAKSPACE + "Infantry";
 				infantryLog += " for a total of ";
-				infantryLog += "[" + tracker.infantry.osr * tracker.infantry.qty + NOBREAKSPACE +"Osr]";
-				
+				infantryLog += "[" + tracker.infantry.osr * tracker.infantry.qty + NOBREAKSPACE + "Osr]";
+
 				infantrySpan.innerText = infantryLog;
 
 				countryCell.appendChild(infantrySpan);
@@ -926,12 +938,13 @@ function displayResourceLog() {
 
 			if (tracker.artillery.qty) {
 				let artillerySpan = document.createElement("span");
-				
+				artillerySpan.classList.add("smaller");
+
 				let artilleryLog = tracker.artillery.qty + NOBREAKSPACE + "Artillery";
 				artilleryLog += " for a total of ";
-				artilleryLog += "[" + tracker.artillery.iron * tracker.artillery.qty + NOBREAKSPACE +"Iron]";
-				artilleryLog += "[" + tracker.artillery.osr * tracker.artillery.qty + NOBREAKSPACE +"Osr]";
-				
+				artilleryLog += "[" + tracker.artillery.iron * tracker.artillery.qty + NOBREAKSPACE + "Iron]";
+				artilleryLog += "[" + tracker.artillery.osr * tracker.artillery.qty + NOBREAKSPACE + "Osr]";
+
 				artillerySpan.innerText = artilleryLog;
 
 				countryCell.appendChild(artillerySpan);
@@ -940,13 +953,14 @@ function displayResourceLog() {
 
 			if (tracker.tank.qty) {
 				let tankSpan = document.createElement("span");
-				
+				tankSpan.classList.add("smaller");
+
 				let tankLog = tracker.tank.qty + NOBREAKSPACE + "Tanks";
 				tankLog += " for a total of ";
-				tankLog += "[" + tracker.tank.oil * tracker.tank.qty + NOBREAKSPACE +"Oil]";
-				tankLog += "[" + tracker.tank.iron * tracker.tank.qty + NOBREAKSPACE +"Iron]";
-				tankLog += "[" + tracker.tank.osr * tracker.tank.qty + NOBREAKSPACE +"Osr]";
-				
+				tankLog += "[" + tracker.tank.oil * tracker.tank.qty + NOBREAKSPACE + "Oil]";
+				tankLog += "[" + tracker.tank.iron * tracker.tank.qty + NOBREAKSPACE + "Iron]";
+				tankLog += "[" + tracker.tank.osr * tracker.tank.qty + NOBREAKSPACE + "Osr]";
+
 				tankSpan.innerText = tankLog;
 
 				countryCell.appendChild(tankSpan);
@@ -955,13 +969,14 @@ function displayResourceLog() {
 
 			if (tracker.fighter.qty) {
 				let fighterSpan = document.createElement("span");
-				
+				fighterSpan.classList.add("smaller");
+
 				let fighterLog = tracker.fighter.qty + NOBREAKSPACE + "Fighters";
 				fighterLog += " for a total of ";
-				fighterLog += "[" + tracker.fighter.oil * tracker.fighter.qty + NOBREAKSPACE +"Oil]";
-				fighterLog += "[" + tracker.fighter.iron * tracker.fighter.qty + NOBREAKSPACE +"Iron]";
-				fighterLog += "[" + tracker.fighter.osr * tracker.fighter.qty + NOBREAKSPACE +"Osr]";
-				
+				fighterLog += "[" + tracker.fighter.oil * tracker.fighter.qty + NOBREAKSPACE + "Oil]";
+				fighterLog += "[" + tracker.fighter.iron * tracker.fighter.qty + NOBREAKSPACE + "Iron]";
+				fighterLog += "[" + tracker.fighter.osr * tracker.fighter.qty + NOBREAKSPACE + "Osr]";
+
 				fighterSpan.innerText = fighterLog;
 
 				countryCell.appendChild(fighterSpan);
@@ -970,13 +985,14 @@ function displayResourceLog() {
 
 			if (tracker.bomber.qty) {
 				let bomberSpan = document.createElement("span");
-				
+				bomberSpan.classList.add("smaller");
+
 				let bomberLog = tracker.bomber.qty + NOBREAKSPACE + "Bombers";
 				bomberLog += " for a total of ";
-				bomberLog += "[" + tracker.bomber.oil * tracker.bomber.qty + NOBREAKSPACE +"Oil]";
-				bomberLog += "[" + tracker.bomber.iron * tracker.bomber.qty + NOBREAKSPACE +"Iron]";
-				bomberLog += "[" + tracker.bomber.osr * tracker.bomber.qty + NOBREAKSPACE +"Osr]";
-				
+				bomberLog += "[" + tracker.bomber.oil * tracker.bomber.qty + NOBREAKSPACE + "Oil]";
+				bomberLog += "[" + tracker.bomber.iron * tracker.bomber.qty + NOBREAKSPACE + "Iron]";
+				bomberLog += "[" + tracker.bomber.osr * tracker.bomber.qty + NOBREAKSPACE + "Osr]";
+
 				bomberSpan.innerText = bomberLog;
 
 				countryCell.appendChild(bomberSpan);
@@ -985,13 +1001,14 @@ function displayResourceLog() {
 
 			if (tracker.submarine.qty) {
 				let submarineSpan = document.createElement("span");
-				
+				submarineSpan.classList.add("smaller");
+
 				let submarineLog = tracker.submarine.qty + NOBREAKSPACE + "Submarines";
 				submarineLog += " for a total of ";
-				submarineLog += "[" + tracker.submarine.oil * tracker.submarine.qty + NOBREAKSPACE +"Oil]";
-				submarineLog += "[" + tracker.submarine.iron * tracker.submarine.qty + NOBREAKSPACE +"Iron]";
-				submarineLog += "[" + tracker.submarine.osr * tracker.submarine.qty + NOBREAKSPACE +"Osr]";
-				
+				submarineLog += "[" + tracker.submarine.oil * tracker.submarine.qty + NOBREAKSPACE + "Oil]";
+				submarineLog += "[" + tracker.submarine.iron * tracker.submarine.qty + NOBREAKSPACE + "Iron]";
+				submarineLog += "[" + tracker.submarine.osr * tracker.submarine.qty + NOBREAKSPACE + "Osr]";
+
 				submarineSpan.innerText = submarineLog;
 
 				countryCell.appendChild(submarineSpan);
@@ -1000,13 +1017,14 @@ function displayResourceLog() {
 
 			if (tracker.cruiser.qty) {
 				let cruiserSpan = document.createElement("span");
-				
+				cruiserSpan.classList.add("smaller");
+
 				let cruiserLog = tracker.cruiser.qty + NOBREAKSPACE + "Cruisers";
 				cruiserLog += " for a total of ";
-				cruiserLog += "[" + tracker.cruiser.oil * tracker.cruiser.qty + NOBREAKSPACE +"Oil]";
-				cruiserLog += "[" + tracker.cruiser.iron * tracker.cruiser.qty + NOBREAKSPACE +"Iron]";
-				cruiserLog += "[" + tracker.cruiser.osr * tracker.cruiser.qty + NOBREAKSPACE +"Osr]";
-				
+				cruiserLog += "[" + tracker.cruiser.oil * tracker.cruiser.qty + NOBREAKSPACE + "Oil]";
+				cruiserLog += "[" + tracker.cruiser.iron * tracker.cruiser.qty + NOBREAKSPACE + "Iron]";
+				cruiserLog += "[" + tracker.cruiser.osr * tracker.cruiser.qty + NOBREAKSPACE + "Osr]";
+
 				cruiserSpan.innerText = cruiserLog;
 
 				countryCell.appendChild(cruiserSpan);
@@ -1015,13 +1033,14 @@ function displayResourceLog() {
 
 			if (tracker.carrier.qty) {
 				let carrierSpan = document.createElement("span");
-				
+				carrierSpan.classList.add("smaller");
+
 				let carrierLog = tracker.carrier.qty + NOBREAKSPACE + "Carriers";
 				carrierLog += " for a total of ";
-				carrierLog += "[" + tracker.carrier.oil * tracker.carrier.qty + NOBREAKSPACE +"Oil]";
-				carrierLog += "[" + tracker.carrier.iron * tracker.carrier.qty + NOBREAKSPACE +"Iron]";
-				carrierLog += "[" + tracker.carrier.osr * tracker.carrier.qty + NOBREAKSPACE +"Osr]";
-				
+				carrierLog += "[" + tracker.carrier.oil * tracker.carrier.qty + NOBREAKSPACE + "Oil]";
+				carrierLog += "[" + tracker.carrier.iron * tracker.carrier.qty + NOBREAKSPACE + "Iron]";
+				carrierLog += "[" + tracker.carrier.osr * tracker.carrier.qty + NOBREAKSPACE + "Osr]";
+
 				carrierSpan.innerText = carrierLog;
 
 				countryCell.appendChild(carrierSpan);
@@ -1030,13 +1049,14 @@ function displayResourceLog() {
 
 			if (tracker.battleship.qty) {
 				let battleshipSpan = document.createElement("span");
-				
+				battleshipSpan.classList.add("smaller");
+
 				let battleshipLog = tracker.battleship.qty + NOBREAKSPACE + "Battleships";
 				battleshipLog += " for a total of ";
-				battleshipLog += "[" + tracker.battleship.oil * tracker.battleship.qty + NOBREAKSPACE +"Oil]";
-				battleshipLog += "[" + tracker.battleship.iron * tracker.battleship.qty + NOBREAKSPACE +"Iron]";
-				battleshipLog += "[" + tracker.battleship.osr * tracker.battleship.qty + NOBREAKSPACE +"Osr]";
-				
+				battleshipLog += "[" + tracker.battleship.oil * tracker.battleship.qty + NOBREAKSPACE + "Oil]";
+				battleshipLog += "[" + tracker.battleship.iron * tracker.battleship.qty + NOBREAKSPACE + "Iron]";
+				battleshipLog += "[" + tracker.battleship.osr * tracker.battleship.qty + NOBREAKSPACE + "Osr]";
+
 				battleshipSpan.innerText = battleshipLog;
 
 				countryCell.appendChild(battleshipSpan);
@@ -1045,21 +1065,22 @@ function displayResourceLog() {
 
 			if (tracker.producing.oil || tracker.producing.iron || tracker.producing.osr) {
 				let producingSpan = document.createElement("span");
-				
+				producingSpan.classList.add("smaller");
+
 				let producingLog = "Producing: ";
 
-				if(tracker.producing.oil){
+				if (tracker.producing.oil) {
 					producingLog += "[" + tracker.producing.oil + NOBREAKSPACE + "Oil] "
 				}
-				
-				if(tracker.producing.iron){
+
+				if (tracker.producing.iron) {
 					producingLog += "[" + tracker.producing.iron + NOBREAKSPACE + "Iron] "
 				}
-				
-				if(tracker.producing.osr){
+
+				if (tracker.producing.osr) {
 					producingLog += "[" + tracker.producing.osr + NOBREAKSPACE + "Osr] "
 				}
-				
+
 				producingSpan.innerText = producingLog;
 
 				countryCell.appendChild(producingSpan);
@@ -1068,21 +1089,22 @@ function displayResourceLog() {
 
 			if (tracker.endedWith.oil || tracker.endedWith.iron || tracker.endedWith.osr) {
 				let endedWithSpan = document.createElement("span");
-				
+				endedWithSpan.classList.add("smaller");
+
 				let endedWithLog = "Ending: ";
 
-				if(tracker.startedWith.oil){
+				if (tracker.startedWith.oil) {
 					endedWithLog += "[" + tracker.endedWith.oil + NOBREAKSPACE + "Oil] "
 				}
-				
-				if(tracker.startedWith.iron){
+
+				if (tracker.startedWith.iron) {
 					endedWithLog += "[" + tracker.endedWith.iron + NOBREAKSPACE + "Iron] "
 				}
-				
-				if(tracker.startedWith.osr){
+
+				if (tracker.startedWith.osr) {
 					endedWithLog += "[" + tracker.endedWith.osr + NOBREAKSPACE + "Osr] "
 				}
-				
+
 				endedWithSpan.innerText = endedWithLog;
 
 				countryCell.appendChild(endedWithSpan);

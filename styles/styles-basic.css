@@ -41,6 +41,11 @@ div.country {
 	font-size: 20px;
 }
 
+.smaller {
+	font-size: 13px;
+	font-weight: normal;
+}
+
 .checkboxPosition {
 	position: relative;
 	top: -2px;
