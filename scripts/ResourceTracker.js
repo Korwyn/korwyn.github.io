@@ -54,26 +54,28 @@ let units = {
 }
 
 confirmTurnButton.addEventListener("click", function() {
-	for (let countryName in countries) {
-		let country = countries[countryName];
-
-		country.tracker.startedWith = new Production({ oil: country.currentOil, iron: country.currentIron, osr: country.currentOsr });
-		country.tracker.producing = new Production({ oil: country.productionOil, iron: country.productionIron, osr: country.productionOsr });
-
-		country.currentOil = country.remainingOil + country.productionOil;
-		country.currentIron = country.remainingIron + country.productionIron;
-		country.currentOsr = country.remainingOsr + country.productionOsr;
-
-		country.tracker.endedWith = new Production({ oil: country.currentOil, iron: country.currentIron, osr: country.currentOsr });
-
-		country.trackerLog.push(country.tracker);
-		country.tracker = new Tracker();
+	if(confirm("Confirm resources and advance to the next turn?")){
+		for (let countryName in countries) {
+			let country = countries[countryName];
+	
+			country.tracker.startedWith = new Production({ oil: country.currentOil, iron: country.currentIron, osr: country.currentOsr });
+			country.tracker.producing = new Production({ oil: country.productionOil, iron: country.productionIron, osr: country.productionOsr });
+	
+			country.currentOil = country.remainingOil + country.productionOil;
+			country.currentIron = country.remainingIron + country.productionIron;
+			country.currentOsr = country.remainingOsr + country.productionOsr;
+	
+			country.tracker.endedWith = new Production({ oil: country.currentOil, iron: country.currentIron, osr: country.currentOsr });
+	
+			country.trackerLog.push(country.tracker);
+			country.tracker = new Tracker();
+		}
+	
+		calcProduction();
+		calculateRemainingResources();
+		saveGameState();
+		displayResourceLog();
 	}
-
-	calcProduction();
-	calculateRemainingResources();
-	saveGameState();
-	displayResourceLog();
 });
 
 function calcProduction() {
