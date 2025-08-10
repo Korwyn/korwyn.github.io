@@ -158,7 +158,7 @@ div {
 
 #resourceUseDiv input[type="text"] {
 	width: 20px;
-	height: 34px;
+	height: 38px;
 }
 
 #resourceUseDiv input[type="radio"]  {
@@ -194,7 +194,7 @@ table {
 }
 
 .inputControlDiv {
-	height: 40px;
+	height: 44px;
 	width: 26px;
 	margin: 0 auto;
 }
@@ -204,13 +204,13 @@ table {
     position: absolute;
     cursor: pointer;
     display: inline;
-    width: 20px;
-    height: 10px;
+    width: 22px;
+    height: 12px;
 }
 
 .inputControl img {
-	width: 20px;
-	height: 20px;
+	width: 22px;
+	height: 22px;
 }
 
 .plusControl {
