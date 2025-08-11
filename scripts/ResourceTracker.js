@@ -932,6 +932,7 @@ function displayCurrentProduction() {
 
 		if (country.economicCollapse) {
 			econCollapseCheckbox.checked = true;
+			econCollapseCell.classList.add("collapseGradient");
 		}
 
 		econCollapseLabel.appendChild(econCollapseCheckbox);
@@ -948,6 +949,9 @@ function displayCurrentProduction() {
 				oilSpan.textContent = oilRemaining;
 				oilCell.appendChild(oilSpan);
 			}
+			else{
+				oilCell.classList.add("collapseGradient");
+			}
 			prodRow.appendChild(oilCell);
 		}
 
@@ -959,6 +963,9 @@ function displayCurrentProduction() {
 			ironSpan.textContent = ironRemaining;
 			ironCell.appendChild(ironSpan);
 		}
+		else{
+			ironCell.classList.add("collapseGradient");
+		}
 		prodRow.appendChild(ironCell);
 
 		let osrCell = document.createElement("td");
@@ -968,6 +975,9 @@ function displayCurrentProduction() {
 			let osrSpan = document.createElement("span");
 			osrSpan.textContent = osrRemaining;
 			osrCell.appendChild(osrSpan);
+		}
+		else{
+			osrCell.classList.add("collapseGradient");
 		}
 		prodRow.appendChild(osrCell);
 	}

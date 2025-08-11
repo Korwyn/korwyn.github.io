@@ -62,6 +62,10 @@
 	  background-image: linear-gradient(to top, rgba(254,255,63,0), rgba(254,255,63,.2), rgba(254,255,63,1));
 }
 
+.collapseGradient {
+	  background-image: linear-gradient(to top, rgba(254,255,63,.1), rgba(254,255,63,.8), rgba(254,255,63,.1));
+}
+
 #yellowRoll {
 	background-color: #ffffda;
 }
