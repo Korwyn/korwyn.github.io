@@ -1,0 +1,73 @@
+@charset "UTF-8";
+
+.allShow {
+	width: 120px;
+}
+
+table.collapse td, table.collapse th, table.collapse col{
+	display: none;
+}
+
+table.collapse td.allShow, table.collapse th.allShow {
+	display: table-cell;
+}
+
+table.collapse col.allShow {
+	display: table-column;
+}
+
+table.collapse {
+	width: 400px;
+}
+
+table.collapse.usaShow {
+	width: 525px;
+}
+
+table.collapse.usaShow td.usaShow, table.collapse.usaShow th.usaShow, table.collapse.usaShow td.chinaShow, table.collapse.usaShow th.chinaShow {
+	display: table-cell;
+}
+
+table.collapse.usaShow col.usaShow, table.collapse.usaShow col.chinaShow {
+	display: table-column;
+}
+
+table.collapse.ukShow td.ukShow, table.collapse.ukShow th.ukShow {
+	display: table-cell;
+}
+
+table.collapse.ukShow col.ukShow {
+	display: table-column;
+}
+
+table.collapse.ussrShow td.ussrShow, table.collapse.ussrShow th.ussrShow {
+	display: table-cell;
+}
+
+table.collapse.ussrShow col.ussrShow {
+	display: table-column;
+}
+
+table.collapse.germanyShow td.germanyShow, table.collapse.germanyShow th.germanyShow {
+	display: table-cell;
+}
+
+table.collapse.germanyShow col.germanyShow {
+	display: table-column;
+}
+
+table.collapse.italyShow td.italyShow, table.collapse.italyShow th.italyShow {
+	display: table-cell;
+}
+
+table.collapse.italyShow col.italyShow {
+	display: table-column;
+}
+
+table.collapse.japanShow td.japanShow, table.collapse.japanShow th.japanShow {
+	display: table-cell;
+}
+
+table.collapse.japanShow col.japanShow {
+	display: table-column;
+}

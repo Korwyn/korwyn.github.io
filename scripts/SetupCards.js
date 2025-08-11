@@ -3,9 +3,9 @@ let countries = null;
 function countyInitialization() {
 	let setup = {
 		usa: new Country(usControled, "usaCardList", "allies"),
+		china: new Country(chinaControled, "chinaCardList", "allies"),
 		uk: new Country(ukControled, "ukCardList", "allies"),
 		ussr: new Country(ussrControled, "ussrCardList", "allies"),
-		china: new Country(chinaControled, "chinaCardList", "allies"),
 		germany: new Country(germanControled, "germanyCardList", "axis"),
 		italy: new Country(italyControled, "italyCardList", "axis"),
 		japan: new Country(japanControled, "japanCardList", "axis")
@@ -16,7 +16,7 @@ function countyInitialization() {
 	return clone;
 }
 
-let countryOrder = ["usa", "uk", "ussr", "china", "germany", "italy", "japan"];
+let countryOrder = ["usa","china", "uk", "ussr", "germany", "italy", "japan"];
 
 function setupCards() {
 	if (!countries) {

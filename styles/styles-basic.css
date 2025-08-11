@@ -278,7 +278,19 @@ tfoot tr:not(:first-child) {
 	border-color: rgba(30, 30, 30, .7);
 }
 
-.labelPlus {
+#resourceUseDiv label {
+	font-weight: normal;
+	font-size: 15px;
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+
+thead input+span {
+	position: relative;
+	top: 4px;
+}
+
+ .labelPlus {
 	position: relative;
 	top: 4px;
 }

@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="styles/styles-button.css">
 	<link rel="stylesheet" href="styles/styles-tab.css">
 	<link rel="stylesheet" href="styles/styles-diceRoller.css">
+	<link rel="stylesheet" href="styles/styles-collapse.css">
 	
 	<title>War Room Helper</title>
 </head>
@@ -34,6 +35,10 @@
 			<div class="bold bigger">United States</div>
 			<div id="usaCardList"></div>
 		</div>
+		<div class="inlineBlock country backgroundChina">
+			<div class="bold bigger">China</div>
+			<div id="chinaCardList"></div>
+		</div>
 		<div class="inlineBlock country backgroundUK">
 			<div class="bold bigger">United Kingdom</div>
 			<div id="ukCardList"></div>
@@ -41,10 +46,6 @@
 		<div class="inlineBlock country backgroundUSSR">
 			<div class="bold bigger">USSR</div>
 			<div id="ussrCardList"></div>
-		</div>
-		<div class="inlineBlock country backgroundChina">
-			<div class="bold bigger">China</div>
-			<div id="chinaCardList"></div>
 		</div>
 		<div class="inlineBlock country backgroundGermany">
 			<div class="bold bigger">Germany</div>
@@ -65,27 +66,91 @@
 			<button id="confirmTurn" class="spacing">Confirm Turn</button>
 		</div>
 		<form id="resourceTrackerForm" class="overflowAuto">
-			<table class="marginCenter">
+			<table id="resourceTable" class="marginCenter">
 				<colgroup>
-					<col span="1" />
-					<col class="usa" span="4" />
-					<col class="uk" span="4" />
-					<col class="ussr" span="4" />
-					<col class="china" span="3" />
-					<col class="germany" span="4" />
-					<col class="italy" span="4" />
-					<col class="japan" span="4" />
+					<col span="1" class="allShow" />
+					<col class="usa usaShow" id="usaColumns" span="4" title="usa" />
+					<col class="china chinaShow" id="chinaColumns" span="3" title="usa" />
+					<col class="uk ukShow" id="ukColumns" span="4" title="uk" />
+					<col class="ussr ussrShow" id="ussrColumns" span="4" title="ussr"/>
+					<col class="germany germanyShow" id="germanyColumns" span="4" title="germany"/>
+					<col class="italy italyShow" id="italyColumns" span="4" title="italy"/>
+					<col class="japan japanShow" id="japanColumns" span="4" title="japan"/>
 				</colgroup>
 				<thead class="thinBorderNoBottom">
 					<tr>
-						<th></th>
-						<th colspan="4">United States</th>
-						<th colspan="4">United Kingdom</th>
-						<th colspan="4">USSR</th>
-						<th colspan="3">China</th>
-						<th colspan="4">Germany</th>
-						<th colspan="4">Italy</th>
-						<th colspan="4">Japan</th>
+						<th class="allShow">
+							<div class="spacing">
+								<label>
+									Show All
+									<input type="radio" name="showOwners" value="allShow" />
+									<span></span>
+								</label>
+							</div>
+						</th>
+						<th class="usaShow" colspan="4">
+							<div class="spacing">
+								<label>
+									Show
+									<input type="radio" name="showOwners" value="usaShow" />
+									<span></span>
+								</label>
+							</div>
+							<div>United States</div>
+						</th>
+						<th class="chinaShow" colspan="3">
+							<div>China</div>
+						</th>
+						<th class="ukShow" colspan="4">
+							<div class="spacing">
+								<label>
+									Show
+									<input type="radio" name="showOwners" value="ukShow" />
+									<span></span>
+								</label>
+							</div>
+							<div>United Kingdom</div>
+						</th>
+						<th class="ussrShow" colspan="4">
+							<div class="spacing">
+								<label>
+									Show
+									<input type="radio" name="showOwners" value="ussrShow" />
+									<span></span>
+								</label>
+							</div>
+							<div>USSR</div>
+						</th>
+						<th class="germanyShow" colspan="4">
+							<div class="spacing">
+								<label>
+									Show
+									<input type="radio" name="showOwners" value="germanyShow" />
+									<span></span>
+								</label>
+							</div>
+							<div>Germany</div>
+						</th>
+						<th class="italyShow" colspan="4">
+							<div class="spacing">
+								<label>
+									Show
+									<input type="radio" name="showOwners" value="italyShow" />
+									<span></span>
+								</label>
+							</div>
+							<div>Italy</div>
+						</th>
+						<th class="japanShow" colspan="4">
+							<div class="spacing">
+								<label>
+									Show
+									<input type="radio" name="showOwners" value="japanShow" />
+									<span></span>
+								</label>
+							</div>
+							<div>Japan</div>
+						</th>
 					</tr>
 				</thead>
 				<tbody class="thinBorderNoTop">
@@ -175,11 +240,11 @@
 							<div class="tableRow" id="redRoll">
 								<div class="td center middle resultRoll" id="redResultRoll"></div>
 							</div>
-							<div class="tableRow" id="whiteRoll">
-								<div class="td center middle  resultRoll" id="whiteResultRoll"></div>
-							</div>
 							<div class="tableRow" id="blackRoll">
 								<div class="td center middle resultRoll" id="blackResultRoll"></div>
+							</div>
+							<div class="tableRow" id="whiteRoll">
+								<div class="td center middle  resultRoll" id="whiteResultRoll"></div>
 							</div>
 						</div>
 					</div>

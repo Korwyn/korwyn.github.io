@@ -43,7 +43,7 @@ function rollTheDice(rollingNumber) {
 
 		setTimeout(function() {
 			rollTheDice(rollingNumber - 1);
-		}, 600);
+		}, 480);
 	}
 	else {
 		rollDiceButton.disabled = false;

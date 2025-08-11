@@ -5,7 +5,6 @@ let repairsRow = document.getElementById("repairsRow");
 let raidsRow = document.getElementById("raidsRow");
 let tradesRow = document.getElementById("tradesRow");
 let buildsRow = document.getElementById("buildsRow");
-
 let goodsRow = document.getElementById("goodsRow");
 let infantryRow = document.getElementById("infantryRow");
 let artilleryRow = document.getElementById("artilleryRow");
@@ -16,12 +15,20 @@ let submarinesRow = document.getElementById("submarinesRow");
 let cruisersRow = document.getElementById("cruisersRow");
 let carriersRow = document.getElementById("carriersRow");
 let battleshipsRow = document.getElementById("battleshipsRow");
-
 let remainingRow = document.getElementById("remainingRow");
 let prodRow = document.getElementById("productionRow");
-
 let confirmTurnButton = document.getElementById("confirmTurn");
 let resourceLog = document.getElementById("resourceLog");
+let usaColumns = document.getElementById("usaColumns");
+let chinaColumns = document.getElementById("chinaColumns");
+let ukColumns = document.getElementById("ukColumns");
+let ussrColumns = document.getElementById("ussrColumns");
+let germanyColumns = document.getElementById("germanyColumns");
+let italyColumns = document.getElementById("italyColumns");
+let japanColumns = document.getElementById("japanColumns");
+let resourceTable = document.getElementById("resourceTable");
+
+let countryCols = [usaColumns, chinaColumns, ukColumns, ussrColumns, germanyColumns, italyColumns, japanColumns];
 
 let units = {
 	infantry: {
@@ -105,10 +112,12 @@ function calcProduction() {
 		let currentOsr = country.currentOsr;
 
 		let currentResourceBlankCell = document.createElement("td");
+		currentResourceBlankCell.classList.add(countryName + "Show");
 		currentResourceRow.appendChild(currentResourceBlankCell);
 
 		if (countryName != "china") {
 			let oilTd = document.createElement("td");
+			oilTd.classList.add(countryName + "Show");
 
 			let oilDiv = document.createElement("div");
 			oilDiv.classList.add("center");
@@ -126,6 +135,7 @@ function calcProduction() {
 		}
 
 		let ironTd = document.createElement("td");
+		ironTd.classList.add(countryName + "Show");
 		ironTd.classList.add("center");
 
 		let ironDiv = document.createElement("div");
@@ -143,6 +153,7 @@ function calcProduction() {
 		currentResourceRow.appendChild(ironTd);
 
 		let osrTd = document.createElement("td");
+		osrTd.classList.add(countryName + "Show");
 
 		let osrDiv = document.createElement("div");
 		osrDiv.classList.add("center");
@@ -183,10 +194,12 @@ function oilBidding(rowToAppend, countryName, trackingType, country) {
 	oil = (oil == 0 ? "" : oil);
 
 	let oilBidBlankCell = document.createElement("td");
+	oilBidBlankCell.classList.add(countryName + "Show");
 	rowToAppend.appendChild(oilBidBlankCell);
 
 	if (countryName != "china") {
 		let oilBidCell = document.createElement("td");
+		oilBidCell.classList.add(countryName + "Show");
 		let oilBidInput = document.createElement("input");
 		oilBidInput.setAttribute("name", "resource");
 		oilBidInput.setAttribute("countryName", countryName);
@@ -200,14 +213,17 @@ function oilBidding(rowToAppend, countryName, trackingType, country) {
 	}
 
 	let blankIronCell = document.createElement("td");
+	blankIronCell.classList.add(countryName + "Show");
 	rowToAppend.appendChild(blankIronCell);
 
 	let blankOsrCell = document.createElement("td");
+	blankOsrCell.classList.add(countryName + "Show");
 	rowToAppend.appendChild(blankOsrCell);
 }
 
 function tripleResourceInput(rowToAppend, countryName, trackingType, country) {
 	let blankCell = document.createElement("td");
+	blankCell.classList.add(countryName + "Show");
 	rowToAppend.appendChild(blankCell);
 
 	let oil = country.tracker[trackingType].oil;
@@ -221,6 +237,7 @@ function tripleResourceInput(rowToAppend, countryName, trackingType, country) {
 
 	if (countryName != "china") {
 		let oilCell = document.createElement("td");
+		oilCell.classList.add(countryName + "Show");
 		let oilInput = document.createElement("input");
 		oilInput.setAttribute("name", "resource");
 		oilInput.setAttribute("countryName", countryName);
@@ -235,6 +252,7 @@ function tripleResourceInput(rowToAppend, countryName, trackingType, country) {
 	}
 
 	let ironCell = document.createElement("td");
+	ironCell.classList.add(countryName + "Show");
 	let ironInput = document.createElement("input");
 	ironInput.setAttribute("name", "resource");
 	ironInput.setAttribute("countryName", countryName);
@@ -247,6 +265,7 @@ function tripleResourceInput(rowToAppend, countryName, trackingType, country) {
 	rowToAppend.appendChild(ironCell);
 
 	let osrCell = document.createElement("td");
+	osrCell.classList.add(countryName + "Show");
 	let osrInput = document.createElement("input");
 	osrInput.setAttribute("name", "resource");
 	osrInput.setAttribute("countryName", countryName);
@@ -269,6 +288,7 @@ function tradeResourceInput(rowToAppend, countryName, country) {
 	let withOsr = country.tracker.tradingWith.osr || 0;
 
 	let indicatorCell = document.createElement("td");
+	indicatorCell.classList.add(countryName + "Show");
 	if (countryName != "china") {
 		let minusCell = document.createElement("div");
 		minusCell.classList.add("minusDiv");
@@ -289,6 +309,7 @@ function tradeResourceInput(rowToAppend, countryName, country) {
 
 	if (countryName != "china") {
 		let oilCell = document.createElement("td");
+		oilCell.classList.add(countryName + "Show");
 		oilCell.classList.add("backgroundTwo");
 
 		let oilMinusDiv = document.createElement("div");
@@ -333,6 +354,7 @@ function tradeResourceInput(rowToAppend, countryName, country) {
 	}
 
 	let ironCell = document.createElement("td");
+	ironCell.classList.add(countryName + "Show");
 
 	if (countryName != "china") {
 		ironCell.classList.add("backgroundThree");
@@ -378,6 +400,7 @@ function tradeResourceInput(rowToAppend, countryName, country) {
 	rowToAppend.appendChild(ironCell);
 
 	let osrCell = document.createElement("td");
+	osrCell.classList.add(countryName + "Show");
 
 	if (countryName != "china") {
 		osrCell.classList.add("backgroundFive");
@@ -430,21 +453,25 @@ function tradeResourceInput(rowToAppend, countryName, country) {
 
 function allBlankInputs(rowToAppend, countryName) {
 	let blankCell = document.createElement("td");
+	blankCell.classList.add(countryName + "Show");
 	rowToAppend.appendChild(blankCell);
 
 	if (countryName != "china") {
 		let oilCell = document.createElement("td");
+		oilCell.classList.add(countryName + "Show");
 		let oilSpan = document.createElement("span");
 		oilCell.appendChild(oilSpan);
 		rowToAppend.appendChild(oilCell);
 	}
 
 	let ironCell = document.createElement("td");
+	ironCell.classList.add(countryName + "Show");
 	let ironSpan = document.createElement("span");
 	ironCell.appendChild(ironSpan);
 	rowToAppend.appendChild(ironCell);
 
 	let osrCell = document.createElement("td");
+	osrCell.classList.add(countryName + "Show");
 	let osrSpan = document.createElement("span");
 	osrCell.appendChild(osrSpan);
 	rowToAppend.appendChild(osrCell);
@@ -460,6 +487,7 @@ function unitInput(unit, countryName, unitType, country) {
 	let qty = country.tracker[unitType].qty;
 
 	let buildNumberCell = document.createElement("td");
+	buildNumberCell.classList.add(countryName + "Show");
 
 	if (countryName != "china" || oilCost == 0) {
 		let buildNumberInput = document.createElement("input");
@@ -478,6 +506,7 @@ function unitInput(unit, countryName, unitType, country) {
 
 	if (countryName != "china") {
 		let oilCell = document.createElement("td");
+		oilCell.classList.add(countryName + "Show");
 		let oilSpan = document.createElement("span");
 		oilSpan.textContent = oilCost ? oilCost : "";
 		oilCell.appendChild(oilSpan);
@@ -485,6 +514,7 @@ function unitInput(unit, countryName, unitType, country) {
 	}
 
 	let ironCell = document.createElement("td");
+	ironCell.classList.add(countryName + "Show");
 
 	if (countryName != "china" || oilCost == 0) {
 		let ironSpan = document.createElement("span");
@@ -494,6 +524,7 @@ function unitInput(unit, countryName, unitType, country) {
 	rowToAppend.appendChild(ironCell);
 
 	let osrCell = document.createElement("td");
+	osrCell.classList.add(countryName + "Show");
 
 	if (countryName != "china" || oilCost == 0) {
 		let osrSpan = document.createElement("span");
@@ -507,9 +538,31 @@ let resourceTrackerForm = document.getElementById("resourceTrackerForm");
 
 resourceTrackerForm.addEventListener("change", function(event) {
 	let target = event.target;
-
-	trackerFormChange(target);
+	
+	
+	if (target.name == "showOwners"){
+		hideTableColumns(target);
+	}
+	else {
+		trackerFormChange(target);
+	}
 });
+
+function hideTableColumns(target){
+	let value = target.value;
+
+	resourceTable.classList = [];
+	resourceTable.classList.add("marginCenter");
+
+	if (value != "allShow"){
+		resourceTable.classList.add("collapse");
+		resourceTable.classList.add(value);
+	}
+
+	localStorage.setItem("individualCol", value);
+	
+	saveGameState();
+}
 
 function trackerFormChange(target) {
 	target = validateInput(target);
@@ -569,7 +622,7 @@ function validateInput(target) {
 	}
 
 	return target;
-};
+}
 
 function isNumeric(str) {
 	let isNum = true;
@@ -586,25 +639,97 @@ function isNumeric(str) {
 
 function createLabelTds() {
 	clearRows();
+	
+	let currentResourceTd = document.createElement("td");
+	currentResourceTd.classList.add("allShow");
+	currentResourceTd.appendChild(document.createTextNode("Current"));
+	
+	let oilBidTd = document.createElement("td");
+	oilBidTd.classList.add("allShow");
+	oilBidTd.appendChild(document.createTextNode("Oil Bids"));
+	
+	let stressTd = document.createElement("td");
+	stressTd.classList.add("allShow");
+	stressTd.appendChild(document.createTextNode("Civil Unrest"));
+	
+	let repairsTd = document.createElement("td");
+	repairsTd.classList.add("allShow");
+	repairsTd.appendChild(document.createTextNode("Repairs"));
+	
+	let raidsTd = document.createElement("td");
+	raidsTd.classList.add("allShow");
+	raidsTd.appendChild(document.createTextNode("Raids"));
+	
+	let tradesTd = document.createElement("td");
+	tradesTd.classList.add("allShow");
+	tradesTd.appendChild(document.createTextNode("Trades"));
+	
+	let buildsTd = document.createElement("td");
+	buildsTd.classList.add("allShow");
+	buildsTd.appendChild(document.createTextNode("Builds"));
+	
+	let goodsTd = document.createElement("td");
+	goodsTd.classList.add("allShow");
+	goodsTd.appendChild(document.createTextNode("Goods 5*"));
+	
+	let infantryTd = document.createElement("td");
+	infantryTd.classList.add("allShow");
+	infantryTd.appendChild(document.createTextNode("Infantry"));
+	
+	let artilleryTd = document.createElement("td");
+	artilleryTd.classList.add("allShow");
+	artilleryTd.appendChild(document.createTextNode("Artillery"));
+	
+	let tanksTd = document.createElement("td");
+	tanksTd.classList.add("allShow");
+	tanksTd.appendChild(document.createTextNode("Tanks"));
+	
+	let fightersTd = document.createElement("td");
+	fightersTd.classList.add("allShow");
+	fightersTd.appendChild(document.createTextNode("Fighters"));
+	
+	let bombersTd = document.createElement("td");
+	bombersTd.classList.add("allShow");
+	bombersTd.appendChild(document.createTextNode("Bombers"));
+	
+	let submarinesTd = document.createElement("td");
+	submarinesTd.classList.add("allShow");
+	submarinesTd.appendChild(document.createTextNode("Submarines"));
+	
+	let cruisersTd = document.createElement("td");
+	cruisersTd.classList.add("allShow");
+	cruisersTd.appendChild(document.createTextNode("Cruisers"));
+	
+	let carriersTd = document.createElement("td");
+	carriersTd.classList.add("allShow");
+	carriersTd.appendChild(document.createTextNode("Carriers"));
+	
+	let battleshipsTd = document.createElement("td");
+	battleshipsTd.classList.add("allShow");
+	battleshipsTd.appendChild(document.createTextNode("Battleships"));
+	
+	let remainingTd = document.createElement("td");
+	remainingTd.classList.add("allShow");
+	remainingTd.appendChild(document.createTextNode("Remaining"));
 
-	currentResourceRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Current"));
-	oilBidRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Oil Bids"));
-	stressRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Civil Unrest"));
-	repairsRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Repairs"));
-	raidsRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Raids"));
-	tradesRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Trades"));
-	buildsRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Builds"));
-	goodsRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Goods 5*"));
-	infantryRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Infantry"));
-	artilleryRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Artillery"));
-	tanksRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Tanks"));
-	fightersRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Fighters"));
-	bombersRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Bombers"));
-	submarinesRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Submarines"));
-	cruisersRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Cruisers"));
-	carriersRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Carriers"));
-	battleshipsRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Battleships"));
-	remainingRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Remaining"));
+	currentResourceRow.appendChild(currentResourceTd);
+	oilBidRow.appendChild(oilBidTd);
+	stressRow.appendChild(stressTd);
+	repairsRow.appendChild(repairsTd);
+	raidsRow.appendChild(raidsTd);
+	tradesRow.appendChild(tradesTd);
+	buildsRow.appendChild(buildsTd);
+	goodsRow.appendChild(goodsTd);
+	infantryRow.appendChild(infantryTd);
+	artilleryRow.appendChild(artilleryTd);
+	tanksRow.appendChild(tanksTd);
+	fightersRow.appendChild(fightersTd);
+	bombersRow.appendChild(bombersTd);
+	submarinesRow.appendChild(submarinesTd);
+	cruisersRow.appendChild(cruisersTd);
+	carriersRow.appendChild(carriersTd);
+	battleshipsRow.appendChild(battleshipsTd);
+	remainingRow.appendChild(remainingTd);
 }
 
 function clearRows() {
@@ -630,7 +755,12 @@ function clearRows() {
 
 function calculateRemainingResources() {
 	remainingRow.innerHTML = "";
-	remainingRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Remaining"));
+
+	let remainingTd = document.createElement("td");
+	remainingTd.classList.add("allShow");
+	remainingTd.appendChild(document.createTextNode("Remaining"));
+
+	remainingRow.appendChild(remainingTd);
 
 	for (let countryName in countries) {
 		let country = countries[countryName];
@@ -658,10 +788,12 @@ function calculateRemainingResources() {
 		}
 
 		let blankCell = document.createElement("td");
+		blankCell.classList.add(countryName + "Show");
 		remainingRow.appendChild(blankCell);
 
 		if (countryName != "china") {
 			let oilCell = document.createElement("td");
+			oilCell.classList.add(countryName + "Show");
 			let oilSpan = document.createElement("span");
 
 			if (oilRemaining && oilRemaining < 0) {
@@ -674,6 +806,7 @@ function calculateRemainingResources() {
 		}
 
 		let ironCell = document.createElement("td");
+		ironCell.classList.add(countryName + "Show");
 		let ironSpan = document.createElement("span");
 
 		if (ironRemaining && ironRemaining < 0) {
@@ -685,6 +818,7 @@ function calculateRemainingResources() {
 		remainingRow.appendChild(ironCell);
 
 		let osrCell = document.createElement("td");
+		osrCell.classList.add(countryName + "Show");
 		let osrSpan = document.createElement("span");
 
 		if (osrRemaining && osrRemaining < 0) {
@@ -702,7 +836,6 @@ function calculateRemainingResources() {
 }
 
 function inputChangeControls(parentEl, inputEl) {
-
 	let containControlDiv = document.createElement("div");
 	containControlDiv.classList.add("relative");
 	containControlDiv.classList.add("inputControlDiv");
@@ -750,12 +883,17 @@ function inputChangeControls(parentEl, inputEl) {
 
 		trackerFormChange(inputEl);
 	});
-};
+}
 
 
 function displayCurrentProduction() {
 	prodRow.innerHTML = "";
-	prodRow.appendChild(document.createElement("td")).appendChild(document.createTextNode("Production"));
+
+	let productionTd = document.createElement("td");
+	productionTd.classList.add("allShow");
+	productionTd.appendChild(document.createTextNode("Production"));
+
+	prodRow.appendChild(productionTd);
 
 	for (let countryName in countries) {
 		let country = countries[countryName];
@@ -765,10 +903,12 @@ function displayCurrentProduction() {
 		let osrRemaining = country.productionOsr;
 
 		let blankCell = document.createElement("td");
+		blankCell.classList.add(countryName + "Show");
 		prodRow.appendChild(blankCell);
 
 		if (countryName != "china") {
 			let oilCell = document.createElement("td");
+			oilCell.classList.add(countryName + "Show");
 			let oilSpan = document.createElement("span");
 			oilSpan.textContent = oilRemaining;
 			oilCell.appendChild(oilSpan);
@@ -776,12 +916,14 @@ function displayCurrentProduction() {
 		}
 
 		let ironCell = document.createElement("td");
+		ironCell.classList.add(countryName + "Show");
 		let ironSpan = document.createElement("span");
 		ironSpan.textContent = ironRemaining;
 		ironCell.appendChild(ironSpan);
 		prodRow.appendChild(ironCell);
 
 		let osrCell = document.createElement("td");
+		osrCell.classList.add(countryName + "Show");
 		let osrSpan = document.createElement("span");
 		osrSpan.textContent = osrRemaining;
 		osrCell.appendChild(osrSpan);
@@ -799,6 +941,7 @@ function displayResourceLog() {
 
 		let header = document.createElement("td");
 		header.classList.add("valignTop");
+		header.classList.add("allShow");
 
 		let turnSpan = document.createElement("span");
 		turnSpan.classList.add("bold");
@@ -812,6 +955,7 @@ function displayResourceLog() {
 			let countryName = countryOrder[j];
 
 			let countryCell = document.createElement("td");
+			countryCell.classList.add(countryName + "Show");
 			countryCell.setAttribute("colspan", countryName == "china" ? 3 : 4);
 
 			let tracker = countries[countryName].trackerLog[i];
@@ -821,15 +965,15 @@ function displayResourceLog() {
 			let startedWithLog = "Starting: ";
 
 			if (tracker.startedWith.oil) {
-				startedWithLog += "[" + tracker.startedWith.oil + NOBREAKSPACE + "Oil] "
+				startedWithLog += "[" + tracker.startedWith.oil + NOBREAKSPACE + "Oil] ";
 			}
 
 			if (tracker.startedWith.iron) {
-				startedWithLog += "[" + tracker.startedWith.iron + NOBREAKSPACE + "Iron] "
+				startedWithLog += "[" + tracker.startedWith.iron + NOBREAKSPACE + "Iron] ";
 			}
 
 			if (tracker.startedWith.osr) {
-				startedWithLog += "[" + tracker.startedWith.osr + NOBREAKSPACE + "Osr] "
+				startedWithLog += "[" + tracker.startedWith.osr + NOBREAKSPACE + "Osr] ";
 			}
 
 			startedWithSpan.innerText = startedWithLog;
@@ -849,15 +993,15 @@ function displayResourceLog() {
 				let stressLog = "Civil Unrest caused a loss of: ";
 
 				if (tracker.stress.oil) {
-					stressLog += "[" + tracker.stress.oil + NOBREAKSPACE + "Oil] "
+					stressLog += "[" + tracker.stress.oil + NOBREAKSPACE + "Oil] ";
 				}
 
 				if (tracker.stress.iron) {
-					stressLog += "[" + tracker.stress.iron + NOBREAKSPACE + "Iron] "
+					stressLog += "[" + tracker.stress.iron + NOBREAKSPACE + "Iron] ";
 				}
 
 				if (tracker.stress.osr) {
-					stressLog += "[" + tracker.stress.osr + NOBREAKSPACE + "Osr] "
+					stressLog += "[" + tracker.stress.osr + NOBREAKSPACE + "Osr] ";
 				}
 
 				stressSpan.innerText = stressLog;
@@ -871,15 +1015,15 @@ function displayResourceLog() {
 				let raidsLog = "Lost due to raids: ";
 
 				if (tracker.raids.oil) {
-					raidsLog += "[" + tracker.raids.oil + NOBREAKSPACE + "Oil] "
+					raidsLog += "[" + tracker.raids.oil + NOBREAKSPACE + "Oil] ";
 				}
 
 				if (tracker.raids.iron) {
-					raidsLog += "[" + tracker.raids.iron + NOBREAKSPACE + "Iron] "
+					raidsLog += "[" + tracker.raids.iron + NOBREAKSPACE + "Iron] ";
 				}
 
 				if (tracker.raids.osr) {
-					raidsLog += "[" + tracker.raids.osr + NOBREAKSPACE + "Osr] "
+					raidsLog += "[" + tracker.raids.osr + NOBREAKSPACE + "Osr] ";
 				}
 
 				raidsSpan.innerText = raidsLog;
@@ -893,15 +1037,15 @@ function displayResourceLog() {
 				let repairsLog = "Lost due to repairs: ";
 
 				if (tracker.repairs.oil) {
-					repairsLog += "[" + tracker.repairs.oil + NOBREAKSPACE + "Oil] "
+					repairsLog += "[" + tracker.repairs.oil + NOBREAKSPACE + "Oil] ";
 				}
 
 				if (tracker.repairs.iron) {
-					repairsLog += "[" + tracker.repairs.iron + NOBREAKSPACE + "Iron] "
+					repairsLog += "[" + tracker.repairs.iron + NOBREAKSPACE + "Iron] ";
 				}
 
 				if (tracker.repairs.osr) {
-					repairsLog += "[" + tracker.repairs.osr + NOBREAKSPACE + "Osr] "
+					repairsLog += "[" + tracker.repairs.osr + NOBREAKSPACE + "Osr] ";
 				}
 
 				repairsSpan.innerText = repairsLog;
@@ -953,15 +1097,15 @@ function displayResourceLog() {
 				let goodsLog = "Spent on Consumer Goods: ";
 
 				if (tracker.goods.oil) {
-					goodsLog += "[" + tracker.goods.oil + NOBREAKSPACE + "Oil] "
+					goodsLog += "[" + tracker.goods.oil + NOBREAKSPACE + "Oil] ";
 				}
 
 				if (tracker.goods.iron) {
-					goodsLog += "[" + tracker.goods.iron + NOBREAKSPACE + "Iron] "
+					goodsLog += "[" + tracker.goods.iron + NOBREAKSPACE + "Iron] ";
 				}
 
 				if (tracker.goods.osr) {
-					goodsLog += "[" + tracker.goods.osr + NOBREAKSPACE + "Osr] "
+					goodsLog += "[" + tracker.goods.osr + NOBREAKSPACE + "Osr] ";
 				}
 
 				goodsSpan.innerText = goodsLog;
@@ -1097,15 +1241,15 @@ function displayResourceLog() {
 			let remainingLog = "Remaining: ";
 
 			if (tracker.remaining.oil) {
-				remainingLog += "[" + tracker.remaining.oil + NOBREAKSPACE + "Oil] "
+				remainingLog += "[" + tracker.remaining.oil + NOBREAKSPACE + "Oil] ";
 			}
 
 			if (tracker.remaining.iron) {
-				remainingLog += "[" + tracker.remaining.iron + NOBREAKSPACE + "Iron] "
+				remainingLog += "[" + tracker.remaining.iron + NOBREAKSPACE + "Iron] ";
 			}
 
 			if (tracker.remaining.osr) {
-				remainingLog += "[" + tracker.remaining.osr + NOBREAKSPACE + "Osr] "
+				remainingLog += "[" + tracker.remaining.osr + NOBREAKSPACE + "Osr] ";
 			}
 
 			remainingSpan.innerText = remainingLog;
@@ -1117,15 +1261,15 @@ function displayResourceLog() {
 			let producingLog = "Producing: ";
 
 			if (tracker.producing.oil) {
-				producingLog += "[" + tracker.producing.oil + NOBREAKSPACE + "Oil] "
+				producingLog += "[" + tracker.producing.oil + NOBREAKSPACE + "Oil] ";
 			}
 
 			if (tracker.producing.iron) {
-				producingLog += "[" + tracker.producing.iron + NOBREAKSPACE + "Iron] "
+				producingLog += "[" + tracker.producing.iron + NOBREAKSPACE + "Iron] ";
 			}
 
 			if (tracker.producing.osr) {
-				producingLog += "[" + tracker.producing.osr + NOBREAKSPACE + "Osr] "
+				producingLog += "[" + tracker.producing.osr + NOBREAKSPACE + "Osr] ";
 			}
 
 			producingSpan.innerText = producingLog;
@@ -1137,15 +1281,15 @@ function displayResourceLog() {
 			let endedWithLog = "Ending: ";
 
 			if (tracker.startedWith.oil) {
-				endedWithLog += "[" + tracker.endedWith.oil + NOBREAKSPACE + "Oil] "
+				endedWithLog += "[" + tracker.endedWith.oil + NOBREAKSPACE + "Oil] ";
 			}
 
 			if (tracker.startedWith.iron) {
-				endedWithLog += "[" + tracker.endedWith.iron + NOBREAKSPACE + "Iron] "
+				endedWithLog += "[" + tracker.endedWith.iron + NOBREAKSPACE + "Iron] ";
 			}
 
 			if (tracker.startedWith.osr) {
-				endedWithLog += "[" + tracker.endedWith.osr + NOBREAKSPACE + "Osr] "
+				endedWithLog += "[" + tracker.endedWith.osr + NOBREAKSPACE + "Osr] ";
 			}
 
 			endedWithSpan.innerText = endedWithLog;
