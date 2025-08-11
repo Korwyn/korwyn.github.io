@@ -14,23 +14,23 @@ function resetState() {
 	localStorage.setItem("numDiceToRoll", numDiceToRollSetup);
 	localStorage.setItem("resultRolls", JSON.stringify([]));
 	document.getElementById("diceRadio2").checked = true;
-	
+
 	let individualCol = "allShow";
-	
+
 	localStorage.setItem("individualCol", individualCol);
-	
+
 	let elements = document.getElementsByName("showOwners");
-	
-	for (let i = 0; i < elements.length; i++){
+
+	for (let i = 0; i < elements.length; i++) {
 		let element = elements[i];
-		
-		if(element.value == individualCol){
+
+		if (element.value == individualCol) {
 			element.checked = true;
 			break;
 		}
 	}
-	hideTableColumns({value: individualCol});
-	
+	hideTableColumns({ value: individualCol });
+
 	clearResultEls();
 	calcProduction();
 	calculateRemainingResources();

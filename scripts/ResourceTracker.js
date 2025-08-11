@@ -949,7 +949,7 @@ function displayCurrentProduction() {
 				oilSpan.textContent = oilRemaining;
 				oilCell.appendChild(oilSpan);
 			}
-			else{
+			else {
 				oilCell.classList.add("collapseGradient");
 			}
 			prodRow.appendChild(oilCell);
@@ -963,7 +963,7 @@ function displayCurrentProduction() {
 			ironSpan.textContent = ironRemaining;
 			ironCell.appendChild(ironSpan);
 		}
-		else{
+		else {
 			ironCell.classList.add("collapseGradient");
 		}
 		prodRow.appendChild(ironCell);
@@ -976,7 +976,7 @@ function displayCurrentProduction() {
 			osrSpan.textContent = osrRemaining;
 			osrCell.appendChild(osrSpan);
 		}
-		else{
+		else {
 			osrCell.classList.add("collapseGradient");
 		}
 		prodRow.appendChild(osrCell);

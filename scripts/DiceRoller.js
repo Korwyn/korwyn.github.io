@@ -25,7 +25,7 @@ rollDiceButton.addEventListener("click", function() {
 	if (numDiceToRoll && !rollDiceButton.disabled) {
 		rollDiceButton.disabled = true;
 		results = [];
-		
+
 		clearResultEls();
 
 		setTimeout(function() {
@@ -51,26 +51,26 @@ function rollTheDice(rollingNumber) {
 	}
 };
 
-function clearResultEls(){
+function clearResultEls() {
 	for (let i = 0; i < resultEls.length; i++) {
 		element = resultEls[i];
 		element.innerHTML = "";
 	}
 }
 
-function storeResults(){
+function storeResults() {
 	let resultJson = JSON.stringify(results);
 	localStorage.setItem("resultRolls", resultJson);
 }
 
-function loadResults(){
+function loadResults() {
 	clearResultEls();
 	let loadResults = localStorage.getItem("resultRolls");
-	
-	if(loadResults){
+
+	if (loadResults) {
 		results = JSON.parse(loadResults);
-		
-		for (let i = 0; i < results.length; i++){
+
+		for (let i = 0; i < results.length; i++) {
 			appendRoll(results[i]);
 		}
 	}

@@ -16,7 +16,7 @@ function countyInitialization() {
 	return clone;
 }
 
-let countryOrder = ["usa","china", "uk", "ussr", "germany", "italy", "japan"];
+let countryOrder = ["usa", "china", "uk", "ussr", "germany", "italy", "japan"];
 
 function setupCards() {
 	if (!countries) {
@@ -240,7 +240,7 @@ function createControledSelectList(newTerritory, allianceName, territory) {
 	let controledDiv = document.createElement("div");
 	controledDiv.classList.add("spacing");
 	let controledLabel = document.createElement("lable");
-	controledLabel.innerText =  SILHOUETTE + PAIRED_ARROW + SILHOUETTE;
+	controledLabel.innerText = SILHOUETTE + PAIRED_ARROW + SILHOUETTE;
 	controledDiv.appendChild(controledLabel);
 
 	let controlledSelect = document.createElement("select");
