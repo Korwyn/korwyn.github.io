@@ -14,5 +14,6 @@ class Country {
 		this.currentOsr = null;
 		this.tracker = new Tracker();
 		this.trackerLog = [];
+		this.economicCollapse = false;
 	}
 }

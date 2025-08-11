@@ -68,10 +68,11 @@ confirmTurnButton.addEventListener("click", function() {
 			country.tracker.startedWith = new Production({ oil: country.currentOil, iron: country.currentIron, osr: country.currentOsr });
 			country.tracker.remaining = new Production({ oil: country.remainingOil, iron: country.remainingIron, osr: country.remainingOsr });
 			country.tracker.producing = new Production({ oil: country.productionOil, iron: country.productionIron, osr: country.productionOsr });
+			country.tracker.economicCollapse = country.economicCollapse;
 
-			country.currentOil = country.remainingOil + country.productionOil;
-			country.currentIron = country.remainingIron + country.productionIron;
-			country.currentOsr = country.remainingOsr + country.productionOsr;
+			country.currentOil = country.remainingOil + (country.economicCollapse ? 0 : country.productionOil);
+			country.currentIron = country.remainingIron + (country.economicCollapse ? 0 : country.productionIron);
+			country.currentOsr = country.remainingOsr + (country.economicCollapse ? 0 : country.productionOsr);
 
 			country.tracker.endedWith = new Production({ oil: country.currentOil, iron: country.currentIron, osr: country.currentOsr });
 
@@ -538,30 +539,41 @@ let resourceTrackerForm = document.getElementById("resourceTrackerForm");
 
 resourceTrackerForm.addEventListener("change", function(event) {
 	let target = event.target;
-	
-	
-	if (target.name == "showOwners"){
+
+	if (target.name == "showOwners") {
 		hideTableColumns(target);
+	}
+	else if (target.name == "economicCollapse") {
+		setEconomicCollapse(target);
 	}
 	else {
 		trackerFormChange(target);
 	}
+
+	saveGameState();
 });
 
-function hideTableColumns(target){
+function setEconomicCollapse(target) {
+	let countryName = target.getAttribute("countryName");
+
+	let value = target.checked;
+	countries[countryName].economicCollapse = value;
+
+	displayCurrentProduction();
+}
+
+function hideTableColumns(target) {
 	let value = target.value;
 
 	resourceTable.classList = [];
 	resourceTable.classList.add("marginCenter");
 
-	if (value != "allShow"){
+	if (value != "allShow") {
 		resourceTable.classList.add("collapse");
 		resourceTable.classList.add(value);
 	}
 
 	localStorage.setItem("individualCol", value);
-	
-	saveGameState();
 }
 
 function trackerFormChange(target) {
@@ -639,75 +651,75 @@ function isNumeric(str) {
 
 function createLabelTds() {
 	clearRows();
-	
+
 	let currentResourceTd = document.createElement("td");
 	currentResourceTd.classList.add("allShow");
 	currentResourceTd.appendChild(document.createTextNode("Current"));
-	
+
 	let oilBidTd = document.createElement("td");
 	oilBidTd.classList.add("allShow");
 	oilBidTd.appendChild(document.createTextNode("Oil Bids"));
-	
+
 	let stressTd = document.createElement("td");
 	stressTd.classList.add("allShow");
 	stressTd.appendChild(document.createTextNode("Civil Unrest"));
-	
+
 	let repairsTd = document.createElement("td");
 	repairsTd.classList.add("allShow");
 	repairsTd.appendChild(document.createTextNode("Repairs"));
-	
+
 	let raidsTd = document.createElement("td");
 	raidsTd.classList.add("allShow");
 	raidsTd.appendChild(document.createTextNode("Raids"));
-	
+
 	let tradesTd = document.createElement("td");
 	tradesTd.classList.add("allShow");
 	tradesTd.appendChild(document.createTextNode("Trades"));
-	
+
 	let buildsTd = document.createElement("td");
 	buildsTd.classList.add("allShow");
 	buildsTd.appendChild(document.createTextNode("Builds"));
-	
+
 	let goodsTd = document.createElement("td");
 	goodsTd.classList.add("allShow");
 	goodsTd.appendChild(document.createTextNode("Goods 5*"));
-	
+
 	let infantryTd = document.createElement("td");
 	infantryTd.classList.add("allShow");
 	infantryTd.appendChild(document.createTextNode("Infantry"));
-	
+
 	let artilleryTd = document.createElement("td");
 	artilleryTd.classList.add("allShow");
 	artilleryTd.appendChild(document.createTextNode("Artillery"));
-	
+
 	let tanksTd = document.createElement("td");
 	tanksTd.classList.add("allShow");
 	tanksTd.appendChild(document.createTextNode("Tanks"));
-	
+
 	let fightersTd = document.createElement("td");
 	fightersTd.classList.add("allShow");
 	fightersTd.appendChild(document.createTextNode("Fighters"));
-	
+
 	let bombersTd = document.createElement("td");
 	bombersTd.classList.add("allShow");
 	bombersTd.appendChild(document.createTextNode("Bombers"));
-	
+
 	let submarinesTd = document.createElement("td");
 	submarinesTd.classList.add("allShow");
 	submarinesTd.appendChild(document.createTextNode("Submarines"));
-	
+
 	let cruisersTd = document.createElement("td");
 	cruisersTd.classList.add("allShow");
 	cruisersTd.appendChild(document.createTextNode("Cruisers"));
-	
+
 	let carriersTd = document.createElement("td");
 	carriersTd.classList.add("allShow");
 	carriersTd.appendChild(document.createTextNode("Carriers"));
-	
+
 	let battleshipsTd = document.createElement("td");
 	battleshipsTd.classList.add("allShow");
 	battleshipsTd.appendChild(document.createTextNode("Battleships"));
-	
+
 	let remainingTd = document.createElement("td");
 	remainingTd.classList.add("allShow");
 	remainingTd.appendChild(document.createTextNode("Remaining"));
@@ -902,31 +914,61 @@ function displayCurrentProduction() {
 		let ironRemaining = country.productionIron;
 		let osrRemaining = country.productionOsr;
 
-		let blankCell = document.createElement("td");
-		blankCell.classList.add(countryName + "Show");
-		prodRow.appendChild(blankCell);
+		let econCollapseCell = document.createElement("td");
+		econCollapseCell.classList.add(countryName + "Show");
+
+		let econCollapseLabel = document.createElement("label");
+
+		let econCollapseDiv = document.createElement("div");
+		econCollapseDiv.classList.add("bigger");
+		econCollapseDiv.innerText = FIRE;
+		econCollapseLabel.appendChild(econCollapseDiv);
+
+		let econCollapseCheckbox = document.createElement("input");
+		econCollapseCheckbox.classList.add("noMargin");
+		econCollapseCheckbox.setAttribute("type", "checkbox");
+		econCollapseCheckbox.setAttribute("name", "economicCollapse");
+		econCollapseCheckbox.setAttribute("countryName", countryName);
+
+		if (country.economicCollapse) {
+			econCollapseCheckbox.checked = true;
+		}
+
+		econCollapseLabel.appendChild(econCollapseCheckbox);
+
+		econCollapseCell.appendChild(econCollapseLabel);
+
+		prodRow.appendChild(econCollapseCell);
 
 		if (countryName != "china") {
 			let oilCell = document.createElement("td");
 			oilCell.classList.add(countryName + "Show");
-			let oilSpan = document.createElement("span");
-			oilSpan.textContent = oilRemaining;
-			oilCell.appendChild(oilSpan);
+			if (!country.economicCollapse) {
+				let oilSpan = document.createElement("span");
+				oilSpan.textContent = oilRemaining;
+				oilCell.appendChild(oilSpan);
+			}
 			prodRow.appendChild(oilCell);
 		}
 
 		let ironCell = document.createElement("td");
 		ironCell.classList.add(countryName + "Show");
-		let ironSpan = document.createElement("span");
-		ironSpan.textContent = ironRemaining;
-		ironCell.appendChild(ironSpan);
+
+		if (!country.economicCollapse) {
+			let ironSpan = document.createElement("span");
+			ironSpan.textContent = ironRemaining;
+			ironCell.appendChild(ironSpan);
+		}
 		prodRow.appendChild(ironCell);
 
 		let osrCell = document.createElement("td");
 		osrCell.classList.add(countryName + "Show");
-		let osrSpan = document.createElement("span");
-		osrSpan.textContent = osrRemaining;
-		osrCell.appendChild(osrSpan);
+
+		if (!country.economicCollapse) {
+			let osrSpan = document.createElement("span");
+			osrSpan.textContent = osrRemaining;
+			osrCell.appendChild(osrSpan);
+		}
 		prodRow.appendChild(osrCell);
 	}
 }
@@ -1258,18 +1300,26 @@ function displayResourceLog() {
 
 			let producingSpan = document.createElement("p");
 
-			let producingLog = "Producing: ";
+			let producingLog = "";
 
-			if (tracker.producing.oil) {
-				producingLog += "[" + tracker.producing.oil + NOBREAKSPACE + "Oil] ";
+			if (tracker.economicCollapse) {
+				producingLog += "Economic Collapse! No production";
 			}
 
-			if (tracker.producing.iron) {
-				producingLog += "[" + tracker.producing.iron + NOBREAKSPACE + "Iron] ";
-			}
+			else {
+				producingLog += " Producing: ";
 
-			if (tracker.producing.osr) {
-				producingLog += "[" + tracker.producing.osr + NOBREAKSPACE + "Osr] ";
+				if (tracker.producing.oil) {
+					producingLog += "[" + tracker.producing.oil + NOBREAKSPACE + "Oil] ";
+				}
+
+				if (tracker.producing.iron) {
+					producingLog += "[" + tracker.producing.iron + NOBREAKSPACE + "Iron] ";
+				}
+
+				if (tracker.producing.osr) {
+					producingLog += "[" + tracker.producing.osr + NOBREAKSPACE + "Osr] ";
+				}
 			}
 
 			producingSpan.innerText = producingLog;

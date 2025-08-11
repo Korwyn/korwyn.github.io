@@ -294,3 +294,7 @@ thead input+span {
 	position: relative;
 	top: 4px;
 }
+
+.noMargin {
+	margin: 0;
+}

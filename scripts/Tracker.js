@@ -20,5 +20,6 @@ class Tracker {
 		this.endedWith = new Production();
 		this.producing = new Production();
 		this.remaining = new Production();
+		this.economicCollapse = false;
 	}
 }

@@ -1,3 +1,4 @@
+const FIRE = '\u{1F525}'; // 🔥 
 const FIGHTING = '\u{2694}'; // ⚔
 const DIE = '\u{1F3B2}'; // 🎲 
 const PAIRED_ARROW =  '\u{21C6}' // ⇆ 
