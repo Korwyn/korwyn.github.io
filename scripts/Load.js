@@ -30,7 +30,7 @@ calculateRemainingResources();
 displayResourceLog();
 
 let individualCol = localStorage.getItem("individualCol");
-if (individualCol == "undefined" || individualCol) {
+if (individualCol == "undefined" || !individualCol) {
 	individualCol = "allShow"
 }
 
