@@ -32,7 +32,9 @@ function setupCards() {
 		country.productionOsr = 0;
 
 		let baseElement = document.getElementById(divId);
+		let productionHeader = document.getElementById(divId+"Production");
 		baseElement.innerHTML = "";
+		productionHeader.innerHTML = "";
 
 		let territories = country.territories;
 
@@ -57,6 +59,8 @@ function setupCards() {
 			country.productionOil += territoryOil;
 			country.productionIron += territoryIron;
 			country.productionOsr += territoryOSR;
+			
+			let listItem = document.createElement("li");
 
 			let newTerritory = document.createElement("div");
 			newTerritory.classList.add("card")
@@ -183,7 +187,8 @@ function setupCards() {
 
 			productionDiv.appendChild(osrDiv);
 			newTerritory.appendChild(productionDiv);
-			baseElement.appendChild(newTerritory);
+			listItem.appendChild(newTerritory);
+			baseElement.appendChild(listItem);
 		}
 
 		let productionDiv = document.createElement("div");
@@ -227,7 +232,7 @@ function setupCards() {
 		osrDiv.appendChild(osrSpan);
 		productionDiv.appendChild(osrDiv);
 
-		baseElement.prepend(productionDiv);
+		productionHeader.appendChild(productionDiv);
 	}
 	saveGameState();
 	displayCurrentProduction();
