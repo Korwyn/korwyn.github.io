@@ -235,7 +235,6 @@ function tripleResourceInput(rowToAppend, countryName, trackingType, country) {
 	iron = (iron == 0 ? "" : iron);
 	osr = (osr == 0 ? "" : osr);
 
-
 	if (countryName != "china") {
 		let oilCell = document.createElement("td");
 		oilCell.classList.add(countryName + "Show");
