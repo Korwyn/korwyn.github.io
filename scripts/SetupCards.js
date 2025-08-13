@@ -24,7 +24,7 @@ function setupCards() {
 	}
 
 	for (let countryName in countries) {
-		let country = countries[countryName]
+		let country = countries[countryName];
 		let divId = country.id;
 
 		country.productionOil = 0;
@@ -32,7 +32,7 @@ function setupCards() {
 		country.productionOsr = 0;
 
 		let baseElement = document.getElementById(divId);
-		let productionHeader = document.getElementById(divId+"Production");
+		let productionHeader = document.getElementById(divId + "Production");
 		baseElement.innerHTML = "";
 		productionHeader.innerHTML = "";
 
@@ -59,8 +59,18 @@ function setupCards() {
 			country.productionOil += territoryOil;
 			country.productionIron += territoryIron;
 			country.productionOsr += territoryOSR;
-			
+
 			let listItem = document.createElement("li");
+			listItem.setAttribute("draggable", true);
+			listItem.setAttribute("id", divId + territory.id);
+
+			listItem.addEventListener("dragstart", function(event) {
+				let oldControled = territory.countryControlled;
+				let terId = territoryId;
+
+				event.dataTransfer.setData("text/plain", JSON.stringify({ oldControled: oldControled, territoryId: terId }));
+			});
+
 
 			let newTerritory = document.createElement("div");
 			newTerritory.classList.add("card")
@@ -237,6 +247,8 @@ function setupCards() {
 	saveGameState();
 	displayCurrentProduction();
 }
+
+
 
 function createControledSelectList(newTerritory, allianceName, territory) {
 	let countryControlled = territory.countryControlled;
