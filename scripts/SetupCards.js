@@ -64,15 +64,8 @@ function setupCards() {
 			listItem.setAttribute("draggable", true);
 			listItem.setAttribute("id", divId + territory.id);
 
-			listItem.addEventListener("dragstart", function(event) {
-				let oldControled = territory.countryControlled;
-				let terId = territoryId;
-
-				event.dataTransfer.setData("text/plain", JSON.stringify({ oldControled: oldControled, territoryId: terId }));
-			});
-
-
 			let newTerritory = document.createElement("div");
+			newTerritory.setAttribute("draggable", true);
 			newTerritory.classList.add("card")
 			newTerritory.classList.add(territory.owner);
 
@@ -82,6 +75,13 @@ function setupCards() {
 			else {
 				newTerritory.classList.remove("contestedGradient");
 			}
+
+			newTerritory.addEventListener("dragstart", function(event) {
+				let oldControled = territory.countryControlled;
+				let terId = territoryId;
+
+				event.dataTransfer.setData("text/plain", JSON.stringify({ oldControled: oldControled, territoryId: terId }));
+			});
 
 			let headerDiv = document.createElement("div");
 			headerDiv.classList.add("relative");
