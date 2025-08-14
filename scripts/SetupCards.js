@@ -9,7 +9,7 @@ function countyInitialization() {
 		germany: new Country(germanControled, "germanyCardList", "axis"),
 		italy: new Country(italyControled, "italyCardList", "axis"),
 		japan: new Country(japanControled, "japanCardList", "axis")
-	}
+	};
 
 	let clone = JSON.parse(JSON.stringify(setup));
 
@@ -247,8 +247,6 @@ function setupCards() {
 	saveGameState();
 	displayCurrentProduction();
 }
-
-
 
 function createControledSelectList(newTerritory, allianceName, territory) {
 	let countryControlled = territory.countryControlled;

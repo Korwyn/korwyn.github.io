@@ -49,7 +49,7 @@ function rollTheDice(rollingNumber) {
 		rollDiceButton.disabled = false;
 		storeResults();
 	}
-};
+}
 
 function clearResultEls() {
 	for (let i = 0; i < resultEls.length; i++) {
@@ -111,8 +111,8 @@ function appendRoll(resultRoll) {
 }
 
 function randomIntFromInterval(min, max) { // min and max included 
-	let randomNum = Math.random(); //0-1
+	let randomNum = Math.random(); // 0-1
 	let minMax = randomNum * (max - min + 1) + min; // give interval desired
-	let wholeNumber = Math.floor(minMax);// remove  decimal places
+	let wholeNumber = Math.floor(minMax);// remove decimal places
 	return wholeNumber;
 }

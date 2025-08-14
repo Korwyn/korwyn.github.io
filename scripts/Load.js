@@ -18,14 +18,13 @@ function dropHandler(event) {
 	let territoryId = data.territoryId;
 	
 	if(value != oldControled){
-		let territory = countries[oldControled].territories[territoryId]
+		let territory = countries[oldControled].territories[territoryId];
 		territory.isEmbattled = false;
 		territory.countryControlled = value;
 		countries[value].territories[territoryId] = territory;
 		delete countries[oldControled].territories[territoryId];
 		setupCards();
 	}
-	
 }
 
 for (let countryName in countries) {
