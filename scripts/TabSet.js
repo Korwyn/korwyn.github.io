@@ -17,5 +17,5 @@ function changeTab(event, tabName) {
 
   localStorage.setItem("activeTab", event.currentTarget.id);
   
-  navigator.vibrate(1001);
+  navigator.vibrate([200]);
 }
