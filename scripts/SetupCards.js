@@ -79,6 +79,10 @@ function setupCards() {
 			newTerritory.addEventListener("dragstart", function(event) {
 				let oldControled = territory.countryControlled;
 				let terId = territoryId;
+				
+				if(navigator){
+					navigator.vibrate(100);
+				}
 
 				event.dataTransfer.setData("text/plain", JSON.stringify({ oldControled: oldControled, territoryId: terId }));
 			});
