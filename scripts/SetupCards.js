@@ -80,6 +80,7 @@ function setupCards() {
 				let oldControled = territory.countryControlled;
 				let terId = territoryId;
 				
+				alert("vibrate please");
 				if(navigator){
 					navigator.vibrate(100);
 				}
