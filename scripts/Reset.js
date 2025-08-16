@@ -8,6 +8,7 @@ reset.addEventListener("click", function() {
 function resetState() {
 	countries = null;
 	setupCards();
+	navigator.vibrate(200);
 	document.getElementById("tabTerritory").click();
 
 	numDiceToRollSetup = 2;//set Default

@@ -8,6 +8,8 @@ diceSelection.addEventListener("change", function(event) {
 	numDiceToRoll = target.value;
 
 	localStorage.setItem("numDiceToRoll", numDiceToRoll);
+	
+	navigator.vibrate(200);
 });
 
 let resultEls = document.getElementsByClassName("resultRoll");
