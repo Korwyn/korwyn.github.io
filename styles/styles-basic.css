@@ -1,4 +1,24 @@
 @charset "UTF-8";
+
+div.hitpoint {
+	width: 23px;
+	height: 23px;
+	display: inline-block;
+	border: 2px solid;
+	border-radius: 5px;
+	margin-right: 5px;
+}
+
+.combatHelper {
+	width: 650px;
+	margin: 0 auto;
+	margin-top: 10px;
+}
+
+.combatHelper td, .combatHelper th {
+	border: 1px, solid;
+}
+
 ul{
 	display: block;
     list-style-type: none;

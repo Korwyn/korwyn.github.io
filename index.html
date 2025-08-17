@@ -4,12 +4,12 @@
 <head>
 <meta charset="UTF-8">
 
-<link rel="stylesheet" href="styles/styles-basic.css">
-<link rel="stylesheet" href="styles/styles-colors.css">
-<link rel="stylesheet" href="styles/styles-button.css">
-<link rel="stylesheet" href="styles/styles-tab.css">
-<link rel="stylesheet" href="styles/styles-diceRoller.css">
-<link rel="stylesheet" href="styles/styles-collapse.css">
+<link rel="stylesheet" href="styles/styles-basic.css" />
+<link rel="stylesheet" href="styles/styles-colors.css" />
+<link rel="stylesheet" href="styles/styles-button.css" />
+<link rel="stylesheet" href="styles/styles-tab.css" />
+<link rel="stylesheet" href="styles/styles-diceRoller.css" />
+<link rel="stylesheet" href="styles/styles-collapse.css" />
 
 <title>War Room Helper</title>
 </head>
@@ -200,31 +200,40 @@
 					<div id="diceRollerNumberDiv" class="td middle thinBorderRight">
 						<form id="diceRollerNumberForm">
 							<label class="block">
-								<input type="radio" name="diceRoller" value="2" id="diceRadio2" /><span class="diceRollerLabel">2</span>
+								<input type="radio" name="diceRoller" value="2" id="diceRadio2" />
+								<span class="diceRollerLabel">2</span>
 							</label>
 							<label class="block">
-								<input type="radio" name="diceRoller" value="3" id="diceRadio3" /><span class="diceRollerLabel">3</span>
+								<input type="radio" name="diceRoller" value="3" id="diceRadio3" />
+								<span class="diceRollerLabel">3</span>
 							</label>
 							<label class="block">
-								<input type="radio" name="diceRoller" value="4" id="diceRadio4" /><span class="diceRollerLabel">4</span>
+								<input type="radio" name="diceRoller" value="4" id="diceRadio4" />
+								<span class="diceRollerLabel">4</span>
 							</label>
 							<label class="block">
-								<input type="radio" name="diceRoller" value="5" id="diceRadio5" /><span class="diceRollerLabel">5</span>
+								<input type="radio" name="diceRoller" value="5" id="diceRadio5" />
+								<span class="diceRollerLabel">5</span>
 							</label>
 							<label class="block">
-								<input type="radio" name="diceRoller" value="6" id="diceRadio6" /><span class="diceRollerLabel">6</span>
+								<input type="radio" name="diceRoller" value="6" id="diceRadio6" />
+								<span class="diceRollerLabel">6</span>
 							</label>
 							<label class="block">
-								<input type="radio" name="diceRoller" value="7" id="diceRadio7" /><span class="diceRollerLabel">7</span>
+								<input type="radio" name="diceRoller" value="7" id="diceRadio7" />
+								<span class="diceRollerLabel">7</span>
 							</label>
 							<label class="block">
-								<input type="radio" name="diceRoller" value="8" id="diceRadio8" /><span class="diceRollerLabel">8</span>
+								<input type="radio" name="diceRoller" value="8" id="diceRadio8" />
+								<span class="diceRollerLabel">8</span>
 							</label>
 							<label class="block">
-								<input type="radio" name="diceRoller" value="9" id="diceRadio9" /><span class="diceRollerLabel">9</span>
+								<input type="radio" name="diceRoller" value="9" id="diceRadio9" />
+								<span class="diceRollerLabel">9</span>
 							</label>
 							<label class="block">
-								<input type="radio" name="diceRoller" value="10" id="diceRadio10" /><span class="diceRollerLabel">10</span>
+								<input type="radio" name="diceRoller" value="10" id="diceRadio10" />
+								<span class="diceRollerLabel">10</span>
 							</label>
 						</form>
 					</div>
@@ -255,6 +264,70 @@
 			<div class="spacing inlineBlock">
 				<button id="rollDice" class="spacing">Roll</button>
 			</div>
+
+			<table id="landCombatHelper" class="combatHelper">
+				<thead>
+					<tr>
+						<th colspan="8">Land Combat Helper</th>
+					</tr>
+
+					<tr>
+						<th colspan="3">Axis</th>
+						<th colspan="2">Dice</th>
+						<th colspan="3">Allies</th>
+					</tr>
+
+					<tr>
+						<th>Unit</th>
+						<th>Mode</th>
+						<th>Defense</th>
+						<th>
+							<div>Ground</div>
+						</th>
+
+						<th>
+							<div>Air</div>
+						</th>
+						<th>Defense</th>
+						<th>Mode</th>
+						<th>Unit</th>
+					</tr>
+				</thead>
+				<tbody id="landCombatDiceCalc">
+				</tbody>
+			</table>
+			
+			<table id="seaCombatHelper" class="combatHelper">
+				<thead>
+					<tr>
+						<th colspan="8">Sea Combat Helper</th>
+					</tr>
+
+					<tr>
+						<th colspan="3">Axis</th>
+						<th colspan="2">Dice</th>
+						<th colspan="3">Allies</th>
+					</tr>
+
+					<tr>
+						<th>Unit</th>
+						<th>Mode</th>
+						<th>Defense</th>
+						<th>
+							<div>Sea</div>
+						</th>
+
+						<th>
+							<div>Air</div>
+						</th>
+						<th>Defense</th>
+						<th>Mode</th>
+						<th>Unit</th>
+					</tr>
+				</thead>
+				<tbody id="seaCombatDiceCalc">
+				</tbody>
+			</table>
 		</div>
 	</div>
 
@@ -265,10 +338,11 @@
 
 <script type="text/javascript" src="scripts/Constants.js"></script>
 <script type="text/javascript" src="scripts/TabSet.js"></script>
-<script type="text/javascript" src="scripts/Tracker.js"></script>
 <script type="text/javascript" src="scripts/Production.js"></script>
+<script type="text/javascript" src="scripts/Units.js"></script>
 <script type="text/javascript" src="scripts/Territory.js"></script>
 <script type="text/javascript" src="scripts/Country.js"></script>
+<script type="text/javascript" src="scripts/Tracker.js"></script>
 <script type="text/javascript" src="scripts/countryCards/GermanCards.js"></script>
 <script type="text/javascript" src="scripts/countryCards/UnitedStatesCards.js"></script>
 <script type="text/javascript" src="scripts/countryCards/ChinaCards.js"></script>

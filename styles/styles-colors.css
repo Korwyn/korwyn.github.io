@@ -16,7 +16,7 @@
 	background-color: #F87B7F;
 }
 
-.backgroundUSSR{
+.backgroundUSSR {
 	background-color: #D85B5F;
 }
 
@@ -24,33 +24,35 @@
 	background-color: #F3D6A3;
 }
 
-.backgroundUK{
+.backgroundUK {
 	background-color: #D3B683;
 }
 
 .china {
 	background-color: #85ACDB;
 }
-.backgroundChina{
+
+.backgroundChina {
 	background-color: #658CBB;
 }
 
 .japan {
 	background-color: #F0944D;
 }
-.backgroundJapan{
+
+.backgroundJapan {
 	background-color: #D0742D;
 }
 
-.italy{
+.italy {
 	background-color: #FAD1FA;
 }
 
-.backgroundItaly{
+.backgroundItaly {
 	background-color: #DAB1DA;
 }
 
-.germany{
+.germany {
 	background-color: #CCCCCC;
 }
 
@@ -59,50 +61,77 @@
 }
 
 .contestedGradient {
-	  background-image: linear-gradient(to top, rgba(254,255,63,0), rgba(254,255,63,.2), rgba(254,255,63,1));
+	background-image: linear-gradient(to top, rgba(254, 255, 63, 0), rgba(254, 255, 63, .2), rgba(254, 255, 63, 1));
 }
 
 .collapseGradient {
-	  background-image: linear-gradient(to top, rgba(254,255,63,.1), rgba(254,255,63,.8), rgba(254,255,63,.1));
+	background-image: linear-gradient(to top, rgba(254, 255, 63, .1), rgba(254, 255, 63, .8), rgba(254, 255, 63, .1));
 }
 
-#yellowRoll {
+#yellowRoll, .infantry, .submarine {
 	background-color: #ffffda;
 }
-#blueRoll {
+
+#blueRoll, .artillery, .cruiser {
 	background-color: #cfdbea;
 }
-#greenRoll {
+
+#greenRoll, .tank, .fighter, .carrier {
 	background-color: #b5d4b4;
 }
-#redRoll {
+
+#redRoll, .battleship, .bomber {
 	background-color: #ff7878;
 }
+
 #whiteRoll {
 	background-color: #DDDDDD;
 }
+
 #blackRoll {
 	background-color: #777777;
 }
-#yellowRoll .td > div {
+
+#yellowRoll .td>div, div.infantry, div.submarine {
 	background-color: #fdff1f;
 }
-#blueRoll .td > div {
+
+#blueRoll .td>div, div.artillery, div.cruiser {
 	background-color: #466e9e;
 }
-#greenRoll .td > div {
+
+#greenRoll .td>div, div.tank, div.fighter, div.carrier {
 	background-color: #477844;
 }
-#redRoll .td > div {
+
+#redRoll .td>div, div.battleship {
 	background-color: #ff1616;
 }
-#whiteRoll .td > div {
+
+td div.bomber {
+	background-image: linear-gradient(45deg, rgba(255, 10, 10, .9), rgba(255, 10, 10, .9), rgba(0, 0, 0, .9), rgba(0, 0, 0, .9));
+}
+
+td div.bomber.axis:last-child, td div.bomber.ally:first-child {
+	background-image: linear-gradient(45deg, rgba(255, 255, 255, .9), rgba(255, 255, 255, .9), rgba(255, 10, 10, .9), rgba(255, 10, 10, .9), rgba(0, 0, 0, .9), rgba(0, 0, 0, .9));
+}
+
+td div.fighter {
+	background-image: linear-gradient(45deg, rgba(71, 120, 68, .9), rgba(71, 120, 68, .9), rgba(0, 0, 0, .9), rgba(0, 0, 0, .9));
+}
+
+td div.fighter.axis:last-child, td div.fighter.ally:first-child  {
+	background-image: linear-gradient(45deg, rgba(255, 255, 255, .9), rgba(255, 255, 255, .9), rgba(71, 120, 68, .9), rgba(71, 120, 68, .9), rgba(0, 0, 0, .9), rgba(0, 0, 0, .9));
+}
+
+#whiteRoll .td>div {
 	background-color: #FFFFFF;
 }
-#blackRoll .td > div {
+
+#blackRoll .td>div {
 	background-color: #000000;
 }
 
-tbody tr:nth-child(even) {
+#resourceTable tbody tr:nth-child(even) {
 	background-color: rgba(100, 100, 100, .2);
 }
