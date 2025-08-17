@@ -46,9 +46,9 @@ if (activeTab) {
 localStorage.getItem("numDiceToRoll");
 let numDiceToRollSetup = localStorage.getItem("numDiceToRoll");
 if (!numDiceToRollSetup) {
-	numDiceToRollSetup = 2;//set Default
+	numDiceToRollSetup = 1;//set Default
 }
-if (numDiceToRollSetup >= 2) {
+if (numDiceToRollSetup >= 1) {
 	let diceIdElName = "diceRadio" + numDiceToRollSetup;
 	document.getElementById(diceIdElName).checked = true;
 	numDiceToRoll = numDiceToRollSetup;
