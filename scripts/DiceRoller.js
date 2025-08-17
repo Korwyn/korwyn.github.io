@@ -121,8 +121,8 @@ function randomIntFromInterval(min, max) { // min and max included
 }
 
 let unitList = defaultUnitList();
-let axisUnits = defaultUnitList(); 
-let allyUnits = defaultUnitList(); 
+let axisUnits = defaultUnitList();
+let allyUnits = defaultUnitList();
 
 function setupLandBattleCalc(tableEl, mode) {
 	tableEl.innerHTML = "";
@@ -142,7 +142,7 @@ function setupLandBattleCalc(tableEl, mode) {
 		nameAllyDiv.innerText = unit.name;
 		allyNameCell.appendChild(nameAllyDiv);
 
-		let appendedRows = 0;
+		let modeNumber = 0;
 
 		for (let i = 0; i < battleModes.length; i++) {
 			let battleMode = battleModes[i];
@@ -151,7 +151,7 @@ function setupLandBattleCalc(tableEl, mode) {
 				let modeRow = document.createElement("tr");
 				modeRow.classList.add(unitId);
 
-				if (appendedRows == 0) {
+				if (modeNumber == 0) {
 					modeRow.appendChild(axisNameCell);
 				}
 
@@ -164,6 +164,19 @@ function setupLandBattleCalc(tableEl, mode) {
 				modeAxisDiv.appendChild(textAxisSpan);
 				axisModeCell.appendChild(modeAxisDiv);
 				modeRow.appendChild(axisModeCell);
+
+				let axisQtyCell = document.createElement("td");
+
+				let unitAxisInput = document.createElement("input");
+				unitAxisInput.setAttribute("name", "axis");
+				unitAxisInput.setAttribute("modeNum", i);
+				unitAxisInput.setAttribute("unitId", unitId);
+				unitAxisInput.setAttribute("type", "text");
+				unitAxisInput.setAttribute("inputmode", "numeric");
+				unitAxisInput.value = axisUnits[unitId].battleModes[i].qty ? axisUnits[unitId].battleModes[i].qty : "";
+				inputChangeControls(axisQtyCell, unitAxisInput, changeInputs);
+
+				modeRow.appendChild(axisQtyCell);
 
 				modeAxisDefenseCell = document.createElement("td");
 
@@ -184,7 +197,7 @@ function setupLandBattleCalc(tableEl, mode) {
 				let airDice = document.createElement("td");
 				airDice.innerText = battleMode.airDice;
 				modeRow.appendChild(airDice);
-				
+
 				modeAllyDefenseCell = document.createElement("td");
 
 				for (let j = 0; j < battleMode.defenseValue; j++) {
@@ -197,6 +210,19 @@ function setupLandBattleCalc(tableEl, mode) {
 
 				modeRow.appendChild(modeAllyDefenseCell);
 
+				let allyQtyCell = document.createElement("td");
+
+				let unitAllyInput = document.createElement("input");
+				unitAllyInput.setAttribute("name", "ally");
+				unitAllyInput.setAttribute("modeNum", i);
+				unitAllyInput.setAttribute("unitId", unitId);
+				unitAllyInput.setAttribute("type", "text");
+				unitAllyInput.setAttribute("inputmode", "numeric");
+				unitAllyInput.value = allyUnits[unitId].battleModes[i].qty ? allyUnits[unitId].battleModes[i].qty : "";
+				inputChangeControls(allyQtyCell, unitAllyInput, changeInputs);
+
+				modeRow.appendChild(allyQtyCell);
+
 				let allyModeCell = document.createElement("td");
 
 				let modeAllyDiv = document.createElement("div");
@@ -207,19 +233,55 @@ function setupLandBattleCalc(tableEl, mode) {
 				allyModeCell.appendChild(modeAllyDiv);
 				modeRow.appendChild(allyModeCell);
 
-				if (appendedRows == 0) {
+				if (modeNumber == 0) {
 					modeRow.appendChild(allyNameCell);
 				}
 
-				appendedRows++;
+				modeNumber++;
 				tableEl.appendChild(modeRow);
 			}
 		}
 
-		axisNameCell.setAttribute("rowspan", appendedRows);
-		allyNameCell.setAttribute("rowspan", appendedRows);
+		axisNameCell.setAttribute("rowspan", modeNumber);
+		allyNameCell.setAttribute("rowspan", modeNumber);
 	}
 }
 
-setupLandBattleCalc(landCombatDiceCalc, "land");
-setupLandBattleCalc(seaCombatDiceCalc, "naval");
+function changeInputs(target) {
+	let value = target.value;
+	let name = target.getAttribute("name");
+	let modeNumber = target.getAttribute("modeNum");
+	let unitId = target.getAttribute("unitId");
+	
+	let force = {};
+	
+	if (name == "ally"){
+		force = allyUnits;
+	}
+	else {
+		force = axisUnits;
+	}
+	
+	force[unitId].battleModes[modeNumber].qty = value;
+	
+	let axisNavalAirDice = 0;
+	let axisNavalSurfaceDice = 0;
+	let axisLandAirDice = 0;
+	let axisLandGroundDice = 0;
+	let axisNavalTypes = 0;
+	let axisLandTypes = 0;
+
+	let allyNavalAirDice = 0;
+	let allyNavalSurfaceDice = 0;
+	let allyLandAirDice = 0;
+	let allyLandGroundDice = 0;
+	let allyNavalTypes = 0;
+	let allyLandTypes = 0;
+
+	for (let axisUnitName in axisUnits) {
+
+	}
+
+	localStorage.setItem("axisUnits", JSON.stringify(axisUnits));
+	localStorage.setItem("allyUnits", JSON.stringify(allyUnits));
+}

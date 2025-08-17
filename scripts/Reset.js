@@ -31,6 +31,14 @@ function resetState() {
 		}
 	}
 	hideTableColumns({ value: individualCol });
+	
+	axisUnits = defaultUnitList();
+	allyUnits = defaultUnitList();
+	localStorage.setItem("axisUnits", JSON.stringify(axisUnits));
+	localStorage.setItem("allyUnits", JSON.stringify(allyUnits));
+
+	setupLandBattleCalc(landCombatDiceCalc, "land");
+	setupLandBattleCalc(seaCombatDiceCalc, "naval");
 
 	clearResultEls();
 	calcProduction();

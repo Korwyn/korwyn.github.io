@@ -1,22 +1,23 @@
 @charset "UTF-8";
 
 div.hitpoint {
-	width: 23px;
-	height: 23px;
+	width: 28px;
+	height: 28px;
 	display: inline-block;
 	border: 2px solid;
-	border-radius: 5px;
-	margin-right: 5px;
+	border-radius: 6px;
+	margin-right: 6px;
 }
 
 .combatHelper {
-	width: 650px;
+	width: 700px;
 	margin: 0 auto;
 	margin-top: 10px;
 }
 
 .combatHelper td, .combatHelper th {
 	border: 1px, solid;
+	padding: 3px;
 }
 
 ul{
@@ -194,7 +195,7 @@ div {
 	margin: 0 auto;
 }
 
-#resourceUseDiv input[type="text"] {
+#resourceUseDiv input[type="text"], .combatHelper input[type="text"] {
 	width: 20px;
 	height: 38px;
 }

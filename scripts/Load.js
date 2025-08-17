@@ -60,6 +60,8 @@ let allyUnitsJson = localStorage.getItem("allyUnits");
 axisUnits = axisUnitsJson ? JSON.parse(axisUnitsJson) : defaultUnitList();
 allyUnits = allyUnitsJson ? JSON.parse(allyUnitsJson) : defaultUnitList();
 
+setupLandBattleCalc(landCombatDiceCalc, "land");
+setupLandBattleCalc(seaCombatDiceCalc, "naval");
 loadResults();
 
 //from ResourceTracker.js
