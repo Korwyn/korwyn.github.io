@@ -184,6 +184,7 @@ function setupLandBattleCalc(tableEl, mode) {
 					let defenseMarker = document.createElement("div");
 					defenseMarker.classList.add("hitpoint");
 					defenseMarker.classList.add("axis");
+					defenseMarker.classList.add(battleMode.name);
 					defenseMarker.classList.add(unitId);
 					modeAxisDefenseCell.appendChild(defenseMarker);
 				}
@@ -204,6 +205,7 @@ function setupLandBattleCalc(tableEl, mode) {
 					let defenseMarker = document.createElement("div");
 					defenseMarker.classList.add("hitpoint");
 					defenseMarker.classList.add("ally");
+					defenseMarker.classList.add(battleMode.name);
 					defenseMarker.classList.add(unitId);
 					modeAllyDefenseCell.appendChild(defenseMarker);
 				}
