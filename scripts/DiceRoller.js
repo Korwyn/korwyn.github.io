@@ -121,6 +121,8 @@ function randomIntFromInterval(min, max) { // min and max included
 }
 
 let unitList = defaultUnitList();
+let axisUnits = defaultUnitList(); 
+let allyUnits = defaultUnitList(); 
 
 function setupLandBattleCalc(tableEl, mode) {
 	tableEl.innerHTML = "";
@@ -175,11 +177,9 @@ function setupLandBattleCalc(tableEl, mode) {
 
 				modeRow.appendChild(modeAxisDefenseCell);
 
-
 				let combatDice = document.createElement("td");
 				combatDice.innerText = battleMode.combatDice;
 				modeRow.appendChild(combatDice);
-
 
 				let airDice = document.createElement("td");
 				airDice.innerText = battleMode.airDice;

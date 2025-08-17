@@ -8,5 +8,6 @@ class Territory {
 		this.production = new Production(baseProduction);
 		this.embattledProduction = new Production(embattledProduction);
 		this.isEmbattled = isEmbattled || false;
+		this.commands = [];
 	}
 }

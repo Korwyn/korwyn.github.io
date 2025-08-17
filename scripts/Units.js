@@ -138,8 +138,8 @@ class Cruiser extends Unit {
 		let battleMode1 = new BattleMode(battleMode1Name, battleMode1AirDice, battleMode1CombatDice, battleMode1Defense, battleMode1Available);
 
 		let battleMode2Name = "Offensive";
-		let battleMode2AirDice = 0;
-		let battleMode2CombatDice = 2;
+		let battleMode2AirDice = 1;
+		let battleMode2CombatDice = 3;
 		let battleMode2Defense = 2;
 		let battleMode2Available = { land: false, naval: true };
 		let battleMode2 = new BattleMode(battleMode2Name, battleMode2AirDice, battleMode2CombatDice, battleMode2Defense, battleMode2Available);
@@ -218,18 +218,34 @@ class Fighter extends Unit {
 		let battleMode1AirDice = 3;
 		let battleMode1CombatDice = 0;
 		let battleMode1Defense = 2;
-		let battleMode1Available = { land: true, naval: true };
+		let battleMode1Available = { land: false, naval: true };
 		let battleMode1 = new BattleMode(battleMode1Name, battleMode1AirDice, battleMode1CombatDice, battleMode1Defense, battleMode1Available);
 
 		let battleMode2Name = "Surface";
 		let battleMode2AirDice = 0;
 		let battleMode2CombatDice = 3;
 		let battleMode2Defense = 2;
-		let battleMode2Available = { land: true, naval: true };
+		let battleMode2Available = { land: false, naval: true };
 		let battleMode2 = new BattleMode(battleMode2Name, battleMode2AirDice, battleMode2CombatDice, battleMode2Defense, battleMode2Available);
+
+		let battleMode3Name = "Air";
+		let battleMode3AirDice = 3;
+		let battleMode3CombatDice = 0;
+		let battleMode3Defense = 2;
+		let battleMode3Available = { land: true, naval: false };
+		let battleMode3 = new BattleMode(battleMode3Name, battleMode3AirDice, battleMode3CombatDice, battleMode3Defense, battleMode3Available);
+
+		let battleMode4Name = "Ground";
+		let battleMode4AirDice = 0;
+		let battleMode4CombatDice = 3;
+		let battleMode4Defense = 2;
+		let battleMode4Available = { land: true, naval: false };
+		let battleMode4 = new BattleMode(battleMode4Name, battleMode4AirDice, battleMode4CombatDice, battleMode4Defense, battleMode4Available);
 
 		this.battleModes.push(battleMode1);
 		this.battleModes.push(battleMode2);
+		this.battleModes.push(battleMode3);
+		this.battleModes.push(battleMode4);
 	}
 }
 

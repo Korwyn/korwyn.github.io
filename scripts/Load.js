@@ -53,6 +53,13 @@ if (numDiceToRollSetup >= 1) {
 	document.getElementById(diceIdElName).checked = true;
 	numDiceToRoll = numDiceToRollSetup;
 }
+
+let axisUnitsJson = localStorage.getItem("axisUnits");
+let allyUnitsJson = localStorage.getItem("allyUnits");
+
+axisUnits = axisUnitsJson ? JSON.parse(axisUnitsJson) : defaultUnitList();
+allyUnits = allyUnitsJson ? JSON.parse(allyUnitsJson) : defaultUnitList();
+
 loadResults();
 
 //from ResourceTracker.js

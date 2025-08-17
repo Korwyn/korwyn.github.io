@@ -209,7 +209,7 @@ function oilBidding(rowToAppend, countryName, trackingType, country) {
 		oilBidInput.setAttribute("type", "text");
 		oilBidInput.setAttribute("inputmode", "numeric");
 		oilBidInput.value = oil || "";
-		inputChangeControls(oilBidCell, oilBidInput);
+		inputChangeControls(oilBidCell, oilBidInput, trackerFormChange);
 		rowToAppend.appendChild(oilBidCell);
 	}
 
@@ -247,7 +247,7 @@ function tripleResourceInput(rowToAppend, countryName, trackingType, country) {
 		oilInput.setAttribute("inputmode", "numeric");
 		oilInput.value = oil || "";
 
-		inputChangeControls(oilCell, oilInput);
+		inputChangeControls(oilCell, oilInput, trackerFormChange);
 		rowToAppend.appendChild(oilCell);
 	}
 
@@ -261,7 +261,7 @@ function tripleResourceInput(rowToAppend, countryName, trackingType, country) {
 	ironInput.setAttribute("type", "text");
 	ironInput.setAttribute("inputmode", "numeric");
 	ironInput.value = iron || "";
-	inputChangeControls(ironCell, ironInput);
+	inputChangeControls(ironCell, ironInput, trackerFormChange);
 	rowToAppend.appendChild(ironCell);
 
 	let osrCell = document.createElement("td");
@@ -274,7 +274,7 @@ function tripleResourceInput(rowToAppend, countryName, trackingType, country) {
 	osrInput.setAttribute("type", "text");
 	osrInput.setAttribute("inputmode", "numeric");
 	osrInput.value = osr || "";
-	inputChangeControls(osrCell, osrInput);
+	inputChangeControls(osrCell, osrInput, trackerFormChange);
 	rowToAppend.appendChild(osrCell);
 }
 
@@ -500,7 +500,7 @@ function unitInput(unit, countryName, unitType, country) {
 		buildNumberInput.setAttribute("min", 0);
 		buildNumberInput.setAttribute("max", 99);
 		buildNumberInput.value = (qty ? qty : "");
-		inputChangeControls(buildNumberCell, buildNumberInput);
+		inputChangeControls(buildNumberCell, buildNumberInput, trackerFormChange);
 	}
 	rowToAppend.appendChild(buildNumberCell);
 
@@ -865,7 +865,7 @@ function calculateRemainingResources() {
 	}
 }
 
-function inputChangeControls(parentEl, inputEl) {
+function inputChangeControls(parentEl, inputEl, callbackFunction) {
 	let containControlDiv = document.createElement("div");
 	containControlDiv.classList.add("relative");
 	containControlDiv.classList.add("inputControlDiv");
@@ -899,7 +899,7 @@ function inputChangeControls(parentEl, inputEl) {
 
 		inputEl.value = --value;
 
-		trackerFormChange(inputEl);
+		callbackFunction(inputEl);
 	});
 
 	containerPlus.addEventListener("click", function() {
@@ -911,7 +911,7 @@ function inputChangeControls(parentEl, inputEl) {
 
 		inputEl.value = ++value;
 
-		trackerFormChange(inputEl);
+		callbackFunction(inputEl);
 	});
 }
 
