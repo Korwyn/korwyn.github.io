@@ -1,7 +1,11 @@
 @charset "UTF-8";
 
-#diceRollerTable .td{
-	height: 55px;
+#diceRollerTable .td {
+	height: 60px;
+}
+
+#diceRollerNumberForm {
+	width: 60px;
 }
 
 #diceRollerNumberForm input {
@@ -9,13 +13,13 @@
 	top: 1px;
 }
 
-#diceRollerNumberForm label:not(:last-child){
+#diceRollerNumberForm label:not(:last-child) {
 	margin-bottom: 12px;
 }
 
 #diceRollerNumberForm label {
 	text-align: left;
-	margin-left: 8px;	
+	margin-left: 8px;
 }
 
 #diceRollerTable .td {
@@ -31,75 +35,75 @@
 	margin-left: 5px;
 }
 
-#diceRollerTable .td div:not(:first-child){
+#diceRollerTable .td div:not(:first-child) {
 	margin-left: 5px;
 }
 
-#rollDice, #confirmTurn{
- appearance: button;
- background-color: #1899D6;
- border: solid transparent;
- border-radius: 16px;
- border-width: 0 0 4px;
- box-sizing: border-box;
- color: #FFFFFF;
- cursor: pointer;
- display: inline-block;
- font-size: 15px;
- font-weight: 700;
- letter-spacing: .8px;
- line-height: 20px;
- margin: 0;
- outline: none;
- overflow: visible;
- padding: 13px 19px;
- text-align: center;
- text-transform: uppercase;
- touch-action: manipulation;
- transform: translateZ(0);
- transition: filter .2s;
- user-select: none;
- -webkit-user-select: none;
- vertical-align: middle;
- white-space: nowrap;
+#rollDice, #confirmTurn {
+	appearance: button;
+	background-color: #1899D6;
+	border: solid transparent;
+	border-radius: 16px;
+	border-width: 0 0 4px;
+	box-sizing: border-box;
+	color: #FFFFFF;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 15px;
+	font-weight: 700;
+	letter-spacing: .8px;
+	line-height: 20px;
+	margin: 0;
+	outline: none;
+	overflow: visible;
+	padding: 13px 19px;
+	text-align: center;
+	text-transform: uppercase;
+	touch-action: manipulation;
+	transform: translateZ(0);
+	transition: filter .2s;
+	user-select: none;
+	-webkit-user-select: none;
+	vertical-align: middle;
+	white-space: nowrap;
 }
 
 #rollDice[disabled], #confirmTurn[disabled] {
- background-color: #333333;
- color: #888888;
+	background-color: #333333;
+	color: #888888;
 }
 
 #rollDice:after, #confirmTurn:after {
- background-clip: padding-box;
- background-color: #1CB0F6;
- border: solid transparent;
- border-radius: 16px;
- border-width: 0 0 4px;
- bottom: -4px;
- content: "";
- left: 0;
- position: absolute;
- right: 0;
- top: 0;
- z-index: -1;
+	background-clip: padding-box;
+	background-color: #1CB0F6;
+	border: solid transparent;
+	border-radius: 16px;
+	border-width: 0 0 4px;
+	bottom: -4px;
+	content: "";
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: -1;
 }
 
 #rollDice:main, #rollDice:focus, #confirmTurn:main, #confirmTurn:focus {
- user-select: auto;
+	user-select: auto;
 }
 
-#rollDice:hover:not(:disabled), #confirmTurn:hover:not(:disabled){
- filter: brightness(1.1);
+#rollDice:hover:not(:disabled), #confirmTurn:hover:not(:disabled) {
+	filter: brightness(1.1);
 }
 
 #rollDice:disabled, #confirmTurn:disabled {
- cursor: auto;
+	cursor: auto;
 }
 
 #rollDice:active:after, #confirmTurn:active:after {
- border-width: 0 0 0px;
+	border-width: 0 0 0px;
 }
 
 #rollDice:active, #confirmTurn:active {
- padding-bottom: 10px;
+	padding-bottom: 10px;
 }
