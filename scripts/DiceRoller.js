@@ -9,6 +9,33 @@ let blackResultRoll = document.getElementById("blackResultRoll");
 let rollDiceButton = document.getElementById("rollDice");
 let landCombatDiceCalc = document.getElementById("landCombatDiceCalc");
 let seaCombatDiceCalc = document.getElementById("seaCombatDiceCalc");
+let axisLandDice = document.getElementById("axisLandDice");
+let allyLandDice = document.getElementById("allyLandDice");
+let axisNavalDice = document.getElementById("axisNavalDice");
+let allyNavalDice = document.getElementById("allyNavalDice");
+let axisPort = document.getElementById("axisPort");
+let allyPort = document.getElementById("allyPort");
+let combatHelperForm = document.getElementById("combatHelperForm");
+
+combatHelperForm.addEventListener("change", function(event){
+	let target = event.target;
+	
+	if(target.type=="text"){
+		changeInputs(target);
+	}
+});
+
+allyPort.addEventListener("click", function(){
+	localStorage.setItem("allyPortChecked", allyPort.checked);
+	
+	unitCounter();
+});
+
+axisPort.addEventListener("click", function(){
+	localStorage.setItem("axisPortChecked", axisPort.checked);
+	
+	unitCounter();
+});
 
 let numDiceToRoll = 0;
 
@@ -250,40 +277,110 @@ function setupLandBattleCalc(tableEl, mode) {
 }
 
 function changeInputs(target) {
+	validateInput(target);
 	let value = target.value;
 	let name = target.getAttribute("name");
 	let modeNumber = target.getAttribute("modeNum");
 	let unitId = target.getAttribute("unitId");
-	
+
 	let force = {};
-	
-	if (name == "ally"){
+
+	if (name == "ally") {
 		force = allyUnits;
 	}
 	else {
 		force = axisUnits;
 	}
-	
+
 	force[unitId].battleModes[modeNumber].qty = value;
 	
-	let axisNavalAirDice = 0;
-	let axisNavalSurfaceDice = 0;
-	let axisLandAirDice = 0;
-	let axisLandGroundDice = 0;
-	let axisNavalTypes = 0;
-	let axisLandTypes = 0;
-
-	let allyNavalAirDice = 0;
-	let allyNavalSurfaceDice = 0;
-	let allyLandAirDice = 0;
-	let allyLandGroundDice = 0;
-	let allyNavalTypes = 0;
-	let allyLandTypes = 0;
-
-	for (let axisUnitName in axisUnits) {
-
-	}
+	unitCounter();
 
 	localStorage.setItem("axisUnits", JSON.stringify(axisUnits));
 	localStorage.setItem("allyUnits", JSON.stringify(allyUnits));
+}
+
+function unitCounter(){
+	let axisTypeCounter = sideCount(axisUnits, axisLandDice, axisNavalDice, axisPort);
+	let allyTypeCounter = sideCount(allyUnits, allyLandDice, allyNavalDice, allyPort);
+
+	landCombatDiceCalc.classList = [];
+
+	if (axisTypeCounter.landTypes >= allyTypeCounter.landTypes){
+		landCombatDiceCalc.classList.add("axisAdvantage");
+	}
+
+	if (allyTypeCounter.landTypes >= axisTypeCounter.landTypes){
+		landCombatDiceCalc.classList.add("allyAdvantage");
+	}
+
+	seaCombatDiceCalc.classList = [];
+
+	if (axisTypeCounter.navalTypes >= allyTypeCounter.navalTypes){
+		seaCombatDiceCalc.classList.add("axisAdvantage");
+	}
+
+	if (allyTypeCounter.navalTypes >= axisTypeCounter.navalTypes){
+		seaCombatDiceCalc.classList.add("allyAdvantage");
+	}
+}
+
+function sideCount(sideUnits, landDiceEl, navalDiceEl, port) {
+	let sideNavalAirDice = 0;
+	let sideNavalSurfaceDice = 0;
+	let sideLandAirDice = 0;
+	let sideLandGroundDice = 0;
+	let sideNavalTypes = 0;
+	let sideLandTypes = 0;
+
+	for (let sideUnitName in sideUnits) {
+		let sideUnit = sideUnits[sideUnitName];
+
+		let battleModes = sideUnit.battleModes;
+
+		let atleastOneUnitType = false;
+
+		for (let i = 0; i < battleModes.length; i++) {
+			let battleMode = battleModes[i];
+
+			let qty = battleMode.qty || 0;
+
+			if (qty) {
+				atleastOneUnitType = true;
+			}
+
+			if (battleMode.modesAvailable["land"]) {
+				sideLandGroundDice += qty * battleMode.combatDice;
+				sideLandAirDice += qty * battleMode.airDice;
+			}
+
+			if (battleMode.modesAvailable["naval"]) {
+				sideNavalSurfaceDice += qty * battleMode.combatDice;
+				sideNavalAirDice += qty * battleMode.airDice;
+			}
+		}
+
+		if (atleastOneUnitType) {
+			if (sideUnit.type == "land") {
+				sideLandTypes++;
+			}
+			if (sideUnit.type == "naval") {
+				sideNavalTypes++;
+			}
+		}
+	}
+
+	if(port.checked){
+		sideNavalSurfaceDice += 2;
+	}
+
+	landDiceEl.innerText = " - Ground Dice: " + sideLandGroundDice + "/30 | Air Dice: " + sideLandAirDice + "/30";
+	navalDiceEl.innerText = " - Surface Dice: " + sideNavalSurfaceDice + "/30 | Air Dice: " + sideNavalAirDice + "/30";
+
+	let typeCounts = {
+		landTypes: sideLandTypes,
+		navalTypes: sideNavalTypes
+	}
+
+	return typeCounts;
 }

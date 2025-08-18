@@ -269,63 +269,75 @@
 				<button id="rollDice" class="spacing">Roll</button>
 			</div>
 
-			<table id="landCombatHelper" class="combatHelper">
-				<thead>
-					<tr>
-						<th colspan="10">Land Combat Helper</th>
-					</tr>
-
-					<tr>
-						<th colspan="4">Axis</th>
-						<th colspan="2">Dice</th>
-						<th colspan="4">Allies</th>
-					</tr>
-
-					<tr>
-						<th>Unit</th>
-						<th>Mode</th>
-						<th>Qty</th>
-						<th>Defense</th>
-						<th>Land</th>
-						<th>Air</th>
-						<th>Defense</th>
-						<th>Qty</th>
-						<th>Mode</th>
-						<th>Unit</th>
-					</tr>
-				</thead>
-				<tbody id="landCombatDiceCalc">
-				</tbody>
-			</table>
-			
-			<table id="seaCombatHelper" class="combatHelper">
-				<thead>
-					<tr>
-						<th colspan="10">Sea Combat Helper</th>
-					</tr>
-
-					<tr>
-						<th colspan="4">Axis</th>
-						<th colspan="2">Dice</th>
-						<th colspan="4">Allies</th>
-					</tr>
-
-					<tr>
-						<th>Unit</th>
-						<th>Mode</th>
-						<th>Qty</th>
-						<th>Defense</th>
-						<th>Sea</th>
-						<th>Air</th>
-						<th>Defense</th>
-						<th>Qty</th>
-						<th>Mode</th>
-						<th>Unit</th>
-					</tr>
-				</thead>
-				<tbody id="seaCombatDiceCalc">
-				</tbody>
-			</table>
+			<form id="combatHelperForm">
+				<table id="landCombatHelper" class="combatHelper">
+					<thead>
+						<tr>
+							<th colspan="10">Land Combat</th>
+						</tr>
+	
+						<tr>
+							<th colspan="4">Axis <span id="axisLandDice"></span></th>
+							<th colspan="2">Dice</th>
+							<th colspan="4">Allies <span id="allyLandDice"></span></th>
+						</tr>
+	
+						<tr>
+							<th>Unit</th>
+							<th>Mode</th>
+							<th>Qty</th>
+							<th>Defense</th>
+							<th>Land</th>
+							<th>Air</th>
+							<th>Defense</th>
+							<th>Qty</th>
+							<th>Mode</th>
+							<th>Unit</th>
+						</tr>
+					</thead>
+					<tbody id="landCombatDiceCalc">
+					</tbody>
+				</table>
+	
+				<table id="seaCombatHelper" class="combatHelper">
+					<thead>
+						<tr>
+							<th colspan="10">
+								<label id="axisPortLabel">
+									<input type="checkbox" id="axisPort" />:Axis Port
+								</label>
+								
+								Sea Combat
+								
+								<label id="allyPortLabel">
+									Ally Port:<input type="checkbox" id="allyPort" />
+								</label>
+							</th>
+						</tr>
+	
+						<tr>
+							<th colspan="4">Axis <span id="axisNavalDice"></span></th>
+							<th colspan="2">Dice</th>
+							<th colspan="4">Allies <span id="allyNavalDice"></span></th>
+						</tr>
+	
+						<tr>
+							<th>Unit</th>
+							<th>Mode</th>
+							<th>Qty</th>
+							<th>Defense</th>
+							<th>Sea</th>
+							<th>Air</th>
+							<th>Defense</th>
+							<th>Qty</th>
+							<th>Mode</th>
+							<th>Unit</th>
+						</tr>
+					</thead>
+					<tbody id="seaCombatDiceCalc">
+					</tbody>
+				</table>
+			</form>
 		</div>
 	</div>
 

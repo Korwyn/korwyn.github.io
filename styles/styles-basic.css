@@ -1,5 +1,20 @@
 @charset "UTF-8";
 
+#axisPortLabel {
+	float: left;
+	padding-left: 10px;
+}
+
+#allyPortLabel {
+	float: right;
+	padding-right: 10px;
+}
+
+#axisPort, #allyPort {
+	position: relative;
+	top: 1px;
+}
+
 div.hitpoint {
 	width: 28px;
 	height: 28px;
@@ -10,9 +25,9 @@ div.hitpoint {
 }
 
 .combatHelper {
-	width: 700px;
+	width: 740px;
 	margin: 0 auto;
-	margin-top: 10px;
+	margin-top: 20px;
 }
 
 .combatHelper td, .combatHelper th {

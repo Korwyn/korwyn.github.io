@@ -5,7 +5,7 @@ if (countrySetup) {
 }
 setupCards();
 
-function dragOverHandler(event){
+function dragOverHandler(event) {
 	event.preventDefault();
 	event.dataTransfer.dropEffect = "move";
 }
@@ -16,8 +16,8 @@ function dropHandler(event) {
 	let value = this.id.split("CardList")[0];
 	let oldControled = data.oldControled;
 	let territoryId = data.territoryId;
-	
-	if(value != oldControled){
+
+	if (value != oldControled) {
 		let territory = countries[oldControled].territories[territoryId];
 		territory.isEmbattled = false;
 		territory.countryControlled = value;
@@ -31,7 +31,7 @@ for (let countryName in countries) {
 	let country = countries[countryName];
 
 	let baseElement = document.getElementById(country.id);
-	
+
 	baseElement.addEventListener('drop', dropHandler);
 	baseElement.addEventListener("dragover", dragOverHandler);
 }
@@ -60,9 +60,20 @@ let allyUnitsJson = localStorage.getItem("allyUnits");
 axisUnits = axisUnitsJson ? JSON.parse(axisUnitsJson) : defaultUnitList();
 allyUnits = allyUnitsJson ? JSON.parse(allyUnitsJson) : defaultUnitList();
 
+let allyPortChecked = localStorage.getItem("allyPortChecked");
+let axisPortChecked = localStorage.getItem("axisPortChecked");
+
+if (allyPortChecked == "true") {
+	allyPort.checked = allyPortChecked;
+}
+if (axisPortChecked == "true") {
+	axisPort.checked = axisPortChecked;
+}
+
 setupLandBattleCalc(landCombatDiceCalc, "land");
 setupLandBattleCalc(seaCombatDiceCalc, "naval");
 loadResults();
+unitCounter();
 
 //from ResourceTracker.js
 calcProduction();

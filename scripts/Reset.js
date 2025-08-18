@@ -31,7 +31,7 @@ function resetState() {
 		}
 	}
 	hideTableColumns({ value: individualCol });
-	
+
 	axisUnits = defaultUnitList();
 	allyUnits = defaultUnitList();
 	localStorage.setItem("axisUnits", JSON.stringify(axisUnits));
@@ -40,6 +40,12 @@ function resetState() {
 	setupLandBattleCalc(landCombatDiceCalc, "land");
 	setupLandBattleCalc(seaCombatDiceCalc, "naval");
 
+	localStorage.setItem("allyPortChecked", false);
+	localStorage.setItem("axisPortChecked", false);
+	allyPort.checked = false;
+	axisPort.checked = false;
+
+	unitCounter();
 	clearResultEls();
 	calcProduction();
 	calculateRemainingResources();
