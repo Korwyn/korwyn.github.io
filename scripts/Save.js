@@ -4,4 +4,4 @@ function saveGameState() {
 	localStorage.setItem("version", version);
 }
 
-let version = 6;
+let version = 7;
