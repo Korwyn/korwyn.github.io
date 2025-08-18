@@ -374,8 +374,8 @@ function sideCount(sideUnits, landDiceEl, navalDiceEl, port) {
 		sideNavalSurfaceDice += 2;
 	}
 
-	landDiceEl.innerText = " - Ground Dice: " + sideLandGroundDice + "/30 | Air Dice: " + sideLandAirDice + "/30";
-	navalDiceEl.innerText = " - Surface Dice: " + sideNavalSurfaceDice + "/30 | Air Dice: " + sideNavalAirDice + "/30";
+	landDiceEl.innerText = " - Ground: " + sideLandGroundDice + "/30 | Air: " + sideLandAirDice + "/30";
+	navalDiceEl.innerText = " - Surface: " + sideNavalSurfaceDice + "/30 | Air: " + sideNavalAirDice + "/30";
 
 	let typeCounts = {
 		landTypes: sideLandTypes,
