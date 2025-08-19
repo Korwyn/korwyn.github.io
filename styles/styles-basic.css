@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+.notShown {
+	visibility: hidden;
+}
+
 #axisPortLabel {
 	float: left;
 	padding-left: 10px;
@@ -112,6 +116,13 @@ div.country {
 .absoluteRight {
 	position: absolute;
 	right: 0;
+}
+
+.absoluteCenterTop{
+	position: absolute;
+	right: 0;
+	left: 0;
+	top: 0;
 }
 
 div {

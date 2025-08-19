@@ -22,8 +22,19 @@
 	margin-left: 8px;
 }
 
+#diceRollerTable .td:first-child, div.rollLog div:first-child {
+	width: 290px;
+	border-left: 0px;
+}
+
+div.rollLog div {
+	width: 140px;
+}
+
 #diceRollerTable .td {
-	width: 570px;
+	width: 145px;
+	border-left: 1px solid;
+	
 }
 
 #diceRollerTable .td div {
@@ -39,7 +50,7 @@
 	margin-left: 5px;
 }
 
-#rollDice, #confirmTurn {
+#rollDice, #confirmTurn, .rollDice {
 	appearance: button;
 	background-color: #1899D6;
 	border: solid transparent;
@@ -68,12 +79,12 @@
 	white-space: nowrap;
 }
 
-#rollDice[disabled], #confirmTurn[disabled] {
+#rollDice[disabled], #confirmTurn[disabled], .rollDice[disabled] {
 	background-color: #333333;
 	color: #888888;
 }
 
-#rollDice:after, #confirmTurn:after {
+#rollDice:after, #confirmTurn:after, .rollDice:after {
 	background-clip: padding-box;
 	background-color: #1CB0F6;
 	border: solid transparent;
@@ -88,22 +99,22 @@
 	z-index: -1;
 }
 
-#rollDice:main, #rollDice:focus, #confirmTurn:main, #confirmTurn:focus {
+#rollDice:main, #rollDice:focus, #confirmTurn:main, #confirmTurn:focus, .rollDice:main, .rollDice:focus {
 	user-select: auto;
 }
 
-#rollDice:hover:not(:disabled), #confirmTurn:hover:not(:disabled) {
+#rollDice:hover:not(:disabled), #confirmTurn:hover:not(:disabled), .rollDice:hover:not(:disabled) {
 	filter: brightness(1.1);
 }
 
-#rollDice:disabled, #confirmTurn:disabled {
+#rollDice:disabled, #confirmTurn:disabled, .rollDice:disabled {
 	cursor: auto;
 }
 
-#rollDice:active:after, #confirmTurn:active:after {
+#rollDice:active:after, #confirmTurn:active:after, .rollDice:active:after {
 	border-width: 0 0 0px;
 }
 
-#rollDice:active, #confirmTurn:active {
+#rollDice:active, #confirmTurn:active, .rollDice:active {
 	padding-bottom: 10px;
 }

@@ -14,6 +14,7 @@ function resetState() {
 	numDiceToRollSetup = 2;//set Default
 	localStorage.setItem("numDiceToRoll", numDiceToRollSetup);
 	localStorage.setItem("resultRolls", JSON.stringify([]));
+	localStorage.setItem("logArray", JSON.stringify([]));
 	document.getElementById("diceRadio2").checked = true;
 
 	let individualCol = "allShow";

@@ -194,7 +194,11 @@
 				<div class="tr">
 					<div class="td center paddingFive thinBorderRight thinBorderBottom">Dice #</div>
 
-					<div class="td center thinBorderBottom">Results</div>
+					<div class="td center thinBorderBottom rollLog">
+						<div class="inlineBlock">Current Roll</div>
+						<div class="inlineBlock">Prior Roll 1</div>
+						<div class="inlineBlock">Prior Roll 2</div>
+					</div>
 				</div>
 				<div class="tr">
 					<div id="diceRollerNumberDiv" class="td middle thinBorderRight">
@@ -245,21 +249,33 @@
 						<div id="diceRollerTable" class="table">
 							<div class="tr" id="yellowRoll">
 								<div class="td center middle resultRoll" id="yellowResultRoll"></div>
+								<div class="td center middle resultRoll" id="yellowPrior1"></div>
+								<div class="td center middle resultRoll" id="yellowPrior2"></div>
 							</div>
-							<div class="tableRow" id="blueRoll">
+							<div class="tr" id="blueRoll">
 								<div class="td center middle resultRoll" id="blueResultRoll"></div>
+								<div class="td center middle resultRoll" id="bluePrior1"></div>
+								<div class="td center middle resultRoll" id="bluePrior2"></div>
 							</div>
-							<div class="tableRow" id="greenRoll">
+							<div class="tr" id="greenRoll">
 								<div class="td center middle resultRoll" id="greenResultRoll"></div>
+								<div class="td center middle resultRoll" id="greenPrior1"></div>
+								<div class="td center middle resultRoll" id="greenPrior2"></div>
 							</div>
-							<div class="tableRow" id="redRoll">
+							<div class="tr" id="redRoll">
 								<div class="td center middle resultRoll" id="redResultRoll"></div>
+								<div class="td center middle resultRoll" id="redPrior1"></div>
+								<div class="td center middle resultRoll" id="redPrior2"></div>
 							</div>
-							<div class="tableRow" id="blackRoll">
+							<div class="tr" id="blackRoll">
 								<div class="td center middle resultRoll" id="blackResultRoll"></div>
+								<div class="td center middle resultRoll" id="blackPrior1"></div>
+								<div class="td center middle resultRoll" id="blackPrior2"></div>
 							</div>
-							<div class="tableRow" id="whiteRoll">
+							<div class="tr" id="whiteRoll">
 								<div class="td center middle  resultRoll" id="whiteResultRoll"></div>
+								<div class="td center middle  resultRoll" id="whitePrior1"></div>
+								<div class="td center middle  resultRoll" id="whitePrior2"></div>
 							</div>
 						</div>
 					</div>
@@ -288,7 +304,12 @@
 							<th>Qty</th>
 							<th>Defense</th>
 							<th>Land</th>
-							<th>Air</th>
+							<th>
+								<div class="relative">
+									<div class="notShown">Land</div>
+									<div class="absoluteCenterTop">Air</div>
+								</div>
+							</th>
 							<th>Defense</th>
 							<th>Qty</th>
 							<th>Mode</th>
@@ -297,6 +318,51 @@
 					</thead>
 					<tbody id="landCombatDiceCalc">
 					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="2">
+								<div class="spacing inlineBlock">
+									<button id="" class="spacing rollDice">Roll Air</button>
+								</div>
+								<div>
+									Remaining:
+									<span id="axisLandAirDiceRemaining" class="bold">30</span>
+								</div>
+							</td>
+							<td colspan="2">
+								<div class="spacing inlineBlock">
+									<button id="" class="spacing rollDice">Roll Land</button>
+								</div>
+								<div>
+									Remaining:
+									<span id="axisLandDiceRemaining" class="bold">30</span>
+								</div>
+							</td>
+							<td colspan="2">
+								<div>Max of</div>
+								<div>10 dice</div>
+								<div>per roll</div>
+							</td>
+							<td colspan="2">
+								<div class="spacing inlineBlock">
+									<button id="" class="spacing rollDice">Roll Land</button>
+								</div>
+								<div>
+									Remaining:
+									<span id="allyLandDiceRemaining" class="bold">30</span>
+								</div>
+							</td>
+							<td colspan="2">
+								<div class="spacing inlineBlock">
+									<button id="" class="spacing rollDice">Roll Air</button>
+								</div>
+								<div>
+									Remaining:
+									<span id="allyLandAirDiceRemaining" class="bold">30</span>
+								</div>
+							</td>
+						</tr>
+					</tfoot>
 				</table>
 	
 				<table id="seaCombatHelper" class="combatHelper">
@@ -336,6 +402,51 @@
 					</thead>
 					<tbody id="seaCombatDiceCalc">
 					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="2">
+								<div class="spacing inlineBlock">
+									<button id="" class="spacing rollDice">Roll Air</button>
+								</div>
+								<div>
+									Remaining:
+									<span id="axisLandAirDiceRemain" class="bold">30</span>
+								</div>
+							</td>
+							<td colspan="2">
+								<div class="spacing inlineBlock">
+									<button id="" class="spacing rollDice">Roll Land</button>
+								</div>
+								<div>
+									Remaining:
+									<span id="axisLandDiceRemain" class="bold">30</span>
+								</div>
+							</td>
+							<td colspan="2">
+								<div>Max of</div>
+								<div>10 dice</div>
+								<div>per roll</div>
+							</td>
+							<td colspan="2">
+								<div class="spacing inlineBlock">
+									<button id="" class="spacing rollDice">Roll Land</button>
+								</div>
+								<div>
+									Remaining:
+									<span id="allyLandDiceRemaini" class="bold">30</span>
+								</div>
+							</td>
+							<td colspan="2">
+								<div class="spacing inlineBlock">
+									<button id="" class="spacing rollDice">Roll Air</button>
+								</div>
+								<div>
+									Remaining:
+									<span id="allyLandAirDiceRemaini" class="bold">30</span>
+								</div>
+							</td>
+						</tr>
+					</tfoot>
 				</table>
 			</form>
 		</div>

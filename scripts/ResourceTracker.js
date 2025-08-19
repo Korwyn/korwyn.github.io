@@ -27,6 +27,7 @@ let germanyColumns = document.getElementById("germanyColumns");
 let italyColumns = document.getElementById("italyColumns");
 let japanColumns = document.getElementById("japanColumns");
 let resourceTable = document.getElementById("resourceTable");
+let resourceTrackerForm = document.getElementById("resourceTrackerForm");
 
 let countryCols = [usaColumns, chinaColumns, ukColumns, ussrColumns, germanyColumns, italyColumns, japanColumns];
 
@@ -533,8 +534,6 @@ function unitInput(unit, countryName, unitType, country) {
 	}
 	rowToAppend.appendChild(osrCell);
 }
-
-let resourceTrackerForm = document.getElementById("resourceTrackerForm");
 
 resourceTrackerForm.addEventListener("change", function(event) {
 	let target = event.target;
