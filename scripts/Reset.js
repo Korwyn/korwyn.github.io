@@ -11,12 +11,6 @@ function resetState() {
 	navigator.vibrate(200);
 	document.getElementById("tabTerritory").click();
 
-	numDiceToRollSetup = 2;//set Default
-	localStorage.setItem("numDiceToRoll", numDiceToRollSetup);
-	localStorage.setItem("resultRolls", JSON.stringify([]));
-	localStorage.setItem("logArray", JSON.stringify([]));
-	document.getElementById("diceRadio2").checked = true;
-
 	let individualCol = "allShow";
 
 	localStorage.setItem("individualCol", individualCol);
@@ -32,22 +26,8 @@ function resetState() {
 		}
 	}
 	hideTableColumns({ value: individualCol });
-
-	axisUnits = defaultUnitList();
-	allyUnits = defaultUnitList();
-	localStorage.setItem("axisUnits", JSON.stringify(axisUnits));
-	localStorage.setItem("allyUnits", JSON.stringify(allyUnits));
-
-	setupLandBattleCalc(landCombatDiceCalc, "land");
-	setupLandBattleCalc(seaCombatDiceCalc, "naval");
-
-	localStorage.setItem("allyPortChecked", false);
-	localStorage.setItem("axisPortChecked", false);
-	allyPort.checked = false;
-	axisPort.checked = false;
-
-	unitCounter();
-	clearResultEls();
+	
+	clearDiceRollerInfo();
 	calcProduction();
 	calculateRemainingResources();
 	displayResourceLog();

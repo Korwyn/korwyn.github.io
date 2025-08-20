@@ -32,8 +32,228 @@ let axisLandAirDiceRemaining = document.getElementById("axisLandAirDiceRemaining
 let axisLandDiceRemaining = document.getElementById("axisLandDiceRemaining");
 let allyLandDiceRemaining = document.getElementById("allyLandDiceRemaining");
 let allyLandAirDiceRemaining = document.getElementById("allyLandAirDiceRemaining");
+let axisNavalAirDiceRemaining = document.getElementById("axisNavalAirDiceRemaining");
+let axisNavalDiceRemaining = document.getElementById("axisNavalDiceRemaining");
+let allyNavalDiceRemaining = document.getElementById("allyNavalDiceRemaining");
+let allyNavalAirDiceRemaining = document.getElementById("allyNavalAirDiceRemaining");
+let allyLandAirRoller = document.getElementById("allyLandAirRoller");
+let allyLandRoller = document.getElementById("allyLandRoller");
+let axisLandRoller = document.getElementById("axisLandRoller");
+let axisLandAirRoller = document.getElementById("axisLandAirRoller");
+let allyNavalAirRoller = document.getElementById("allyNavalAirRoller");
+let allyNavalSurfaceRoller = document.getElementById("allyNavalSurfaceRoller");
+let axisNavalSurfaceRoller = document.getElementById("axisNavalSurfaceRoller");
+let axisNavalAirRoller = document.getElementById("axisNavalAirRoller");
+let clearDice = document.getElementById("clearDice");
+
+clearDice.addEventListener('click', function(){
+	if(!rollDiceButton.disabled){
+		clearDiceRollerInfo();
+	}
+});
+
+function clearDiceRollerInfo(){
+		numDiceToRoll = 2;//set Default
+
+		logArray = [];
+		results = [];
+		localStorage.setItem("numDiceToRoll", numDiceToRoll);
+		localStorage.setItem("resultRolls", JSON.stringify([]));
+		localStorage.setItem("logArray", JSON.stringify([]));
+		document.getElementById("diceRadio2").checked = true;
+
+		axisUnits = defaultUnitList();
+		allyUnits = defaultUnitList();
+		localStorage.setItem("axisUnits", JSON.stringify(axisUnits));
+		localStorage.setItem("allyUnits", JSON.stringify(allyUnits));
+
+
+		localStorage.setItem("allyPortChecked", false);
+		localStorage.setItem("axisPortChecked", false);
+		allyPort.checked = false;
+		axisPort.checked = false;
+
+		setupLandBattleCalc(landCombatDiceCalc, "land");
+		setupLandBattleCalc(seaCombatDiceCalc, "naval");
+		clearResultEls();
+		unitCounter();
+}
+
+allyLandAirRoller.addEventListener('click', function(event) {
+	event.preventDefault();
+
+	let diceToRoll = 0;
+
+	if (sidesDice.ally.sideLandAirDice > 10) {
+		sidesDice.ally.sideLandAirDice -= 10;
+		diceToRoll = 10;
+	}
+	else {
+		diceToRoll = sidesDice.ally.sideLandAirDice;
+		sidesDice.ally.sideLandAirDice = 0;
+	}
+
+	setDiceAndRoll(diceToRoll);
+});
+
+allyLandRoller.addEventListener('click', function(event) {
+	event.preventDefault();
+
+	let diceToRoll = 0;
+
+	if (sidesDice.ally.sideLandGroundDice > 10) {
+		sidesDice.ally.sideLandGroundDice -= 10;
+		diceToRoll = 10;
+	}
+	else {
+		diceToRoll = sidesDice.ally.sideLandGroundDice;
+		sidesDice.ally.sideLandGroundDice = 0;
+	}
+
+	setDiceAndRoll(diceToRoll);
+});
+
+axisLandRoller.addEventListener('click', function(event) {
+	event.preventDefault();
+
+	let diceToRoll = 0;
+
+	if (sidesDice.axis.sideLandGroundDice > 10) {
+		sidesDice.axis.sideLandGroundDice -= 10;
+		diceToRoll = 10;
+	}
+	else {
+		diceToRoll = sidesDice.axis.sideLandGroundDice;
+		sidesDice.axis.sideLandGroundDice = 0;
+	}
+
+	setDiceAndRoll(diceToRoll);
+});
+
+axisLandAirRoller.addEventListener('click', function(event) {
+	event.preventDefault();
+
+	let diceToRoll = 0;
+
+	if (sidesDice.axis.sideLandAirDice > 10) {
+		sidesDice.axis.sideLandAirDice -= 10;
+		diceToRoll = 10;
+	}
+	else {
+		diceToRoll = sidesDice.axis.sideLandAirDice;
+		sidesDice.axis.sideLandAirDice = 0;
+	}
+
+	setDiceAndRoll(diceToRoll);
+});
+
+allyNavalAirRoller.addEventListener('click', function(event) {
+	event.preventDefault();
+
+	let diceToRoll = 0;
+
+	if (sidesDice.ally.sideNavalAirDice > 10) {
+		sidesDice.ally.sideNavalAirDice -= 10;
+		diceToRoll = 10;
+	}
+	else {
+		diceToRoll = sidesDice.ally.sideNavalAirDice;
+		sidesDice.ally.sideNavalAirDice = 0;
+	}
+
+	setDiceAndRoll(diceToRoll);
+});
+
+allyNavalSurfaceRoller.addEventListener('click', function(event) {
+	event.preventDefault();
+
+	let diceToRoll = 0;
+
+	if (sidesDice.ally.sideNavalSurfaceDice > 10) {
+		sidesDice.ally.sideNavalSurfaceDice -= 10;
+		diceToRoll = 10;
+	}
+	else {
+		diceToRoll = sidesDice.ally.sideNavalSurfaceDice;
+		sidesDice.ally.sideNavalSurfaceDice = 0;
+	}
+
+	setDiceAndRoll(diceToRoll);
+});
+
+axisNavalSurfaceRoller.addEventListener('click', function(event) {
+	event.preventDefault();
+
+	let diceToRoll = 0;
+
+	if (sidesDice.axis.sideNavalSurfaceDice > 10) {
+		sidesDice.axis.sideNavalSurfaceDice -= 10;
+		diceToRoll = 10;
+	}
+	else {
+		diceToRoll = sidesDice.axis.sideNavalSurfaceDice;
+		sidesDice.axis.sideNavalSurfaceDice = 0;
+	}
+
+	setDiceAndRoll(diceToRoll);
+});
+
+axisNavalAirRoller.addEventListener('click', function(event) {
+	event.preventDefault();
+
+	let diceToRoll = 0;
+
+	if (sidesDice.axis.sideNavalAirDice > 10) {
+		sidesDice.axis.sideNavalAirDice -= 10;
+		diceToRoll = 10;
+	}
+	else {
+		diceToRoll = sidesDice.axis.sideNavalAirDice;
+		sidesDice.axis.sideNavalAirDice = 0;
+	}
+
+	setDiceAndRoll(diceToRoll);
+});
+
+function setDiceAndRoll(numDiceToRollSetup) {
+	if (numDiceToRollSetup > 0) {
+		window.scrollTo(0, 60);
+		let diceIdElName = "diceRadio" + numDiceToRollSetup;
+		document.getElementById(diceIdElName).checked = true;
+		numDiceToRoll = numDiceToRollSetup;
+		diceRemainingSpans();
+		rollDice();
+	}
+}
 
 let sidesDice = {};
+
+let rollSections = {
+	partOne: {
+		yellow: yellowResultRoll,
+		blue: blueResultRoll,
+		green: greenResultRoll,
+		red: redResultRoll,
+		black: blackResultRoll,
+		white: whiteResultRoll
+	},
+	partTwo: {
+		yellow: yellowPrior1,
+		blue: bluePrior1,
+		green: greenPrior1,
+		red: redPrior1,
+		black: blackPrior1,
+		white: whitePrior1
+	},
+	partThree: {
+		yellow: yellowPrior2,
+		blue: bluePrior2,
+		green: greenPrior2,
+		red: redPrior2,
+		black: blackPrior2,
+		white: whitePrior2
+	}
+};
 
 combatHelperForm.addEventListener("change", function(event) {
 	let target = event.target;
@@ -71,6 +291,10 @@ let logArray = [];
 let results = [];
 
 rollDiceButton.addEventListener("click", function() {
+	rollDice();
+});
+
+function rollDice() {
 	clearResultEls();
 
 	if (numDiceToRoll && !rollDiceButton.disabled) {
@@ -87,7 +311,7 @@ rollDiceButton.addEventListener("click", function() {
 			rollTheDice(numDiceToRoll);
 		}, 600);
 	}
-});
+}
 
 function appendLogRolls() {
 	if (logArray.length == 3) {
@@ -98,7 +322,7 @@ function appendLogRolls() {
 		let priorResults = logArray[0];
 
 		for (let i = 0; i < priorResults.length; i++) {
-			appendPrior1(priorResults[i]);
+			appendRoll(priorResults[i], rollSections.partTwo);
 		}
 	}
 
@@ -106,7 +330,7 @@ function appendLogRolls() {
 		let priorResults = logArray[1];
 
 		for (let i = 0; i < priorResults.length; i++) {
-			appendPrior2(priorResults[i]);
+			appendRoll(priorResults[i], rollSections.partThree);
 		}
 	}
 }
@@ -122,7 +346,7 @@ function rollTheDice(rollingNumber) {
 		let resultRoll = randomIntFromInterval(1, 12);
 		results.push(resultRoll);
 
-		appendRoll(resultRoll);
+		appendRoll(resultRoll, rollSections.partOne);
 
 		setTimeout(function() {
 			rollTheDice(rollingNumber - 1);
@@ -157,17 +381,17 @@ function loadResults() {
 		results = JSON.parse(loadResults);
 
 		for (let i = 0; i < results.length; i++) {
-			appendRoll(results[i]);
+			appendRoll(results[i], rollSections.partOne);
 		}
 	}
-	
-	if(logResults){
+
+	if (logResults) {
 		logArray = JSON.parse(logResults);
 		appendLogRolls();
 	}
 }
 
-function appendRoll(resultRoll) {
+function appendRoll(resultRoll, section) {
 	let newDiv = document.createElement("div");
 
 	let divToApend = {};
@@ -177,90 +401,22 @@ function appendRoll(resultRoll) {
 	}
 
 	if (resultRoll < 5) {
-		divToApend = yellowResultRoll;
+		divToApend = section.yellow;
 	}
 	else if (resultRoll < 8) {
-		divToApend = blueResultRoll;
+		divToApend = section.blue;
 	}
 	else if (resultRoll < 10) {
-		divToApend = greenResultRoll;
+		divToApend = section.green;
 	}
 	else if (resultRoll == 10) {
-		divToApend = redResultRoll;
+		divToApend = section.red;
 	}
 	else if (resultRoll == 11) {
-		divToApend = whiteResultRoll;
+		divToApend = section.white;
 	}
 	else if (resultRoll == 12) {
-		divToApend = blackResultRoll;
-	}
-	else if (resultRoll > 12) {
-		alert("???? something went wrong in the die roll");
-	}
-
-	divToApend.appendChild(newDiv);
-}
-
-function appendPrior1(resultRoll) {
-	let newDiv = document.createElement("div");
-
-	let divToApend = {};
-
-	if (resultRoll < 1) {
-		alert("???? something went wrong in the die roll");
-	}
-
-	if (resultRoll < 5) {
-		divToApend = yellowPrior1;
-	}
-	else if (resultRoll < 8) {
-		divToApend = bluePrior1;
-	}
-	else if (resultRoll < 10) {
-		divToApend = greenPrior1;
-	}
-	else if (resultRoll == 10) {
-		divToApend = redPrior1;
-	}
-	else if (resultRoll == 11) {
-		divToApend = whitePrior1;
-	}
-	else if (resultRoll == 12) {
-		divToApend = blackPrior1;
-	}
-	else if (resultRoll > 12) {
-		alert("???? something went wrong in the die roll");
-	}
-
-	divToApend.appendChild(newDiv);
-}
-
-function appendPrior2(resultRoll) {
-	let newDiv = document.createElement("div");
-
-	let divToApend = {};
-
-	if (resultRoll < 1) {
-		alert("???? something went wrong in the die roll");
-	}
-
-	if (resultRoll < 5) {
-		divToApend = yellowPrior2;
-	}
-	else if (resultRoll < 8) {
-		divToApend = bluePrior2;
-	}
-	else if (resultRoll < 10) {
-		divToApend = greenPrior2;
-	}
-	else if (resultRoll == 10) {
-		divToApend = redPrior2;
-	}
-	else if (resultRoll == 11) {
-		divToApend = whitePrior2;
-	}
-	else if (resultRoll == 12) {
-		divToApend = blackPrior2;
+		divToApend = section.black;
 	}
 	else if (resultRoll > 12) {
 		alert("???? something went wrong in the die roll");
@@ -464,11 +620,19 @@ function diceRemainingSpans() {
 	sidesDice.axis.sideLandGroundDice = sidesDice.axis.sideLandGroundDice > 30 ? 30 : sidesDice.axis.sideLandGroundDice;
 	sidesDice.ally.sideLandAirDice = sidesDice.ally.sideLandAirDice > 30 ? 30 : sidesDice.ally.sideLandAirDice;
 	sidesDice.ally.sideLandGroundDice = sidesDice.ally.sideLandGroundDice > 30 ? 30 : sidesDice.ally.sideLandGroundDice;
+	sidesDice.axis.sideNavalAirDice = sidesDice.axis.sideNavalAirDice > 30 ? 30 : sidesDice.axis.sideNavalAirDice;
+	sidesDice.axis.sideNavalSurfaceDice = sidesDice.axis.sideNavalSurfaceDice > 30 ? 30 : sidesDice.axis.sideNavalSurfaceDice;
+	sidesDice.ally.sideNavalAirDice = sidesDice.ally.sideNavalAirDice > 30 ? 30 : sidesDice.ally.sideNavalAirDice;
+	sidesDice.ally.sideNavalSurfaceDice = sidesDice.ally.sideNavalSurfaceDice > 30 ? 30 : sidesDice.ally.sideNavalSurfaceDice;
 
 	axisLandAirDiceRemaining.innerText = sidesDice.axis.sideLandAirDice;
 	axisLandDiceRemaining.innerText = sidesDice.axis.sideLandGroundDice;
-	allyLandDiceRemaining.innerText = sidesDice.ally.sideLandAirDice;
-	allyLandAirDiceRemaining.innerText = sidesDice.ally.sideLandGroundDice;
+	allyLandDiceRemaining.innerText = sidesDice.ally.sideLandGroundDice;
+	allyLandAirDiceRemaining.innerText = sidesDice.ally.sideLandAirDice;
+	axisNavalAirDiceRemaining.innerText = sidesDice.axis.sideNavalAirDice;
+	axisNavalDiceRemaining.innerText = sidesDice.axis.sideNavalSurfaceDice;
+	allyNavalDiceRemaining.innerText = sidesDice.ally.sideNavalSurfaceDice;
+	allyNavalAirDiceRemaining.innerText = sidesDice.ally.sideNavalAirDice;
 }
 
 function sideCount(sideUnits, landDiceEl, navalDiceEl, port,) {
@@ -522,8 +686,6 @@ function sideCount(sideUnits, landDiceEl, navalDiceEl, port,) {
 
 	landDiceEl.innerText = " - Land: " + sideLandGroundDice + "/30 | Air: " + sideLandAirDice + "/30";
 	navalDiceEl.innerText = " - Sea: " + sideNavalSurfaceDice + "/30 | Air: " + sideNavalAirDice + "/30";
-
-	airDice = sideLandGroundDice
 
 	let typeCounts = {
 		landTypes: sideLandTypes,

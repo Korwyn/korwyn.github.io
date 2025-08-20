@@ -196,8 +196,8 @@
 
 					<div class="td center thinBorderBottom rollLog">
 						<div class="inlineBlock">Current Roll</div>
-						<div class="inlineBlock">Prior Roll 1</div>
-						<div class="inlineBlock">Prior Roll 2</div>
+						<div class="inlineBlock">1 Roll Prior</div>
+						<div class="inlineBlock">2 Rolls Prior</div>
 					</div>
 				</div>
 				<div class="tr">
@@ -283,6 +283,7 @@
 			</div>
 			<div class="spacing inlineBlock">
 				<button id="rollDice" class="spacing">Roll</button>
+				<button id="clearDice" class="spacing">Clear</button>
 			</div>
 
 			<form id="combatHelperForm">
@@ -322,7 +323,7 @@
 						<tr>
 							<td colspan="2">
 								<div class="spacing inlineBlock">
-									<button id="" class="spacing rollDice">Roll Air</button>
+									<button id="axisLandAirRoller" class="spacing rollDice">Roll Air</button>
 								</div>
 								<div>
 									Remaining:
@@ -331,7 +332,7 @@
 							</td>
 							<td colspan="2">
 								<div class="spacing inlineBlock">
-									<button id="" class="spacing rollDice">Roll Land</button>
+									<button id="axisLandRoller" class="spacing rollDice">Roll Land</button>
 								</div>
 								<div>
 									Remaining:
@@ -345,7 +346,7 @@
 							</td>
 							<td colspan="2">
 								<div class="spacing inlineBlock">
-									<button id="" class="spacing rollDice">Roll Land</button>
+									<button id="allyLandRoller" class="spacing rollDice">Roll Land</button>
 								</div>
 								<div>
 									Remaining:
@@ -354,7 +355,7 @@
 							</td>
 							<td colspan="2">
 								<div class="spacing inlineBlock">
-									<button id="" class="spacing rollDice">Roll Air</button>
+									<button id="allyLandAirRoller" class="spacing rollDice">Roll Air</button>
 								</div>
 								<div>
 									Remaining:
@@ -406,20 +407,20 @@
 						<tr>
 							<td colspan="2">
 								<div class="spacing inlineBlock">
-									<button id="" class="spacing rollDice">Roll Air</button>
+									<button id="axisNavalAirRoller" class="spacing rollDice">Roll Air</button>
 								</div>
 								<div>
 									Remaining:
-									<span id="axisLandAirDiceRemain" class="bold">30</span>
+									<span id="axisNavalAirDiceRemaining" class="bold">30</span>
 								</div>
 							</td>
 							<td colspan="2">
 								<div class="spacing inlineBlock">
-									<button id="" class="spacing rollDice">Roll Land</button>
+									<button id="axisNavalSurfaceRoller" class="spacing rollDice">Roll Sea</button>
 								</div>
 								<div>
 									Remaining:
-									<span id="axisLandDiceRemain" class="bold">30</span>
+									<span id="axisNavalDiceRemaining" class="bold">30</span>
 								</div>
 							</td>
 							<td colspan="2">
@@ -429,20 +430,20 @@
 							</td>
 							<td colspan="2">
 								<div class="spacing inlineBlock">
-									<button id="" class="spacing rollDice">Roll Land</button>
+									<button id="allyNavalSurfaceRoller" class="spacing rollDice">Roll Sea</button>
 								</div>
 								<div>
 									Remaining:
-									<span id="allyLandDiceRemaini" class="bold">30</span>
+									<span id="allyNavalDiceRemaining" class="bold">30</span>
 								</div>
 							</td>
 							<td colspan="2">
 								<div class="spacing inlineBlock">
-									<button id="" class="spacing rollDice">Roll Air</button>
+									<button id="allyNavalAirRoller" class="spacing rollDice">Roll Air</button>
 								</div>
 								<div>
 									Remaining:
-									<span id="allyLandAirDiceRemaini" class="bold">30</span>
+									<span id="allyNavalAirDiceRemaining" class="bold">30</span>
 								</div>
 							</td>
 						</tr>
