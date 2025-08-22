@@ -112,7 +112,7 @@ td div.bomber, .axisAdvantage div.battleship.ally, .allyAdvantage div.battleship
 	background-image: linear-gradient(45deg, rgba(255, 10, 10, .9), rgba(255, 10, 10, .9), rgba(0, 0, 0, .9), rgba(0, 0, 0, .9));
 }
 
-td div.bomber.axis:last-child, td div.bomber.ally:first-child, .axisAdvantage div.battleship.ally:first-child, .allyAdvantage div.battleship.axis:last-child  {
+td div.bomber.axis:last-child, td div.bomber.ally:first-child, .axisAdvantage div.battleship.ally:first-child, .allyAdvantage div.battleship.axis:last-child {
 	background-image: linear-gradient(45deg, rgba(255, 255, 255, .9), rgba(255, 255, 255, .9), rgba(255, 10, 10, .9), rgba(255, 10, 10, .9), rgba(0, 0, 0, .9), rgba(0, 0, 0, .9));
 }
 
@@ -120,11 +120,11 @@ td div.fighter, .axisAdvantage div.tank.ally, .allyAdvantage div.tank.axis, .axi
 	background-image: linear-gradient(45deg, rgba(71, 120, 68, .9), rgba(71, 120, 68, .9), rgba(0, 0, 0, .9), rgba(0, 0, 0, .9));
 }
 
-td div.fighter.axis:last-child, td div.fighter.ally:first-child, .axisAdvantage div.tank.ally:first-child, .allyAdvantage div.tank.axis:last-child, .axisAdvantage div.carrier.ally:first-child, .allyAdvantage div.carrier.axis:last-child  {
+td div.fighter.axis:last-child, td div.fighter.ally:first-child, .axisAdvantage div.tank.ally:first-child, .allyAdvantage div.tank.axis:last-child, .axisAdvantage div.carrier.ally:first-child, .allyAdvantage div.carrier.axis:last-child {
 	background-image: linear-gradient(45deg, rgba(255, 255, 255, .9), rgba(255, 255, 255, .9), rgba(71, 120, 68, .9), rgba(71, 120, 68, .9), rgba(0, 0, 0, .9), rgba(0, 0, 0, .9));
 }
 
-td div.cruiser.Escort { 
+td div.cruiser.Escort {
 	background-image: linear-gradient(45deg, rgba(255, 10, 10, .9), rgba(255, 10, 10, .9), rgba(70, 110, 158, .9), rgba(70, 110, 158, .9), rgba(71, 120, 68, .9), rgba(71, 120, 68, .9));
 }
 
@@ -144,11 +144,11 @@ td div.cruiser.Escort {
 	background-image: linear-gradient(45deg, rgba(255, 255, 255, .9), rgba(255, 255, 255, .9), rgba(70, 110, 158, .9), rgba(70, 110, 158, .9), rgba(0, 0, 0, .9), rgba(0, 0, 0, .9));
 }
 
-.axisAdvantage div.cruiser.Escort.ally:first-child, .allyAdvantage div.cruiser.Escort.axis:last-child { 
+.axisAdvantage div.cruiser.Escort.ally:first-child, .allyAdvantage div.cruiser.Escort.axis:last-child {
 	background-image: linear-gradient(45deg, rgba(255, 255, 255, .9), rgba(255, 255, 255, .9), rgba(255, 10, 10, .9), rgba(255, 10, 10, .9), rgba(70, 110, 158, .9), rgba(70, 110, 158, .9), rgba(71, 120, 68, .9), rgba(71, 120, 68, .9), rgba(0, 0, 0, .9), rgba(0, 0, 0, .9));
 }
 
-.axisAdvantage div.cruiser.Escort.ally, .allyAdvantage div.cruiser.Escort.axis { 
+.axisAdvantage div.cruiser.Escort.ally, .allyAdvantage div.cruiser.Escort.axis {
 	background-image: linear-gradient(45deg, rgba(255, 10, 10, .9), rgba(255, 10, 10, .9), rgba(70, 110, 158, .9), rgba(70, 110, 158, .9), rgba(71, 120, 68, .9), rgba(71, 120, 68, .9), rgba(0, 0, 0, .9), rgba(0, 0, 0, .9));
 }
 
@@ -162,4 +162,9 @@ td div.cruiser.Escort {
 
 #resourceTable tbody tr:nth-child(even) {
 	background-color: rgba(100, 100, 100, .2);
+}
+
+#combatHelperForm.axisLandAirRoller td:has(#axisLandAirRoller), #combatHelperForm.axisLandRoller td:has(#axisLandRoller), #combatHelperForm.allyLandRoller td:has(#allyLandRoller), #combatHelperForm.allyLandAirRoller td:has(#allyLandAirRoller), #combatHelperForm.axisNavalAirRoller td:has(#axisNavalAirRoller),
+	#combatHelperForm.axisNavalSurfaceRoller td:has(#axisNavalSurfaceRoller), #combatHelperForm.allyNavalSurfaceRoller td:has(#allyNavalSurfaceRoller), #combatHelperForm.allyNavalAirRoller td:has(#allyNavalAirRoller) {
+	background-color: pink;
 }

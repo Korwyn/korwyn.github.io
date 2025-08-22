@@ -61,7 +61,6 @@ function setupCards() {
 			country.productionOsr += territoryOSR;
 
 			let listItem = document.createElement("li");
-			listItem.setAttribute("draggable", true);
 			listItem.setAttribute("id", divId + territory.id);
 
 			let newTerritory = document.createElement("div");
