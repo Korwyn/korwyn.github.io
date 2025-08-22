@@ -43,7 +43,8 @@
 
 #ordersTable .topCommand {
 	height: 50%;
-	border-bottom: 1px dashed;
+    border-bottom-style: dashed;
+    border-color: white;
 	text-align: center;
 }
 
