@@ -1,7 +1,9 @@
 let ordersTable = document.getElementById("ordersTable");
 let oilBidInputField = document.getElementById("oilBidInputField");
+let clearOrders = document.getElementById("clearOrders");
 
 oilBidInputField.addEventListener('change', saveOrdersTabToStorage);
+clearOrders.addEventListener('click', resetOrdersTab);
 
 let commandNotes = countryOrders(9);
 
@@ -74,6 +76,7 @@ function resetOrdersTab(){
 	oilBidInputField.value = "";
 	commandNotes = countryOrders(9);
 	localStorage.setItem("commandNotes", JSON.stringify(commandNotes));
+	localStorage.setItem("ordersOilBid", "");
 	
 	loadOrders();
 }

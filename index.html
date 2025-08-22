@@ -453,14 +453,19 @@
 			</form>
 		</div>
 	</div>
-		
+
 	<div id="ordersDiv" class="tabContent hidden">
-		<div>
-			<input id="oilBidInputField" type="text" inputmode="numeric" placeholder="Oil Bid"/>
-		</div>
-		
-		<div id ="ordersContainer">
-			<div class="table" id="ordersTable">
+		<div id="ordersContainerWrapper">
+			<div>
+				<input id="oilBidInputField" type="text" inputmode="numeric" placeholder="Oil Bid" />
+			</div>
+
+			<div id="ordersContainer">
+				<div class="table" id="ordersTable"></div>
+			</div>
+			
+			<div>
+				<button id="clearOrders" class="spacing">Clear</button>
 			</div>
 		</div>
 	</div>
@@ -468,7 +473,6 @@
 	<div id="mapPlannerDiv" class="tabContent hidden">
 		<img src="images/map-planner.png" width="100%">
 	</div>
-</body>
 
 <script type="text/javascript" src="scripts/Constants.js"></script>
 <script type="text/javascript" src="scripts/TabSet.js"></script>

@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+#ordersContainerWrapper  {
+	display: inline-block;
+	text-align: center;
+}
 
 #ordersTable input {
 	height: 100%;
@@ -54,6 +58,7 @@
 	aspect-ratio: 1/1;
 	background: gray;
 	position: relative;
+    margin-bottom: 15px;
 }
 
 #ordersContainer .table {

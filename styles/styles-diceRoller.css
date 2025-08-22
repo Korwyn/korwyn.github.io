@@ -54,7 +54,7 @@ div.rollLog div {
 	margin-left: 5px;
 }
 
-#rollDice, #confirmTurn, #clearDice, .rollDice {
+#rollDice, #clearOrders, #confirmTurn, #clearDice, .rollDice {
 	appearance: button;
 	background-color: #1899D6;
 	border: solid transparent;
@@ -83,12 +83,12 @@ div.rollLog div {
 	white-space: nowrap;
 }
 
-#rollDice[disabled], #confirmTurn[disabled], .rollDice[disabled] {
+#rollDice[disabled], #confirmTurn[disabled], .rollDice[disabled], #clearOrders[disabled] {
 	background-color: #333333;
 	color: #888888;
 }
 
-#rollDice:after, #confirmTurn:after, #clearDice:after, .rollDice:after {
+#rollDice:after, #confirmTurn:after, #clearDice:after, .rollDice:after, #clearOrders:after {
 	background-clip: padding-box;
 	background-color: #1CB0F6;
 	border: solid transparent;
@@ -103,11 +103,11 @@ div.rollLog div {
 	z-index: -1;
 }
 
-#rollDice:main, #rollDice:focus, #clearDice:focus, #confirmTurn:main, #confirmTurn:focus, .rollDice:main, .rollDice:focus {
+#rollDice:main, #rollDice:focus, #clearDice:focus, #confirmTurn:main, #confirmTurn:focus, .rollDice:main, .rollDice:focus, #clearOrders:focus {
 	user-select: auto;
 }
 
-#rollDice:hover:not(:disabled), #clearDice:hover:not(:disabled), #confirmTurn:hover:not(:disabled), .rollDice:hover:not(:disabled) {
+#rollDice:hover:not(:disabled), #clearDice:hover:not(:disabled), #confirmTurn:hover:not(:disabled), .rollDice:hover:not(:disabled), #clearOrders:hover:not(:disabled) {
 	filter: brightness(1.1);
 }
 
@@ -115,10 +115,10 @@ div.rollLog div {
 	cursor: auto;
 }
 
-#rollDice:active:after, #confirmTurn:active:after, #clearDice:active:after, .rollDice:active:after {
+#rollDice:active:after, #confirmTurn:active:after, #clearDice:active:after, .rollDice:active:after, #clearOrders:active:after {
 	border-width: 0 0 0px;
 }
 
-#rollDice:active, #confirmTurn:active, .rollDice:active, #clearDice:active {
+#rollDice:active, #confirmTurn:active, .rollDice:active, #clearDice:active, #clearOrders:active {
 	padding-bottom: 10px;
 }
