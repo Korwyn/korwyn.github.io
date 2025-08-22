@@ -48,7 +48,9 @@ let clearDice = document.getElementById("clearDice");
 
 clearDice.addEventListener('click', function() {
 	if (!rollDiceButton.disabled) {
-		clearDiceRollerInfo();
+		if(confirm("Clear all dice information")){
+			clearDiceRollerInfo();
+		}
 	}
 });
 

@@ -3,7 +3,11 @@ let oilBidInputField = document.getElementById("oilBidInputField");
 let clearOrders = document.getElementById("clearOrders");
 
 oilBidInputField.addEventListener('change', saveOrdersTabToStorage);
-clearOrders.addEventListener('click', resetOrdersTab);
+clearOrders.addEventListener('click', function(){
+	if(confirm("Clear Orders?")){
+		resetOrdersTab();
+	};
+});
 
 let commandNotes = countryOrders(9);
 
