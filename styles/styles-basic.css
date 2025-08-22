@@ -1,6 +1,14 @@
 @charset "UTF-8";
 
-#ordersContainerWrapper  {
+.bidOilIcon {
+	width: 35px;
+	position: relative;
+	top: 8px;
+	left: 23px;
+	z-index: 2;
+}
+
+#ordersContainerWrapper {
 	display: inline-block;
 	text-align: center;
 }
@@ -11,40 +19,39 @@
 	border: 0;
 	padding-block: 0;
 	padding-inline: 0;
-    font-size: min(12vw, 100px);
-    text-align: center;
+	font-size: min(12vw, 100px);
+	text-align: center;
 }
-
 
 #oilBidInputField {
 	width: 150px;
-    height: 50px;
-    margin-top: 20px;
-    border-top: 1px solid;
-    border-left: 1px solid;
-    border-right: 1px solid;
-    border-bottom: 0;
-    border-radius: 5px;
-    position: relative;
-    top: 5px;
-    font-size: 2em;
-    text-align: center;
+	height: 50px;
+	margin-top: 20px;
+	border-top: 1px solid;
+	border-left: 1px solid;
+	border-right: 1px solid;
+	border-bottom: 0;
+	border-radius: 5px;
+	position: relative;
+	top: 5px;
+	font-size: 2em;
+	text-align: center;
 }
 
-#oilBidInputField::placeholder{
+#oilBidInputField::placeholder {
 	color: #BBBBBB;
 }
 
 #ordersTable input::placeholder {
-    font-size: min(5.5vw, 45px);
+	font-size: min(5.5vw, 45px);
 	transform: translateY(-15px);
 	color: #BBBBBB;
 }
 
 #ordersTable .topCommand {
 	height: 50%;
-    border-bottom-style: dashed;
-    border-color: white;
+	border-bottom-style: dashed;
+	border-color: white;
 	text-align: center;
 }
 
@@ -59,7 +66,7 @@
 	aspect-ratio: 1/1;
 	background: gray;
 	position: relative;
-    margin-bottom: 15px;
+	margin-bottom: 15px;
 }
 
 #ordersContainer .table {
