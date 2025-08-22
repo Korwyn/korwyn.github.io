@@ -27,6 +27,7 @@
 		<button id="tabTerritory" class="tablinks active" onclick="changeTab(event, 'terriroryDiv')">Territories</button>
 		<button id="tabResourceUse" class="tablinks" onclick="changeTab(event, 'resourceUseDiv')">Resource Tracker</button>
 		<button id="tabDiceRoller" class="tablinks" onclick="changeTab(event, 'diceRollerDiv')">Dice Roller</button>
+		<button id="tabOrders" class="tablinks" onclick="changeTab(event, 'ordersDiv')">Orders</button>
 		<button id="tabMapPlanner" class="tablinks" onclick="changeTab(event, 'mapPlannerDiv')">Map Planner</button>
 	</div>
 
@@ -452,6 +453,17 @@
 			</form>
 		</div>
 	</div>
+		
+	<div id="ordersDiv" class="tabContent hidden">
+		<div>
+			<input id="oilBidInputField" type="text" inputmode="numeric" placeholder="Oil Bid"/>
+		</div>
+		
+		<div id ="ordersContainer">
+			<div class="table" id="ordersTable">
+			</div>
+		</div>
+	</div>
 
 	<div id="mapPlannerDiv" class="tabContent hidden">
 		<img src="images/map-planner.png" width="100%">
@@ -466,6 +478,7 @@
 <script type="text/javascript" src="scripts/Country.js"></script>
 <script type="text/javascript" src="scripts/Tracker.js"></script>
 <script type="text/javascript" src="scripts/Command.js"></script>
+<script type="text/javascript" src="scripts/Orders.js"></script>
 <script type="text/javascript" src="scripts/countryCards/GermanCards.js"></script>
 <script type="text/javascript" src="scripts/countryCards/UnitedStatesCards.js"></script>
 <script type="text/javascript" src="scripts/countryCards/ChinaCards.js"></script>
@@ -476,6 +489,7 @@
 <script type="text/javascript" src="scripts/SetupCards.js"></script>
 <script type="text/javascript" src="scripts/ResourceTracker.js"></script>
 <script type="text/javascript" src="scripts/DiceRoller.js"></script>
+<script type="text/javascript" src="scripts/OrdersTab.js"></script>
 <script type="text/javascript" src="scripts/Save.js"></script>
 <script type="text/javascript" src="scripts/Reset.js"></script>
 <script type="text/javascript" src="scripts/Load.js"></script>

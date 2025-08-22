@@ -31,6 +31,7 @@ function resetState() {
 	calcProduction();
 	calculateRemainingResources();
 	displayResourceLog();
+	resetOrdersTab();
 }
 
 let storedVersion = localStorage.getItem("version");

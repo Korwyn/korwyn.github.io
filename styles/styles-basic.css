@@ -1,5 +1,72 @@
 @charset "UTF-8";
 
+
+#ordersTable input {
+	height: 100%;
+	width: 100%;
+	border: 0;
+	padding-block: 0;
+	padding-inline: 0;
+    font-size: min(12vw, 100px);
+    text-align: center;
+}
+
+
+#oilBidInputField {
+	width: 150px;
+    height: 50px;
+    margin-top: 20px;
+    border-top: 1px solid;
+    border-left: 1px solid;
+    border-right: 1px solid;
+    border-bottom: 0;
+    border-radius: 5px;
+    position: relative;
+    top: 5px;
+    font-size: 2em;
+    text-align: center;
+}
+
+#oilBidInputField::placeholder{
+	color: #BBBBBB;
+}
+
+#ordersTable input::placeholder {
+    font-size: min(5.5vw, 45px);
+	transform: translateY(-15px);
+	color: #BBBBBB;
+}
+
+#ordersTable .topCommand {
+	height: 50%;
+	border-bottom: 1px dashed;
+	text-align: center;
+}
+
+#ordersTable .bottomMovement {
+	height: 50%;;
+	text-align: center;
+}
+
+#ordersContainer {
+	width: 100%;
+	max-width: 800px;
+	aspect-ratio: 1/1;
+	background: gray;
+	position: relative;
+}
+
+#ordersContainer .table {
+	width: 100%;
+	height: 100%;
+}
+
+#ordersContainer .table .td {
+	width: 33%;
+	height: 33%;
+	padding: 8px;
+}
+
 .notShown {
 	visibility: hidden;
 }
@@ -39,14 +106,14 @@ div.hitpoint {
 	padding: 3px;
 }
 
-ul{
+ul {
 	display: block;
-    list-style-type: none;
-    margin-block-start: 0;
-    margin-block-end: 0;;
-    padding-inline-start: 0;
-    unicode-bidi: isolate;
-    min-height: 100px;
+	list-style-type: none;
+	margin-block-start: 0;
+	margin-block-end: 0;;
+	padding-inline-start: 0;
+	unicode-bidi: isolate;
+	min-height: 100px;
 }
 
 p {
@@ -118,7 +185,7 @@ div.country {
 	right: 0;
 }
 
-.absoluteCenterTop{
+.absoluteCenterTop {
 	position: absolute;
 	right: 0;
 	left: 0;
@@ -346,7 +413,7 @@ thead input+span {
 	top: 4px;
 }
 
- .labelPlus {
+.labelPlus {
 	position: relative;
 	top: 4px;
 }
