@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+.econCollapsseLabel {
+	position: relative;
+	top: -2px;
+}
+
 .bidOilIcon {
 	width: 35px;
 	position: relative;

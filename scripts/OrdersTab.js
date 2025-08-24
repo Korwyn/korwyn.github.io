@@ -18,27 +18,31 @@ function loadOrders() {
 		let divRow = document.createElement("div");
 		divRow.classList.add("tr");
 
-		for (j = 0; j < commandNoteRow.length; j++) {
+		for (let j = 0; j < commandNoteRow.length; j++) {
 			let commandNote = commandNoteRow[j];
+			
 			let divCell = document.createElement("div");
 			divCell.classList.add("td");
 
 			let topDivCommand = document.createElement("div");
-			topDivCommand.classList.add("topCommand")
+			topDivCommand.classList.add("topCommand");
+			
 			let inputCommandUnit = document.createElement("input");
 			inputCommandUnit.setAttribute("placeholder", "Command")
 			inputCommandUnit.value = commandNote.commandName;
 			inputCommandUnit.setAttribute("type", "text");
+			
 			topDivCommand.appendChild(inputCommandUnit);
 			divCell.appendChild(topDivCommand);
 
-
 			let bottomDivMovement = document.createElement("div");
-			bottomDivMovement.classList.add("bottomMovement")
+			bottomDivMovement.classList.add("bottomMovement");
+			
 			let inputCommandMovement = document.createElement("input");
 			inputCommandMovement.setAttribute("placeholder", "Destination")
 			inputCommandMovement.value = commandNote.destination;
 			inputCommandMovement.setAttribute("type", "text");
+			
 			bottomDivMovement.appendChild(inputCommandMovement);
 			divCell.appendChild(bottomDivMovement);
 
@@ -84,5 +88,3 @@ function resetOrdersTab(){
 	
 	loadOrders();
 }
-
-loadOrdersTabFromStorage();

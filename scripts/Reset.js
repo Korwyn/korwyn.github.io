@@ -39,3 +39,5 @@ let storedVersion = localStorage.getItem("version");
 if (storedVersion != version) {
 	resetState();
 }
+
+localStorage.setItem("version", version);

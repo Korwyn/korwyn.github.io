@@ -46,206 +46,16 @@ let axisNavalSurfaceRoller = document.getElementById("axisNavalSurfaceRoller");
 let axisNavalAirRoller = document.getElementById("axisNavalAirRoller");
 let clearDice = document.getElementById("clearDice");
 
-clearDice.addEventListener('click', function() {
-	if (!rollDiceButton.disabled) {
-		if(confirm("Clear all dice information")){
-			clearDiceRollerInfo();
-		}
-	}
-});
+let MAX_COMBAT_DICE = 30;
+let MAX_BATCH_ROLL = 10;
 
-function clearDiceRollerInfo() {
-	numDiceToRoll = 2;//set Default
-
-	logArray = [];
-	results = [];
-	localStorage.setItem("numDiceToRoll", numDiceToRoll);
-	localStorage.setItem("resultRolls", JSON.stringify([]));
-	localStorage.setItem("logArray", JSON.stringify([]));
-	document.getElementById("diceRadio2").checked = true;
-
-	axisUnits = defaultUnitList();
-	allyUnits = defaultUnitList();
-	localStorage.setItem("axisUnits", JSON.stringify(axisUnits));
-	localStorage.setItem("allyUnits", JSON.stringify(allyUnits));
-
-
-	localStorage.setItem("allyPortChecked", false);
-	localStorage.setItem("axisPortChecked", false);
-	allyPort.checked = false;
-	axisPort.checked = false;
-
-	setupLandBattleCalc(landCombatDiceCalc, "land");
-	setupLandBattleCalc(seaCombatDiceCalc, "naval");
-	clearResultEls();
-	unitCounter();
-}
-
-allyLandAirRoller.addEventListener('click', function(event) {
-	event.preventDefault();
-
-	if (!rollDiceButton.disabled) {
-		let diceToRoll = 0;
-
-		if (sidesDice.ally.sideLandAirDice > 10) {
-			sidesDice.ally.sideLandAirDice -= 10;
-			diceToRoll = 10;
-		}
-		else {
-			diceToRoll = sidesDice.ally.sideLandAirDice;
-			sidesDice.ally.sideLandAirDice = 0;
-		}
-
-		setDiceAndRoll(diceToRoll, event.target);
-	}
-});
-
-allyLandRoller.addEventListener('click', function(event) {
-	event.preventDefault();
-
-	if (!rollDiceButton.disabled) {
-		let diceToRoll = 0;
-
-		if (sidesDice.ally.sideLandGroundDice > 10) {
-			sidesDice.ally.sideLandGroundDice -= 10;
-			diceToRoll = 10;
-		}
-		else {
-			diceToRoll = sidesDice.ally.sideLandGroundDice;
-			sidesDice.ally.sideLandGroundDice = 0;
-		}
-
-		setDiceAndRoll(diceToRoll, event.target);
-	}
-});
-
-axisLandRoller.addEventListener('click', function(event) {
-	event.preventDefault();
-
-	if (!rollDiceButton.disabled) {
-		let diceToRoll = 0;
-
-		if (sidesDice.axis.sideLandGroundDice > 10) {
-			sidesDice.axis.sideLandGroundDice -= 10;
-			diceToRoll = 10;
-		}
-		else {
-			diceToRoll = sidesDice.axis.sideLandGroundDice;
-			sidesDice.axis.sideLandGroundDice = 0;
-		}
-
-		setDiceAndRoll(diceToRoll, event.target);
-	}
-});
-
-axisLandAirRoller.addEventListener('click', function(event) {
-	event.preventDefault();
-
-	if (!rollDiceButton.disabled) {
-		let diceToRoll = 0;
-
-		if (sidesDice.axis.sideLandAirDice > 10) {
-			sidesDice.axis.sideLandAirDice -= 10;
-			diceToRoll = 10;
-		}
-		else {
-			diceToRoll = sidesDice.axis.sideLandAirDice;
-			sidesDice.axis.sideLandAirDice = 0;
-		}
-
-		setDiceAndRoll(diceToRoll, event.target);
-	}
-});
-
-allyNavalAirRoller.addEventListener('click', function(event) {
-	event.preventDefault();
-
-	if (!rollDiceButton.disabled) {
-		let diceToRoll = 0;
-
-		if (sidesDice.ally.sideNavalAirDice > 10) {
-			sidesDice.ally.sideNavalAirDice -= 10;
-			diceToRoll = 10;
-		}
-		else {
-			diceToRoll = sidesDice.ally.sideNavalAirDice;
-			sidesDice.ally.sideNavalAirDice = 0;
-		}
-
-		setDiceAndRoll(diceToRoll, event.target);
-	}
-});
-
-allyNavalSurfaceRoller.addEventListener('click', function(event) {
-	event.preventDefault();
-
-	if (!rollDiceButton.disabled) {
-		let diceToRoll = 0;
-
-		if (sidesDice.ally.sideNavalSurfaceDice > 10) {
-			sidesDice.ally.sideNavalSurfaceDice -= 10;
-			diceToRoll = 10;
-		}
-		else {
-			diceToRoll = sidesDice.ally.sideNavalSurfaceDice;
-			sidesDice.ally.sideNavalSurfaceDice = 0;
-		}
-
-		setDiceAndRoll(diceToRoll, event.target);
-	}
-});
-
-axisNavalSurfaceRoller.addEventListener('click', function(event) {
-	event.preventDefault();
-
-	if (!rollDiceButton.disabled) {
-		let diceToRoll = 0;
-
-		if (sidesDice.axis.sideNavalSurfaceDice > 10) {
-			sidesDice.axis.sideNavalSurfaceDice -= 10;
-			diceToRoll = 10;
-		}
-		else {
-			diceToRoll = sidesDice.axis.sideNavalSurfaceDice;
-			sidesDice.axis.sideNavalSurfaceDice = 0;
-		}
-
-		setDiceAndRoll(diceToRoll, event.target);
-	}
-});
-
-axisNavalAirRoller.addEventListener('click', function(event) {
-	event.preventDefault();
-
-	if (!rollDiceButton.disabled) {
-		let diceToRoll = 0;
-
-		if (sidesDice.axis.sideNavalAirDice > 10) {
-			sidesDice.axis.sideNavalAirDice -= 10;
-			diceToRoll = 10;
-		}
-		else {
-			diceToRoll = sidesDice.axis.sideNavalAirDice;
-			sidesDice.axis.sideNavalAirDice = 0;
-		}
-
-		setDiceAndRoll(diceToRoll, event.target);
-	}
-});
-
-function setDiceAndRoll(numDiceToRollSetup, target) {
-	if (numDiceToRollSetup > 0) {
-		window.scrollTo(0, 60);
-		let diceIdElName = "diceRadio" + numDiceToRollSetup;
-		document.getElementById(diceIdElName).checked = true;
-		numDiceToRoll = numDiceToRollSetup;
-		diceRemainingSpans();
-		lastAutoRollClicked(target.id);
-		rollDice();
-	}
-}
-
+let unitList = defaultUnitList();
+let axisUnits = defaultUnitList();
+let allyUnits = defaultUnitList();
+let logArray = [];
+let results = [];
 let sidesDice = {};
+let numDiceToRoll = 0;
 
 let rollSections = {
 	partOne: {
@@ -274,6 +84,166 @@ let rollSections = {
 	}
 };
 
+clearDice.addEventListener('click', function() {
+	if (!rollDiceButton.disabled) {
+		if(confirm("Clear all dice information")){
+			clearDiceRollerInfo();
+		}
+	}
+});
+
+allyLandAirRoller.addEventListener('click', function(event) {
+	event.preventDefault();
+
+	if (!rollDiceButton.disabled) {
+		let diceToRoll = 0;
+
+		if (sidesDice.ally.sideLandAirDice > MAX_BATCH_ROLL) {
+			sidesDice.ally.sideLandAirDice -= MAX_BATCH_ROLL;
+			diceToRoll = MAX_BATCH_ROLL;
+		}
+		else {
+			diceToRoll = sidesDice.ally.sideLandAirDice;
+			sidesDice.ally.sideLandAirDice = 0;
+		}
+
+		setDiceAndRoll(diceToRoll, event.target);
+	}
+});
+
+allyLandRoller.addEventListener('click', function(event) {
+	event.preventDefault();
+
+	if (!rollDiceButton.disabled) {
+		let diceToRoll = 0;
+
+		if (sidesDice.ally.sideLandGroundDice > MAX_BATCH_ROLL) {
+			sidesDice.ally.sideLandGroundDice -= MAX_BATCH_ROLL;
+			diceToRoll = MAX_BATCH_ROLL;
+		}
+		else {
+			diceToRoll = sidesDice.ally.sideLandGroundDice;
+			sidesDice.ally.sideLandGroundDice = 0;
+		}
+
+		setDiceAndRoll(diceToRoll, event.target);
+	}
+});
+
+axisLandRoller.addEventListener('click', function(event) {
+	event.preventDefault();
+
+	if (!rollDiceButton.disabled) {
+		let diceToRoll = 0;
+
+		if (sidesDice.axis.sideLandGroundDice > MAX_BATCH_ROLL) {
+			sidesDice.axis.sideLandGroundDice -= MAX_BATCH_ROLL;
+			diceToRoll = MAX_BATCH_ROLL;
+		}
+		else {
+			diceToRoll = sidesDice.axis.sideLandGroundDice;
+			sidesDice.axis.sideLandGroundDice = 0;
+		}
+
+		setDiceAndRoll(diceToRoll, event.target);
+	}
+});
+
+axisLandAirRoller.addEventListener('click', function(event) {
+	event.preventDefault();
+
+	if (!rollDiceButton.disabled) {
+		let diceToRoll = 0;
+
+		if (sidesDice.axis.sideLandAirDice > MAX_BATCH_ROLL) {
+			sidesDice.axis.sideLandAirDice -= MAX_BATCH_ROLL;
+			diceToRoll = MAX_BATCH_ROLL;
+		}
+		else {
+			diceToRoll = sidesDice.axis.sideLandAirDice;
+			sidesDice.axis.sideLandAirDice = 0;
+		}
+
+		setDiceAndRoll(diceToRoll, event.target);
+	}
+});
+
+allyNavalAirRoller.addEventListener('click', function(event) {
+	event.preventDefault();
+
+	if (!rollDiceButton.disabled) {
+		let diceToRoll = 0;
+
+		if (sidesDice.ally.sideNavalAirDice > MAX_BATCH_ROLL) {
+			sidesDice.ally.sideNavalAirDice -= MAX_BATCH_ROLL;
+			diceToRoll = MAX_BATCH_ROLL;
+		}
+		else {
+			diceToRoll = sidesDice.ally.sideNavalAirDice;
+			sidesDice.ally.sideNavalAirDice = 0;
+		}
+
+		setDiceAndRoll(diceToRoll, event.target);
+	}
+});
+
+allyNavalSurfaceRoller.addEventListener('click', function(event) {
+	event.preventDefault();
+
+	if (!rollDiceButton.disabled) {
+		let diceToRoll = 0;
+
+		if (sidesDice.ally.sideNavalSurfaceDice > MAX_BATCH_ROLL) {
+			sidesDice.ally.sideNavalSurfaceDice -= MAX_BATCH_ROLL;
+			diceToRoll = MAX_BATCH_ROLL;
+		}
+		else {
+			diceToRoll = sidesDice.ally.sideNavalSurfaceDice;
+			sidesDice.ally.sideNavalSurfaceDice = 0;
+		}
+
+		setDiceAndRoll(diceToRoll, event.target);
+	}
+});
+
+axisNavalSurfaceRoller.addEventListener('click', function(event) {
+	event.preventDefault();
+
+	if (!rollDiceButton.disabled) {
+		let diceToRoll = 0;
+
+		if (sidesDice.axis.sideNavalSurfaceDice > MAX_BATCH_ROLL) {
+			sidesDice.axis.sideNavalSurfaceDice -= MAX_BATCH_ROLL;
+			diceToRoll = MAX_BATCH_ROLL;
+		}
+		else {
+			diceToRoll = sidesDice.axis.sideNavalSurfaceDice;
+			sidesDice.axis.sideNavalSurfaceDice = 0;
+		}
+
+		setDiceAndRoll(diceToRoll, event.target);
+	}
+});
+
+axisNavalAirRoller.addEventListener('click', function(event) {
+	event.preventDefault();
+
+	if (!rollDiceButton.disabled) {
+		let diceToRoll = 0;
+
+		if (sidesDice.axis.sideNavalAirDice > MAX_BATCH_ROLL) {
+			sidesDice.axis.sideNavalAirDice -= MAX_BATCH_ROLL;
+			diceToRoll = MAX_BATCH_ROLL;
+		}
+		else {
+			diceToRoll = sidesDice.axis.sideNavalAirDice;
+			sidesDice.axis.sideNavalAirDice = 0;
+		}
+
+		setDiceAndRoll(diceToRoll, event.target);
+	}
+});
+
 combatHelperForm.addEventListener("change", function(event) {
 	let target = event.target;
 
@@ -294,8 +264,6 @@ axisPort.addEventListener("click", function() {
 	unitCounter();
 });
 
-let numDiceToRoll = 0;
-
 diceSelection.addEventListener("change", function(event) {
 	target = event.target;
 
@@ -306,12 +274,47 @@ diceSelection.addEventListener("change", function(event) {
 	navigator.vibrate(200);
 });
 
-let logArray = [];
-let results = [];
-
 rollDiceButton.addEventListener("click", function() {
 	rollDice();
 });
+
+function clearDiceRollerInfo() {
+	numDiceToRoll = 2;//set Default
+
+	logArray = [];
+	results = [];
+	localStorage.setItem("numDiceToRoll", numDiceToRoll);
+	localStorage.setItem("resultRolls", JSON.stringify([]));
+	localStorage.setItem("logArray", JSON.stringify([]));
+	document.getElementById("diceRadio2").checked = true;
+
+	axisUnits = defaultUnitList();
+	allyUnits = defaultUnitList();
+	localStorage.setItem("axisUnits", JSON.stringify(axisUnits));
+	localStorage.setItem("allyUnits", JSON.stringify(allyUnits));
+
+	localStorage.setItem("allyPortChecked", false);
+	localStorage.setItem("axisPortChecked", false);
+	allyPort.checked = false;
+	axisPort.checked = false;
+
+	setupLandBattleCalc(landCombatDiceCalc, "land");
+	setupLandBattleCalc(seaCombatDiceCalc, "naval");
+	clearResultEls();
+	unitCounter();
+}
+
+function setDiceAndRoll(numDiceToRollSetup, target) {
+	if (numDiceToRollSetup > 0) {
+		window.scrollTo(0, 60);
+		let diceIdElName = "diceRadio" + numDiceToRollSetup;
+		document.getElementById(diceIdElName).checked = true;
+		numDiceToRoll = numDiceToRollSetup;
+		diceRemainingSpans();
+		lastAutoRollClicked(target.id);
+		rollDice();
+	}
+}
 
 function rollDice() {
 	clearResultEls();
@@ -422,8 +425,7 @@ function appendRoll(resultRoll, section) {
 	if (resultRoll < 1) {
 		alert("???? something went wrong in the die roll");
 	}
-
-	if (resultRoll < 5) {
+	else if (resultRoll < 5) {
 		divToApend = section.yellow;
 	}
 	else if (resultRoll < 8) {
@@ -436,12 +438,12 @@ function appendRoll(resultRoll, section) {
 		divToApend = section.red;
 	}
 	else if (resultRoll == 11) {
-		divToApend = section.white;
-	}
-	else if (resultRoll == 12) {
 		divToApend = section.black;
 	}
-	else if (resultRoll > 12) {
+	else if (resultRoll == 12) {
+		divToApend = section.white;
+	}
+	else {
 		alert("???? something went wrong in the die roll");
 	}
 
@@ -455,10 +457,6 @@ function randomIntFromInterval(min, max) { // min and max included
 	return wholeNumber;
 }
 
-let unitList = defaultUnitList();
-let axisUnits = defaultUnitList();
-let allyUnits = defaultUnitList();
-
 function setupLandBattleCalc(tableEl, mode) {
 	tableEl.innerHTML = "";
 
@@ -468,11 +466,13 @@ function setupLandBattleCalc(tableEl, mode) {
 		let battleModes = unit.battleModes;
 
 		let axisNameCell = document.createElement("td");
+		
 		let nameAxisDiv = document.createElement("div");
 		nameAxisDiv.innerText = unit.name;
 		axisNameCell.appendChild(nameAxisDiv);
 
 		let allyNameCell = document.createElement("td");
+		
 		let nameAllyDiv = document.createElement("div");
 		nameAllyDiv.innerText = unit.name;
 		allyNameCell.appendChild(nameAllyDiv);
@@ -641,14 +641,14 @@ function unitCounter() {
 function diceRemainingSpans() {
 	combatHelperForm.classList = [];
 
-	sidesDice.axis.sideLandAirDice = sidesDice.axis.sideLandAirDice > 30 ? 30 : sidesDice.axis.sideLandAirDice;
-	sidesDice.axis.sideLandGroundDice = sidesDice.axis.sideLandGroundDice > 30 ? 30 : sidesDice.axis.sideLandGroundDice;
-	sidesDice.ally.sideLandAirDice = sidesDice.ally.sideLandAirDice > 30 ? 30 : sidesDice.ally.sideLandAirDice;
-	sidesDice.ally.sideLandGroundDice = sidesDice.ally.sideLandGroundDice > 30 ? 30 : sidesDice.ally.sideLandGroundDice;
-	sidesDice.axis.sideNavalAirDice = sidesDice.axis.sideNavalAirDice > 30 ? 30 : sidesDice.axis.sideNavalAirDice;
-	sidesDice.axis.sideNavalSurfaceDice = sidesDice.axis.sideNavalSurfaceDice > 30 ? 30 : sidesDice.axis.sideNavalSurfaceDice;
-	sidesDice.ally.sideNavalAirDice = sidesDice.ally.sideNavalAirDice > 30 ? 30 : sidesDice.ally.sideNavalAirDice;
-	sidesDice.ally.sideNavalSurfaceDice = sidesDice.ally.sideNavalSurfaceDice > 30 ? 30 : sidesDice.ally.sideNavalSurfaceDice;
+	sidesDice.axis.sideLandAirDice = sidesDice.axis.sideLandAirDice > MAX_COMBAT_DICE ? MAX_COMBAT_DICE : sidesDice.axis.sideLandAirDice;
+	sidesDice.axis.sideLandGroundDice = sidesDice.axis.sideLandGroundDice > MAX_COMBAT_DICE ? MAX_COMBAT_DICE : sidesDice.axis.sideLandGroundDice;
+	sidesDice.ally.sideLandAirDice = sidesDice.ally.sideLandAirDice > MAX_COMBAT_DICE ? MAX_COMBAT_DICE : sidesDice.ally.sideLandAirDice;
+	sidesDice.ally.sideLandGroundDice = sidesDice.ally.sideLandGroundDice > MAX_COMBAT_DICE ? MAX_COMBAT_DICE : sidesDice.ally.sideLandGroundDice;
+	sidesDice.axis.sideNavalAirDice = sidesDice.axis.sideNavalAirDice > MAX_COMBAT_DICE ? MAX_COMBAT_DICE : sidesDice.axis.sideNavalAirDice;
+	sidesDice.axis.sideNavalSurfaceDice = sidesDice.axis.sideNavalSurfaceDice > MAX_COMBAT_DICE ? MAX_COMBAT_DICE : sidesDice.axis.sideNavalSurfaceDice;
+	sidesDice.ally.sideNavalAirDice = sidesDice.ally.sideNavalAirDice > MAX_COMBAT_DICE ? MAX_COMBAT_DICE : sidesDice.ally.sideNavalAirDice;
+	sidesDice.ally.sideNavalSurfaceDice = sidesDice.ally.sideNavalSurfaceDice > MAX_COMBAT_DICE ? MAX_COMBAT_DICE : sidesDice.ally.sideNavalSurfaceDice;
 
 	axisLandAirDiceRemaining.innerText = sidesDice.axis.sideLandAirDice;
 	axisLandDiceRemaining.innerText = sidesDice.axis.sideLandGroundDice;
@@ -709,8 +709,8 @@ function sideCount(sideUnits, landDiceEl, navalDiceEl, port,) {
 		sideNavalSurfaceDice += 2;
 	}
 
-	landDiceEl.innerText = " - Land: " + sideLandGroundDice + "/30 | Air: " + sideLandAirDice + "/30";
-	navalDiceEl.innerText = " - Sea: " + sideNavalSurfaceDice + "/30 | Air: " + sideNavalAirDice + "/30";
+	landDiceEl.innerText = " - Land: " + sideLandGroundDice + "/" + MAX_COMBAT_DICE + " | Air: " + sideLandAirDice + "/" + MAX_COMBAT_DICE;
+	navalDiceEl.innerText = " - Sea: " + sideNavalSurfaceDice + "/" + MAX_COMBAT_DICE + " | Air: " + sideNavalAirDice + "/" + MAX_COMBAT_DICE;
 
 	let typeCounts = {
 		landTypes: sideLandTypes,

@@ -5,6 +5,7 @@ class Tracker {
 		this.raids = new Production();
 		this.repairs = new Production();
 		this.goods = new Production();
+		this.other = new Production();
 		this.tradingFor = new Production();
 		this.tradingWith = new Production();
 		this.unitList = defaultUnitList();

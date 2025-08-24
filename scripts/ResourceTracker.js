@@ -4,6 +4,7 @@ let stressRow = document.getElementById("stressRow");
 let repairsRow = document.getElementById("repairsRow");
 let raidsRow = document.getElementById("raidsRow");
 let tradesRow = document.getElementById("tradesRow");
+let otherResourceRow = document.getElementById("otherResourceRow");
 let buildsRow = document.getElementById("buildsRow");
 let goodsRow = document.getElementById("goodsRow");
 let infantryRow = document.getElementById("infantryRow");
@@ -19,17 +20,8 @@ let remainingRow = document.getElementById("remainingRow");
 let prodRow = document.getElementById("productionRow");
 let confirmTurnButton = document.getElementById("confirmTurn");
 let resourceLog = document.getElementById("resourceLog");
-let usaColumns = document.getElementById("usaColumns");
-let chinaColumns = document.getElementById("chinaColumns");
-let ukColumns = document.getElementById("ukColumns");
-let ussrColumns = document.getElementById("ussrColumns");
-let germanyColumns = document.getElementById("germanyColumns");
-let italyColumns = document.getElementById("italyColumns");
-let japanColumns = document.getElementById("japanColumns");
 let resourceTable = document.getElementById("resourceTable");
 let resourceTrackerForm = document.getElementById("resourceTrackerForm");
-
-let countryCols = [usaColumns, chinaColumns, ukColumns, ussrColumns, germanyColumns, italyColumns, japanColumns];
 
 let units = {
 	infantry: {
@@ -59,7 +51,23 @@ let units = {
 	battleship: {
 		row: battleshipsRow
 	}
-}
+};
+
+resourceTrackerForm.addEventListener("change", function(event) {
+	let target = event.target;
+
+	if (target.name == "showOwners") {
+		hideTableColumns(target);
+	}
+	else if (target.name == "economicCollapse") {
+		setEconomicCollapse(target);
+	}
+	else {
+		trackerFormChange(target);
+	}
+
+	saveGameState();
+});
 
 confirmTurnButton.addEventListener("click", function() {
 	if (confirm("Confirm resources and advance to the next turn?")) {
@@ -176,6 +184,7 @@ function calcProduction() {
 		tripleResourceInput(repairsRow, countryName, "repairs", country);
 		tripleResourceInput(raidsRow, countryName, "raids", country);
 		tripleResourceInput(goodsRow, countryName, "goods", country);
+		tripleResourceInput(otherResourceRow, countryName, "other", country);
 
 		tradeResourceInput(tradesRow, countryName, country);
 
@@ -535,22 +544,6 @@ function unitInput(unit, countryName, unitType, country) {
 	rowToAppend.appendChild(osrCell);
 }
 
-resourceTrackerForm.addEventListener("change", function(event) {
-	let target = event.target;
-
-	if (target.name == "showOwners") {
-		hideTableColumns(target);
-	}
-	else if (target.name == "economicCollapse") {
-		setEconomicCollapse(target);
-	}
-	else {
-		trackerFormChange(target);
-	}
-
-	saveGameState();
-});
-
 function setEconomicCollapse(target) {
 	let countryName = target.getAttribute("countryName");
 
@@ -624,7 +617,7 @@ function validateInput(target) {
 	else if (value == 0) {
 		target.value = "";
 	}
-	else if (value < 0 && trackingType != "goods" && trackingType != "tradingFor") {
+	else if (value < 0 && trackingType != "other" && trackingType != "tradingFor") {
 		target.value = "";
 	}
 	else if (value > 99) {
@@ -676,6 +669,10 @@ function createLabelTds() {
 	let tradesTd = document.createElement("td");
 	tradesTd.classList.add("allShow");
 	tradesTd.appendChild(document.createTextNode("Trades"));
+
+	let otherResourceTd = document.createElement("td");
+	otherResourceTd.classList.add("allShow");
+	otherResourceTd.appendChild(document.createTextNode("Other"));
 
 	let buildsTd = document.createElement("td");
 	buildsTd.classList.add("allShow");
@@ -731,6 +728,7 @@ function createLabelTds() {
 	repairsRow.appendChild(repairsTd);
 	raidsRow.appendChild(raidsTd);
 	tradesRow.appendChild(tradesTd);
+	otherResourceRow.appendChild(otherResourceTd);
 	buildsRow.appendChild(buildsTd);
 	goodsRow.appendChild(goodsTd);
 	infantryRow.appendChild(infantryTd);
@@ -752,6 +750,7 @@ function clearRows() {
 	repairsRow.innerHTML = "";
 	raidsRow.innerHTML = "";
 	tradesRow.innerHTML = "";
+	otherResourceRow.innerHTML = "";
 	buildsRow.innerHTML = "";
 	goodsRow.innerHTML = "";
 	infantryRow.innerHTML = "";
@@ -935,6 +934,7 @@ function displayCurrentProduction() {
 		econCollapseCell.classList.add(countryName + "Show");
 
 		let econCollapseLabel = document.createElement("label");
+		econCollapseLabel.classList.add("econCollapsseLabel");
 
 		let econCollapseDiv = document.createElement("div");
 		econCollapseDiv.classList.add("bigger");
@@ -1131,7 +1131,7 @@ function displayResourceLog() {
 				tracker.tradingWith.oil || tracker.tradingWith.iron || tracker.tradingWith.osr) {
 
 				let tradesSpan = document.createElement("p");
-					tradesSpan.classList.add("smaller");
+				tradesSpan.classList.add("smaller");
 
 				let tradeLog = "Traded ";
 
@@ -1330,6 +1330,29 @@ function displayResourceLog() {
 				countryCell.appendChild(battleshipSpan);
 			}
 
+			if (tracker.other.oil || tracker.other.iron || tracker.other.osr) {
+				let othersSpan = document.createElement("p");
+				othersSpan.classList.add("smaller");
+
+				let repairsLog = "Other Resources: ";
+
+				if (tracker.other.oil) {
+					repairsLog += "[" + tracker.other.oil + NOBREAKSPACE + "Oil] ";
+				}
+
+				if (tracker.other.iron) {
+					repairsLog += "[" + tracker.other.iron + NOBREAKSPACE + "Iron] ";
+				}
+
+				if (tracker.other.osr) {
+					repairsLog += "[" + tracker.other.osr + NOBREAKSPACE + "Osr] ";
+				}
+
+				othersSpan.innerText = repairsLog;
+
+				countryCell.appendChild(othersSpan);
+			}
+
 			let remainingSpan = document.createElement("p");
 			remainingSpan.classList.add("smaller");
 
@@ -1404,4 +1427,34 @@ function displayResourceLog() {
 			row.appendChild(countryCell);
 		}
 	}
+}
+
+
+function loadResourceTrackerFromStorage() {
+	calcProduction();
+	calculateRemainingResources();
+	displayResourceLog();
+
+	let individualCol = localStorage.getItem("individualCol");
+	if (individualCol == "undefined" || !individualCol) {
+		individualCol = "allShow"
+	}
+
+	let elements = document.getElementsByName("showOwners");
+
+	for (let i = 0; i < elements.length; i++) {
+		let element = elements[i];
+
+		if (element.value == individualCol) {
+			element.checked = true;
+			break;
+		}
+	}
+	hideTableColumns({ value: individualCol });
+}
+
+function saveResourceTrackerToStorage() {
+}
+
+function resetResourceTracerTab() {
 }
